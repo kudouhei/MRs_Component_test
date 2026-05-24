@@ -1,0 +1,157 @@
+Component: Text Field
+Library: mui-material
+Category: Inputs
+Source URL: https://mui.com/material-ui/api/text-field/
+
+Overview:
+TextField API
+API reference docs for the React TextField component. Learn about the props, CSS, and other APIs of this exported module.
+For examples and details on the usage of this React component, visit the component demo pages:
+
+Props Description:
+
+autoComplete
+This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it following the specification .
+Type:string
+Default:-
+
+autoFocus
+If true , the input element is focused during the first mount.
+Type:bool
+Default:false
+
+classes
+Override or extend the styles applied to the component. See CSS classes API below for more details.
+Type:object
+Default:-
+
+color
+The color of the component. It supports both default and custom theme colors, which can be added as shown in the palette customization guide .
+Type:'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string
+Default:'primary'
+
+defaultValue
+The default value. Use when the component is not controlled.
+Type:any
+Default:-
+
+disabled
+If true , the component is disabled.
+Type:bool
+Default:false
+
+error
+If true , the label is displayed in an error state.
+Type:bool
+Default:false
+
+fullWidth
+If true , the input will take up the full width of its container.
+Type:bool
+Default:false
+
+helperText
+The helper text content.
+Type:node
+Default:-
+
+id
+The id of the input element. Use this prop to make label and helperText accessible for screen readers.
+Type:string
+Default:-
+
+inputRef
+Pass a ref to the input element.
+Type:ref
+Default:-
+
+label
+The label content.
+Type:node
+Default:-
+
+margin
+If dense or normal , will adjust vertical spacing of this and contained components.
+Type:'dense' | 'none' | 'normal'
+Default:'none'
+
+maxRows
+Maximum number of rows to display when multiline option is set to true.
+Type:number | string
+Default:-
+
+minRows
+Minimum number of rows to display when multiline option is set to true.
+Type:number | string
+Default:-
+
+multiline
+If true , a textarea element is rendered instead of an input.
+Type:bool
+Default:false
+
+name
+Name attribute of the input element.
+Type:string
+Default:-
+
+placeholder
+The short hint displayed in the input before the user enters a value.
+Type:string
+Default:-
+
+required
+If true , the label is displayed as required and the input element is required.
+Type:bool
+Default:false
+
+rows
+Number of rows to display when multiline option is set to true.
+Type:number | string
+Default:-
+
+select
+Render a Select element while passing the Input element to Select as input parameter. If this option is set you must pass the options of the select as children.
+Type:bool
+Default:false
+
+size
+The size of the component.
+Type:'medium' | 'small' | string
+Default:'medium'
+
+slotProps
+The props used for each slot inside.
+Type:{ formHelperText?: func | object, htmlInput?: func | object, input?: func | object, inputLabel?: func | object, select?: func | object }
+Default:{}
+
+slots
+The components used for each slot inside.
+Type:{ formHelperText?: elementType, htmlInput?: elementType, input?: elementType, inputLabel?: elementType, root?: elementType, select?: elementType }
+Default:{}
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details.
+Type:Array<func | object | bool> | func | object
+Default:-
+
+type
+Type of the input element. It should be a valid HTML5 input type .
+Type:string
+Default:-
+
+value
+The value of the input element, required for a controlled component.
+Type:any
+Default:-
+
+variant
+The variant to use.
+Type:'filled' | 'outlined' | 'standard'
+Default:'outlined'
+
+Events:
+
+onChange
+Callback fired when the value is changed. Signature : function(event: object) => void event The event source of the callback. You can pull out the new value by accessing event.target.value (string).
+Type:func

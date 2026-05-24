@@ -1,0 +1,26 @@
+Component: Icons
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/icon
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+color
+SVG tag's fill attribute
+Type:string
+Default:inherit from color
+
+size
+SVG icon size, size x size
+Type:number / string
+Default:inherit from font size
+
+default
+Customize default content
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

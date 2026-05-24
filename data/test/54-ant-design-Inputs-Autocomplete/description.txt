@@ -1,0 +1,203 @@
+Component: Autocomplete
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/auto-complete/
+
+Overview:
+Autocomplete function of input field.
+Please use onChange to manage control state. onSearch is used for searching input which is not the same as onChange . Besides, clicking on the option will not trigger the onSearch event.
+
+Props Description:
+
+allowClear
+Show clear button
+Type:boolean | { clearIcon?: ReactNode }
+Default:false
+
+backfill
+If backfill selected item the input when using keyboard
+Type:boolean
+Default:false
+
+children
+Customize input element
+Type:HTMLInputElement | HTMLTextAreaElement | React.ReactElement<InputProps>
+Default:<Input />
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+dataSource
+Data source of autocomplete options, please use options instead
+Type:DataSourceItemType[]
+Default:-
+
+defaultActiveFirstOption
+Whether active first option by default
+Type:boolean
+Default:true
+
+defaultOpen
+Initial open state of dropdown
+Type:boolean
+Default:-
+
+defaultValue
+Initial selected option
+Type:string
+Default:-
+
+disabled
+Whether disabled select
+Type:boolean
+Default:false
+
+dropdownClassName
+The className of dropdown menu, please use classNames.popup.root instead
+Type:string
+Default:-
+
+dropdownMatchSelectWidth
+Determine whether the dropdown menu and the input are the same width, please use popupMatchSelectWidth instead
+Type:boolean | number
+Default:true
+
+dropdownRender
+Customize dropdown content, use popupRender instead
+Type:(originNode: ReactNode) => ReactNode
+Default:-
+
+popupRender
+Customize dropdown content
+Type:(originNode: ReactNode) => ReactNode
+Default:-
+
+dropdownStyle
+The style of dropdown menu, use styles.popup.root instead
+Type:CSSProperties
+Default:-
+
+popupClassName
+The className of dropdown menu, use classNames.popup.root instead
+Type:string
+Default:-
+
+popupMatchSelectWidth
+Determine whether the dropdown menu and the select input are the same width. Default set min-width same as input. Will ignore when value less than select width. false will disable virtual scroll
+Type:boolean | number
+Default:true
+
+filterOption
+If true, filter options by input, if function, filter options against it. The function will receive two arguments, inputValue and option , if the function returns true, the option will be included in the filtered set; Otherwise, it will be excluded
+Type:boolean | function(inputValue, option)
+Default:true
+
+getPopupContainer
+Parent node of the dropdown. Default to body, if you encountered positioning problems during scroll, try changing to the scrollable area and position relative to it. Example
+Type:function(triggerNode)
+Default:() => document.body
+
+notFoundContent
+Specify content to show when no result matches
+Type:ReactNode
+Default:-
+
+open
+Controlled open state of dropdown
+Type:boolean
+Default:-
+
+options
+Select options. Will get better perf than jsx definition
+Type:{ label, value }[]
+Default:-
+
+placeholder
+The placeholder of input
+Type:string
+Default:-
+
+showSearch
+search for configuration
+Type:true | Object
+Default:true
+
+status
+Set validation status
+Type:'error' | 'warning'
+Default:-
+
+size
+The size of the input box
+Type:large | medium | small
+Default:-
+
+value
+Selected option
+Type:string
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+variant
+Variants of input
+Type:outlined | borderless | filled | underlined
+Default:outlined
+
+virtual
+Disable virtual scroll when set to false
+Type:boolean
+Default:true
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+Events:
+
+onBlur
+Called when leaving the component
+Type:function()
+
+onChange
+Called when selecting an option or changing an input value
+Type:function(value)
+
+onDropdownVisibleChange
+Called when dropdown open, use onOpenChange instead
+Type:(open: boolean) => void
+
+onOpenChange
+Called when dropdown open
+Type:(open: boolean) => void
+
+onFocus
+Called when entering the component
+Type:function()
+
+onSearch
+Called when searching items
+Type:function(value)
+
+onSelect
+Called when a option is selected. param is option's value and option instance
+Type:function(value, option)
+
+onClear
+Called when clear
+Type:function
+
+onInputKeyDown
+Called when key pressed
+Type:(event: KeyboardEvent) => void
+
+onPopupScroll
+Called when dropdown scrolls
+Type:(event: UIEvent) => void

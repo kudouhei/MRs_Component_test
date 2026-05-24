@@ -1,0 +1,36 @@
+Component: Breadcrumb
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/breadcrumb
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+separator
+separator character
+Type:string
+Default:/
+
+separator-icon
+icon component of icon separator
+Type:string / Component
+Default:—
+
+default
+customize default content
+
+to
+target route of the link, same as to of vue-router
+Type:string / object
+Default:''
+
+replace
+if true , the navigation will not leave a history record
+Type:boolean
+Default:false
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

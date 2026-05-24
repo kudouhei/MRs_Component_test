@@ -1,0 +1,176 @@
+Component: InputNumber
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/input-number/
+
+Overview:
+Enter a number within certain range with the mouse or keyboard.
+When a numeric value needs to be provided.
+
+Props Description:
+
+addonAfter
+The label text displayed after (on the right side of) the input field, please use Space.Compact instead
+Type:ReactNode
+Default:-
+
+addonBefore
+The label text displayed before (on the left side of) the input field, please use Space.Compact instead
+Type:ReactNode
+Default:-
+
+changeOnBlur
+Trigger onChange when blur. e.g. reset value in range by blur
+Type:boolean
+Default:true
+
+changeOnWheel
+Allows control with mouse wheel
+Type:boolean
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+controls
+Whether to show +- controls, or set custom arrow icons
+Type:boolean | { upIcon?: React.ReactNode; downIcon?: React.ReactNode; }
+Default:-
+
+decimalSeparator
+Decimal separator
+Type:string
+Default:-
+
+placeholder
+Placeholder
+Type:string
+Default:-
+
+defaultValue
+The initial value
+Type:number
+Default:-
+
+disabled
+If the input is disabled
+Type:boolean
+Default:false
+
+formatter
+Specifies the format of the value presented
+Type:function(value: number | string, info: { userTyping: boolean, input: string }): string
+Default:-
+
+keyboard
+If keyboard behavior is enabled
+Type:boolean
+Default:true
+
+max
+The max value
+Type:number
+Default:Number.MAX_SAFE_INTEGER
+
+min
+The min value
+Type:number
+Default:Number.MIN_SAFE_INTEGER
+
+parser
+Specifies the value extracted from formatter
+Type:function(string): number
+Default:-
+
+precision
+The precision of input value. Will use formatter when config of formatter
+Type:number
+Default:-
+
+readOnly
+If the input is readonly
+Type:boolean
+Default:false
+
+status
+Set validation status
+Type:'error' | 'warning'
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+prefix
+The prefix icon for the Input
+Type:ReactNode
+Default:-
+
+suffix
+The suffix icon for the Input
+Type:ReactNode
+Default:-
+
+size
+The height of input box
+Type:large | medium | small
+Default:-
+
+step
+The number to which the current value is increased or decreased. It can be an integer or decimal
+Type:number | string
+Default:1
+
+stringMode
+Set value as string to support high precision decimals. Will return string value by onChange
+Type:boolean
+Default:false
+
+mode
+Show input or spinner
+Type:'input' | 'spinner'
+Default:'input'
+
+value
+The current value of the component
+Type:number
+Default:-
+
+variant
+Variants of Input
+Type:outlined | borderless | filled | underlined
+Default:outlined
+
+bordered
+Whether has border style, please use variant instead
+Type:boolean
+Default:true
+
+blur()
+Remove focus
+Type:-
+
+focus()
+Get focus
+Type:(option?: { preventScroll?: boolean, cursor?: 'start' | 'end' | 'all' })
+
+nativeElement
+The native DOM element
+Type:-
+
+Events:
+
+onChange
+The callback triggered when the value is changed
+Type:function(value: number | string | null)
+
+onPressEnter
+The callback function that is triggered when Enter key is pressed
+Type:function(e)
+
+onStep
+The callback function that is triggered when click up or down buttons / Keyboard / Wheel
+Type:(value: number, info: { offset: number, type: 'up' | 'down', emitter: 'handler' | 'keydown' | 'wheel' }) => void

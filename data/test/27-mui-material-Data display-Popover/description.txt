@@ -1,0 +1,107 @@
+Component: Popover
+Library: mui-material
+Category: Data display
+Source URL: https://mui.com/material-ui/api/popover/
+
+Overview:
+Popover API
+API reference docs for the React Popover component. Learn about the props, CSS, and other APIs of this exported module.
+For examples and details on the usage of this React component, visit the component demo pages:
+
+Props Description:
+
+open *
+If true , the component is shown.
+Type:bool
+Default:-
+
+action
+A ref for imperative actions. It currently only supports updatePosition() action.
+Type:ref
+Default:-
+
+anchorEl
+An HTML element, PopoverVirtualElement , or a function that returns either. It's used to set the position of the popover.
+Type:HTML element | func
+Default:-
+
+anchorOrigin
+This is the point on the anchor where the popover's anchorEl will attach to. This is not used when the anchorReference is 'anchorPosition'. Options: vertical: [top, center, bottom]; horizontal: [left, center, right].
+Type:{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }
+Default:{ vertical: 'top', horizontal: 'left', }
+
+anchorPosition
+This is the position that may be used to set the position of the popover. The coordinates are relative to the application's client area.
+Type:{ left: number, top: number }
+Default:-
+
+anchorReference
+This determines which anchor prop to refer to when setting the position of the popover.
+Type:'anchorEl' | 'anchorPosition' | 'none'
+Default:'anchorEl'
+
+children
+The content of the component.
+Type:node
+Default:-
+
+classes
+Override or extend the styles applied to the component. See CSS classes API below for more details.
+Type:object
+Default:-
+
+container
+An HTML element, component instance, or function that returns either. The container will passed to the Modal component. By default, it uses the body of the anchorEl's top-level document object, so it's simply document.body most of the time.
+Type:HTML element | func
+Default:-
+
+disableAutoFocus
+If true , the modal will not automatically shift focus to itself when it opens, and replace it to the last focused element when it closes. This also works correctly with any modal children that have the disableAutoFocus prop. Generally this should never be set to true as it makes the modal less accessible to assistive technologies, like screen readers.
+Type:bool
+Default:false
+
+disableScrollLock
+Disable the scroll lock behavior.
+Type:bool
+Default:false
+
+elevation
+The elevation of the popover.
+Type:integer
+Default:8
+
+marginThreshold
+Specifies how close to the edge of the window the popover can appear. If null, the popover will not be constrained by the window.
+Type:number
+Default:16
+
+slotProps
+The props used for each slot inside.
+Type:{ backdrop?: func | object, paper?: func | object, root?: func | object, transition?: func | object }
+Default:{}
+
+slots
+The components used for each slot inside.
+Type:{ backdrop?: elementType, paper?: elementType, root?: elementType, transition?: elementType }
+Default:{}
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details.
+Type:Array<func | object | bool> | func | object
+Default:-
+
+transformOrigin
+This is the point on the popover which will attach to the anchor's origin. Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)].
+Type:{ horizontal: 'center' | 'left' | 'right' | number, vertical: 'bottom' | 'center' | 'top' | number }
+Default:{ vertical: 'top', horizontal: 'left', }
+
+transitionDuration
+Set to 'auto' to automatically calculate transition time based on height.
+Type:'auto' | number | { appear?: number, enter?: number, exit?: number }
+Default:'auto'
+
+Events:
+
+onClose
+Callback fired when the component requests to be closed. The reason parameter can optionally be used to control the response to onClose .
+Type:func

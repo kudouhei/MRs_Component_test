@@ -1,0 +1,49 @@
+Component: Result
+Library: ant-design
+Category: Feedback
+Source URL: https://ant.design/components/result/
+
+Overview:
+Used to feedback the processing results of a series of operations.
+Use when important operations need to inform the user to process the results and the feedback is more complicated.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+extra
+Operating area
+Type:ReactNode
+Default:-
+
+icon
+Custom back icon
+Type:ReactNode
+Default:-
+
+status
+Result status, decide icons and colors
+Type:success | error | info | warning | 404 | 403 | 500
+Default:info
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+subTitle
+The subTitle
+Type:ReactNode
+Default:-
+
+title
+The title
+Type:ReactNode
+Default:-
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

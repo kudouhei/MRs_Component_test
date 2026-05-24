@@ -1,0 +1,131 @@
+Component: Steps
+Library: ant-design
+Category: Navigation
+Source URL: https://ant.design/components/steps/
+
+Overview:
+A navigation bar that guides users through the steps of a task.
+When a given task is complicated or has a certain sequence in the series of subtasks, we can decompose it into several steps to make things easier.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+current
+To set the current step, counting from 0. You can overwrite this state by using status of Step
+Type:number
+Default:0
+
+direction
+To specify the direction of the step bar, horizontal or vertical
+Type:string
+Default:horizontal
+
+iconRender
+Custom render icon, please use items.icon first
+Type:(oriNode, info: { index, active, item }) => ReactNode
+Default:-
+
+initial
+Set the initial step, counting from 0
+Type:number
+Default:0
+
+labelPlacement
+Place title and content with horizontal or vertical direction
+Type:string
+Default:horizontal
+
+orientation
+To specify the orientation of the step bar, horizontal or vertical
+Type:string
+Default:horizontal
+
+percent
+Progress circle percentage of current step in process status (only works on basic Steps)
+Type:number
+Default:-
+
+progressDot
+Steps with progress dot style, customize the progress dot by setting it to a function. Please use type="dot" instead. titlePlacement will be vertical
+Type:boolean | (iconDot, { index, status, title, content }) => ReactNode
+Default:false
+
+responsive
+Change to vertical direction when screen width smaller than 532px
+Type:boolean
+Default:true
+
+size
+To specify the size of the step bar, medium and small are currently supported
+Type:string
+Default:medium
+
+status
+To specify the status of current step, can be set to one of the following values: wait process finish error
+Type:string
+Default:process
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+titlePlacement
+Place title and content with horizontal or vertical direction
+Type:string
+Default:horizontal
+
+type
+Type of steps, can be set to one of the following values: default dot inline navigation panel
+Type:string
+Default:default
+
+variant
+Config style variant
+Type:filled | outlined
+Default:filled
+
+items
+StepItem content
+Type:StepItem
+Default:[]
+
+content
+Description of the step, optional property
+Type:ReactNode
+Default:-
+
+description
+Description of the step, optional property
+Type:ReactNode
+Default:-
+
+disabled
+Disable click
+Type:boolean
+Default:false
+
+icon
+Icon of the step, optional property
+Type:ReactNode
+Default:-
+
+subTitle
+Subtitle of the step
+Type:ReactNode
+Default:-
+
+title
+Title of the step
+Type:ReactNode
+Default:-
+
+Events:
+
+onChange
+Trigger when Step is changed
+Type:(current) => void

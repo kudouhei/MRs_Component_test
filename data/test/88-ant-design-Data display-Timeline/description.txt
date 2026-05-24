@@ -1,0 +1,114 @@
+Component: Timeline
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/timeline/
+
+Overview:
+Vertical display timeline.
+Node supports loading to indicate loading, and reverse property to control the order of nodes.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+items
+Each node of timeline
+Type:Items []
+Default:-
+
+mode
+By sending alternate the timeline will distribute the nodes to the left and right
+Type:start | alternate | end
+Default:start
+
+orientation
+Set the direction of the timeline
+Type:vertical | horizontal
+Default:vertical
+
+pending
+Set the last ghost node's existence or its content. Use item.loading instead
+Type:ReactNode
+Default:false
+
+pendingDot
+Set the dot of the last ghost node when pending is true. Use item.icon instead
+Type:ReactNode
+Default:<LoadingOutlined />
+
+reverse
+Whether reverse nodes or not
+Type:boolean
+Default:false
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+titleSpan
+Set the title span space. It is the distance to the center of the dot
+Type:number | string
+Default:12
+
+variant
+Config style variant
+Type:filled | outlined
+Default:outlined
+
+color
+Set the circle's color to blue , red , green , gray or other custom colors
+Type:string
+Default:blue
+
+content
+Set the content
+Type:ReactNode
+Default:-
+
+children
+Set the content. Please use content instead
+Type:ReactNode
+Default:-
+
+dot
+Customize timeline dot. Please use icon instead
+Type:ReactNode
+Default:-
+
+icon
+Customize node icon
+Type:ReactNode
+Default:-
+
+label
+Set the label. Please use title instead
+Type:ReactNode
+Default:-
+
+loading
+Set loading state
+Type:boolean
+Default:false
+
+placement
+Customize node placement
+Type:start | end
+Default:-
+
+position
+Customize node position. Please use placement instead
+Type:start | end
+Default:-
+
+title
+Set the title
+Type:ReactNode
+Default:-
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

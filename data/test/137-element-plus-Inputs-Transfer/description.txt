@@ -1,0 +1,128 @@
+Component: Transfer
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/transfer
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:array
+Default:[]
+
+data
+data source
+Type:array
+Default:[]
+
+filterable
+whether Transfer is filterable
+Type:boolean
+Default:false
+
+filter-placeholder
+placeholder for the filter input
+Type:string
+Default:—
+
+filter-method
+custom filter method
+Type:Function
+Default:—
+
+target-order
+order strategy for elements in the target list. If set to original , the elements will keep the same order as the data source. If set to push , the newly added elements will be pushed to the bottom. If set to unshift , the newly added elements will be inserted on the top
+Type:enum
+Default:original
+
+titles
+custom list titles
+Type:array
+Default:[]
+
+button-texts
+custom button texts
+Type:array
+Default:[]
+
+render-content
+custom render function for data items
+Type:object
+Default:—
+
+format
+texts for checking status in list header
+Type:object
+Default:{}
+
+props
+prop aliases for data source
+Type:object
+Default:—
+
+left-default-checked
+key array of initially checked data items of the left list
+Type:array
+Default:[]
+
+right-default-checked
+key array of initially checked data items of the right list
+Type:array
+Default:[]
+
+change
+triggers when data items change in the right list
+Type:Function
+
+left-check-change
+triggers when end user changes the checked state of any data item in the left list
+Type:Function
+
+right-check-change
+triggers when end user changes the checked state of any data item in the right list
+Type:Function
+
+default
+Custom content for data items.
+Type:object
+
+left-footer
+content of left list footer
+Type:—
+
+right-footer
+content of right list footer
+Type:—
+
+left-empty 2.9.0
+content when left panel is empty or when no data matches the filter
+Type:—
+
+right-empty 2.9.0
+content when right panel is empty or when no data matches the filter
+Type:—
+
+clearQuery
+clear the filter keyword of a certain panel
+Type:Function
+
+leftPanel
+left panel ref
+Type:object
+
+rightPanel
+right panel ref
+Type:object
+
+query
+filter keyword
+Type:string
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

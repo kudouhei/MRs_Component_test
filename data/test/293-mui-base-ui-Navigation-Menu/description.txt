@@ -1,0 +1,16 @@
+Component: Menu
+Library: mui-base-ui
+Category: Navigation
+Source URL: https://base-ui.com/react/components/menu
+
+Overview:
+A high-quality, unstyled React menu component that displays list of actions in a dropdown, enhanced with keyboard navigation.
+A list of actions in a dropdown, enhanced with keyboard navigation.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

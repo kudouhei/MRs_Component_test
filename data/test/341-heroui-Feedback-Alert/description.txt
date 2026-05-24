@@ -1,0 +1,29 @@
+Component: Alert
+Library: heroui
+Category: Feedback
+Source URL: https://heroui.com/docs/react/components/alert
+
+Overview:
+Display important messages and notifications to users with status indicators
+Display important messages and notifications to users with status indicators
+
+Props Description:
+
+status
+The visual status of the alert
+Type:"default" | "accent" | "success" | "warning" | "danger"
+Default:"default"
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+The alert content
+Type:ReactNode
+Default:-
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

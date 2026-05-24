@@ -1,0 +1,184 @@
+Component: Input Tag
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/input-tag
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:array
+Default:—
+
+max
+max number tags that can be enter
+Type:number
+Default:—
+
+tag-type
+tag type
+Type:enum
+Default:info
+
+tag-effect
+tag effect
+Type:enum
+Default:light
+
+effect 2.13.2
+tooltip theme, built-in theme: dark / light
+Type:enum / string
+Default:light
+
+trigger
+the key to trigger input tag
+Type:enum
+Default:Enter
+
+draggable
+whether tags can be dragged
+Type:boolean
+Default:false
+
+delimiter 2.9.9
+add a tag when a delimiter is matched
+Type:string / regex
+Default:—
+
+size
+input box size
+Type:enum
+Default:—
+
+collapse-tags 2.11.0
+whether to collapse tags to a text when multiple selecting
+Type:boolean
+Default:false
+
+collapse-tags-tooltip 2.11.0
+whether show all selected tags when mouse hover text of collapse-tags. To use this, collapse-tags must be true
+Type:boolean
+Default:false
+
+save-on-blur 2.9.7
+whether to save the input value when the input loses focus
+Type:boolean
+Default:true
+
+clearable
+whether to show clear button
+Type:boolean
+Default:false
+
+clear-icon 2.11.0
+custom clear icon component
+Type:string / object
+Default:CircleClose
+
+disabled
+whether to disable input-tag
+Type:boolean
+Default:false
+
+readonly
+same as readonly in native input
+Type:boolean
+Default:false
+
+autofocus
+same as autofocus in native input
+Type:boolean
+Default:false
+
+id
+same as id in native input
+Type:string
+Default:—
+
+tabindex
+same as tabindex in native input
+Type:string / number
+Default:—
+
+max-collapse-tags 2.11.0
+the max tags number to be shown. To use this, collapse-tags must be true
+Type:number
+Default:1
+
+maxlength
+same as maxlength in native input
+Type:string / number
+Default:—
+
+minlength
+same as minlength in native input
+Type:string / number
+Default:—
+
+placeholder
+placeholder of input
+Type:string
+Default:—
+
+autocomplete
+same as autocomplete in native input
+Type:string
+Default:off
+
+aria-label a11y
+native aria-label attribute
+Type:string
+Default:—
+
+change
+triggers when the modelValue change
+Type:Function
+
+input
+triggers when the input value change
+Type:Function
+
+add-tag
+triggers when a tag is added
+Type:Function
+
+remove-tag
+triggers when a tag is removed
+Type:Function
+
+drag-tag 2.11.3
+triggers when a tag is dragged
+Type:Function
+
+focus
+triggers when InputTag focuses
+Type:Function
+
+blur
+triggers when InputTag blurs
+Type:Function
+
+clear
+triggers when the clear icon is clicked
+Type:Function
+
+tag
+content as tag
+Type:object
+
+prefix
+content as InputTag prefix
+Type:—
+
+suffix
+content as InputTag suffix
+Type:—
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

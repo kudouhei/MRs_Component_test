@@ -1,0 +1,107 @@
+Component: Splitter
+Library: ant-design
+Category: Layout
+Source URL: https://ant.design/components/splitter/
+
+Overview:
+Resizable split panel layout
+Can be used to separate areas horizontally or vertically. When you need to freely drag and adjust the size of each area. When you need to specify the maximum and minimum width and height of an area.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+collapsible
+motion to enable collapse animation, icon to customize collapse icons
+Type:{ motion?: boolean; icon?: { start?: ReactNode; end?: ReactNode } }
+Default:-
+
+collapsibleIcon
+custom collapsible icon
+Type:{start?: ReactNode; end?: ReactNode}
+Default:-
+
+destroyOnHidden
+Destroy panel content when collapsed (size is 0). Applies to all panels, can be overridden per panel
+Type:boolean
+Default:false
+
+draggerIcon
+custom dragger icon
+Type:ReactNode
+Default:-
+
+layout
+Layout direction
+Type:horizontal | vertical
+Default:horizontal
+
+lazy
+Lazy mode
+Type:boolean
+Default:false
+
+orientation
+Orientation direction
+Type:horizontal | vertical
+Default:horizontal
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+vertical
+Orientation. Simultaneously existing with orientation , orientation takes priority
+Type:boolean
+Default:false
+
+defaultSize
+Initial panel size support number for px or 'percent%' usage
+Type:number | string
+Default:-
+
+max
+Maximum threshold support number for px or 'percent%' usage
+Type:number | string
+Default:-
+
+min
+Minimum threshold support number for px or 'percent%' usage
+Type:number | string
+Default:-
+
+resizable
+Whether to enable drag and drop
+Type:boolean
+Default:true
+
+size
+Controlled panel size support number for px or 'percent%' usage
+Type:number | string
+Default:-
+
+Events:
+
+onCollapse
+Callback when expanding or collapsing
+Type:(collapsed: boolean[], sizes: number[]) => void
+
+onDraggerDoubleClick
+Callback triggered when the dragger is double-clicked
+Type:(index: number) => void
+
+onResize
+Panel size change callback
+Type:(sizes: number[]) => void
+
+onResizeEnd
+Drag end callback
+Type:(sizes: number[]) => void
+
+onResizeStart
+Callback before dragging starts
+Type:(sizes: number[]) => void

@@ -1,0 +1,15 @@
+Component: Color
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/color
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

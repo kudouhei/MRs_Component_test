@@ -1,0 +1,31 @@
+Component: Result
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/result
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+title
+title of result
+Type:string
+Default:''
+
+sub-title
+sub title of result
+Type:string
+Default:''
+
+icon
+icon type of result
+Type:enum
+Default:info
+
+extra
+content as result extra area
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,16 @@
+Component: Alert
+Library: mui-base-ui
+Category: Feedback
+Source URL: https://base-ui.com/react/components/alert-dialog
+
+Overview:
+A high-quality, unstyled React alert dialog component that requires a user response to proceed.
+A dialog that requires a user response to proceed.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

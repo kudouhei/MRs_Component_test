@@ -1,0 +1,95 @@
+Component: Carousel
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/carousel
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+height
+height of the carousel
+Type:string
+Default:''
+
+initial-index
+index of the initially active slide (starting from 0)
+Type:number
+Default:0
+
+trigger
+how indicators are triggered
+Type:enum
+Default:hover
+
+autoplay
+whether automatically loop the slides
+Type:boolean
+Default:true
+
+interval
+interval of the auto loop, in milliseconds
+Type:number
+Default:3000
+
+indicator-position
+position of the indicators
+Type:enum
+Default:''
+
+arrow
+when arrows are shown
+Type:enum
+Default:hover
+
+type
+type of the Carousel
+Type:enum
+Default:''
+
+card-scale 2.7.8
+when type is card, scaled size of secondary cards
+Type:number
+Default:0.83
+
+loop
+display the items in loop
+Type:boolean
+Default:true
+
+direction
+display direction
+Type:enum
+Default:horizontal
+
+pause-on-hover
+pause autoplay when hover
+Type:boolean
+Default:true
+
+motion-blur 2.6.0
+infuse dynamism and smoothness into the carousel
+Type:boolean
+Default:false
+
+change
+triggers when the active slide switches, it has two parameters, the one is the index of the new active slide, and other is index of the old active slide
+Type:Function
+
+default
+customize default content
+
+name
+name of the item, can be used in setActiveItem
+Type:string
+Default:''
+
+label
+text content for the corresponding indicator
+Type:string / number
+Default:''
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,220 @@
+Component: Message Box
+Library: element-plus
+Category: Feedback
+Source URL: https://element-plus.org/en-US/component/message-box
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+autofocus
+auto focus when open MessageBox
+Type:boolean
+Default:true
+
+title
+title of the MessageBox
+Type:string
+Default:''
+
+message
+content of the MessageBox
+Type:string / VNode / Function 2.2.17 / Function 2.14.0
+Default:—
+
+dangerouslyUseHTMLString
+whether message is treated as HTML string
+Type:boolean
+Default:false
+
+type
+message type, used for icon display
+Type:enum
+Default:''
+
+icon
+custom icon component, overrides type
+Type:string / Component
+Default:''
+
+closeIcon 2.9.5
+custom close icon component, default is Close
+Type:string / Component
+Default:''
+
+customClass
+custom class name for MessageBox
+Type:string
+Default:''
+
+customStyle
+custom inline style for MessageBox
+Type:CSSProperties
+Default:{}
+
+modal
+whether a mask is displayed
+Type:boolean
+Default:true
+
+modalClass
+custom class names for mask
+Type:string
+Default:—
+
+showClose
+whether to show close icon of MessageBox
+Type:boolean
+Default:true
+
+beforeClose
+callback before MessageBox closes, and it will prevent MessageBox from closing
+Type:Function
+Default:null
+
+distinguishCancelAndClose
+whether to distinguish canceling and closing the MessageBox
+Type:boolean
+Default:false
+
+lockScroll
+whether to lock body scroll when MessageBox prompts
+Type:boolean
+Default:true
+
+showCancelButton
+whether to show a cancel button
+Type:boolean
+Default:false (true when called with confirm and prompt)
+
+showConfirmButton
+whether to show a confirm button
+Type:boolean
+Default:true
+
+cancelButtonText
+text content of cancel button
+Type:string
+Default:Cancel
+
+confirmButtonText
+text content of confirm button
+Type:string
+Default:OK
+
+cancelButtonType 2.13.1
+type of cancel button
+Type:enum
+Default:—
+
+confirmButtonType 2.13.1
+type of confirm button
+Type:enum
+Default:primary
+
+cancelButtonLoadingIcon 2.7.7
+loading icon content of cancel button
+Type:string / Component
+Default:Loading
+
+confirmButtonLoadingIcon 2.7.7
+loading icon content of confirm button
+Type:string / Component
+Default:Loading
+
+cancelButtonClass
+custom class name of cancel button
+Type:string
+Default:''
+
+confirmButtonClass
+custom class name of confirm button
+Type:string
+Default:''
+
+closeOnClickModal
+whether MessageBox can be closed by clicking the mask
+Type:boolean
+Default:true (false when called with alert)
+
+closeOnPressEscape
+whether MessageBox can be closed by pressing the ESC
+Type:boolean
+Default:true (false when called with alert)
+
+closeOnHashChange
+whether to close MessageBox when hash changes
+Type:boolean
+Default:true
+
+showInput
+whether to show an input
+Type:boolean
+Default:false (true when called with prompt)
+
+inputPlaceholder
+placeholder of input
+Type:string
+Default:''
+
+inputType
+type of input, see more in MDN
+Type:string
+Default:text
+
+inputValue
+initial value of input
+Type:string
+Default:''
+
+inputPattern
+regexp for the input
+Type:regexp
+Default:null
+
+inputValidator
+validation function for the input. Should returns a boolean or string. If a string is returned, it will be assigned to inputErrorMessage
+Type:Function / undefined
+Default:undefined
+
+inputErrorMessage
+error message when validation fails
+Type:string
+Default:Illegal input
+
+center
+whether to align the content in center
+Type:boolean
+Default:false
+
+draggable
+whether MessageBox is draggable
+Type:boolean
+Default:false
+
+overflow 2.5.4
+draggable MessageBox can overflow the viewport
+Type:boolean
+Default:false
+
+roundButton
+whether to use round button
+Type:boolean
+Default:false
+
+buttonSize
+custom size of confirm and cancel buttons
+Type:string
+Default:default
+
+appendTo 2.2.19
+set the root element for the message box
+Type:CSSSelector / HTMLElement
+Default:—
+
+Events:
+
+callback
+MessageBox closing callback if you don't prefer Promise
+Type:Function

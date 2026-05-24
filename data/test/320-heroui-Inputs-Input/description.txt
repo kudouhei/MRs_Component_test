@@ -1,0 +1,106 @@
+Component: Input
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/input
+
+Overview:
+Primitive single-line text input component that accepts standard HTML attributes
+Primitive single-line text input component that accepts standard HTML attributes
+
+Props Description:
+
+className
+Tailwind classes merged with the component styles.
+Type:string
+Default:-
+
+type
+Input type (text, email, password, number, etc.).
+Type:string
+Default:"text"
+
+value
+Controlled value.
+Type:string
+Default:-
+
+defaultValue
+Uncontrolled initial value.
+Type:string
+Default:-
+
+placeholder
+Placeholder text.
+Type:string
+Default:-
+
+disabled
+Disables the input.
+Type:boolean
+Default:false
+
+readOnly
+Makes the input read-only.
+Type:boolean
+Default:false
+
+required
+Marks the input as required.
+Type:boolean
+Default:false
+
+name
+Name for form submission.
+Type:string
+Default:-
+
+autoComplete
+Autocomplete hint for the browser.
+Type:string
+Default:-
+
+maxLength
+Maximum number of characters.
+Type:number
+Default:-
+
+minLength
+Minimum number of characters.
+Type:number
+Default:-
+
+pattern
+Regex pattern for validation.
+Type:string
+Default:-
+
+min
+Minimum value (for number/date inputs).
+Type:number | string
+Default:-
+
+max
+Maximum value (for number/date inputs).
+Type:number | string
+Default:-
+
+step
+Stepping interval (for number inputs).
+Type:number | string
+Default:-
+
+fullWidth
+Whether the input should take full width of its container
+Type:boolean
+Default:false
+
+variant
+Visual variant of the component. primary is the default style with shadow. secondary is a lower emphasis variant without shadow, suitable for use in surfaces.
+Type:"primary" | "secondary"
+Default:"primary"
+
+Events:
+
+onChange
+Change handler.
+Type:(event: React.ChangeEvent<HTMLInputElement>) => void

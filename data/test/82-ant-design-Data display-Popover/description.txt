@@ -1,0 +1,126 @@
+Component: Popover
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/popover/
+
+Overview:
+The floating card pops up when clicking/mouse hovering over an element.
+A simple popup menu to provide extra information or operations.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+content
+Content of the card
+Type:ReactNode | () => ReactNode
+Default:-
+
+title
+Title of the card
+Type:ReactNode | () => ReactNode
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+align
+Please refer to the settings dom-align
+Type:object
+Default:-
+
+arrow
+Change arrow's visible state and change whether the arrow is pointed at the center of target.
+Type:boolean | { pointAtCenter: boolean }
+Default:true
+
+autoAdjustOverflow
+Whether to adjust popup placement automatically when popup is off screen
+Type:boolean
+Default:true
+
+color
+The background color
+Type:string
+Default:-
+
+defaultOpen
+Whether the floating tooltip card is open by default
+Type:boolean
+Default:false
+
+destroyTooltipOnHide
+Whether destroy dom when close
+Type:boolean
+Default:false
+
+destroyOnHidden
+Whether destroy dom when close
+Type:boolean
+Default:false
+
+fresh
+Tooltip will cache content when it is closed by default. Setting this property will always keep updating
+Type:boolean
+Default:false
+
+getPopupContainer
+The DOM container of the tip, the default behavior is to create a div element in body
+Type:(triggerNode: HTMLElement) => HTMLElement
+Default:() => document.body
+
+mouseEnterDelay
+Delay in seconds, before tooltip is shown on mouse enter
+Type:number
+Default:0.1
+
+mouseLeaveDelay
+Delay in seconds, before tooltip is hidden on mouse leave
+Type:number
+Default:0.1
+
+overlayClassName
+Class name of the tooltip card, please use classNames.root instead
+Type:string
+Default:-
+
+overlayStyle
+Style of the tooltip card, please use styles.root
+Type:React.CSSProperties
+Default:-
+
+overlayInnerStyle
+Style of the tooltip inner content, please use styles.container instead
+Type:React.CSSProperties
+Default:-
+
+placement
+The position of the tooltip relative to the target, which can be one of top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+Type:string
+Default:top
+
+trigger
+Tooltip trigger mode. Could be multiple by passing an array
+Type:hover | focus | click | contextMenu | Array<string>
+Default:hover
+
+open
+Whether the floating tooltip card is open or not. Use visible under 4.23.0 ( why? )
+Type:boolean
+Default:false
+
+zIndex
+Config z-index of Tooltip
+Type:number
+Default:-
+
+Events:
+
+onOpenChange
+Callback executed when visibility of the tooltip card is changed
+Type:(open: boolean) => void

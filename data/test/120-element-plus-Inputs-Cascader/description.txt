@@ -1,0 +1,290 @@
+Component: Cascader
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/cascader
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:string / number / array
+Default:—
+
+options
+data of the options, the key of value and label can be customize by CascaderProps .
+Type:array
+Default:—
+
+props
+configuration options, see the following CascaderProps table.
+Type:object
+Default:—
+
+size
+size of input
+Type:enum
+Default:—
+
+placeholder
+placeholder of input
+Type:string
+Default:—
+
+disabled
+whether Cascader is disabled
+Type:boolean
+Default:—
+
+clearable
+whether selected value can be cleared
+Type:boolean
+Default:—
+
+clear-icon 2.11.0
+custom clear icon component
+Type:string / object
+Default:CircleClose
+
+show-all-levels
+whether to display all levels of the selected value in the input
+Type:boolean
+Default:true
+
+collapse-tags
+whether to collapse tags in multiple selection mode
+Type:boolean
+Default:—
+
+collapse-tags-tooltip
+whether show all selected tags when mouse hover text of collapse-tags. To use this, collapse-tags must be true
+Type:boolean
+Default:false
+
+max-collapse-tags-tooltip-height 2.10.2
+max height of collapse-tags tooltip.
+Type:string / number
+Default:—
+
+separator
+option label separator
+Type:string
+Default:' / '
+
+filterable
+whether the options can be searched
+Type:boolean
+Default:—
+
+filter-method
+customize search logic, the first parameter is node , the second is keyword , and need return a boolean value indicating whether it hits.
+Type:Function
+Default:—
+
+debounce
+debounce delay when typing filter keyword, in milliseconds
+Type:number
+Default:300
+
+before-filter
+hook function before filtering with the value to be filtered as its parameter. If false is returned or a Promise is returned and then is rejected, filtering will be aborted
+Type:Function
+Default:—
+
+popper-class
+custom class name for Cascader's dropdown and tags' tooltip
+Type:string
+Default:''
+
+popper-style
+custom style for Cascader's dropdown and tags' tooltip
+Type:string / object
+Default:—
+
+teleported
+whether cascader popup is teleported
+Type:boolean
+Default:true
+
+effect 2.10.5
+tooltip theme, built-in theme: dark / light
+Type:enum / string
+Default:light
+
+tag-type
+tag type
+Type:enum
+Default:info
+
+tag-effect 2.7.8
+tag effect
+Type:enum
+Default:light
+
+max-collapse-tags 2.3.10
+The max tags number to be shown. To use this, collapse-tags must be true
+Type:number
+Default:1
+
+empty-values 2.7.0
+empty values of component, see config-provider
+Type:array
+Default:—
+
+value-on-clear 2.7.0
+clear return value, see config-provider
+Type:string / number / boolean / Function
+Default:—
+
+persistent 2.7.8
+when dropdown is inactive and persistent is false , dropdown will be destroyed
+Type:boolean
+Default:true
+
+fallback-placements 2.8.1
+list of possible positions for Tooltip popper.js
+Type:array
+Default:—
+
+placement 2.8.1
+position of dropdown
+Type:enum
+Default:bottom-start
+
+popper-append-to-body deprecated
+whether to append the popper menu to body. If the positioning of the popper is wrong, you can try to set this prop to false
+Type:boolean
+Default:true
+
+show-checked-strategy 2.10.5
+strategy for displaying checked nodes in multiple selection mode. Use parent when you want things tidy. Use child when every single item matters
+Type:enum
+Default:child
+
+virtual-scroll 2.14.0
+whether to enable virtual scrolling for large data
+Type:boolean
+Default:false
+
+fit-input-width 2.14.0
+whether the width of the suggestion panel is the same as the input, if the value is number , then the width is fixed
+Type:boolean / number
+Default:false
+
+item-size 2.14.0
+node height for virtual scrolling (px)
+Type:number
+Default:34
+
+height 2.14.0
+menu height for virtual scrolling (px)
+Type:number
+Default:204
+
+change
+triggers when the binding value changes
+Type:Function
+
+expand-change
+triggers when expand option changes
+Type:Function
+
+blur
+triggers when Cascader blurs
+Type:Function
+
+focus
+triggers when Cascader focuses
+Type:Function
+
+clear 2.7.7
+triggers when the clear icon is clicked in a clearable Select
+Type:Function
+
+visible-change
+triggers when the dropdown appears/disappears
+Type:Function
+
+remove-tag
+triggers when remove tag in multiple selection mode
+Type:Function
+
+default
+the custom content of cascader node, which are current Node object and node data respectively.
+Type:object
+
+empty
+content when there is no matched options.
+Type:—
+
+prefix 2.9.4
+content as Input prefix
+Type:—
+
+suggestion-item 2.9.5
+custom content for suggestion item when searching
+Type:object
+
+tag 2.10.3
+custom tags style
+Type:object
+
+header 2.10.5
+content at the top of the dropdown
+Type:—
+
+footer 2.10.5
+content at the bottom of the dropdown
+Type:—
+
+getCheckedNodes
+get an array of currently selected node,(leafOnly) whether only return the leaf checked nodes, default is false
+Type:Function
+
+cascaderPanelRef
+cascader panel ref
+Type:object
+
+togglePopperVisible 2.2.31
+toggle the visible type of popper
+Type:Function
+
+contentRef
+cascader content ref
+Type:object
+
+presentText 2.8.4
+selected content text
+Type:object
+
+focus 2.11.8
+focus the input element
+Type:Function
+
+blur 2.11.8
+blur the input element
+Type:Function
+
+update:modelValue
+triggers when the binding value changes
+Type:Function
+
+close
+close panel event, provided to Cascader to put away the panel judgment.
+Type:Function
+
+empty 2.8.3
+the content of the panel when there is no data.
+Type:—
+
+clearCheckedNodes
+clear checked nodes
+Type:Function
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

@@ -3,7 +3,8 @@
 **Scope:** Framework capabilities are defined based on the research topics and method flowchart; not bound to any particular technology stack. However, in Phase 4, **open issues (current version, open)** serve as the sole main external anchor.
 
 **Supporting Documentation:**
-- Open Issues corpus definition and fields (reference implementation): [`../analysis/open_issues/README.md`](../analysis/open_issues/README.md)
+- Development guide (architecture, CLI, provenance, extension): [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md)
+- Open Issues corpus definition and fields: [`analysis/open_issues/2026-0510-README.md`](analysis/open_issues/2026-0510-README.md)
 
 ---
 

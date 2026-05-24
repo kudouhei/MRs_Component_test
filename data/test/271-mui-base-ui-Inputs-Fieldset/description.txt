@@ -1,0 +1,16 @@
+Component: Fieldset
+Library: mui-base-ui
+Category: Inputs
+Source URL: https://base-ui.com/react/components/fieldset
+
+Overview:
+A high-quality, unstyled React fieldset component with an easily stylable legend.
+A native fieldset element with an easily stylable legend.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

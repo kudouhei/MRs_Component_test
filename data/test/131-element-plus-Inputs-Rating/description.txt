@@ -1,0 +1,134 @@
+Component: Rating
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/rate
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:number
+Default:0
+
+max
+max rating score
+Type:number
+Default:5
+
+size
+size of Rate
+Type:enum
+Default:—
+
+disabled
+whether Rate is read-only
+Type:boolean
+Default:false
+
+allow-half
+whether picking half start is allowed
+Type:boolean
+Default:false
+
+low-threshold
+threshold value between low and medium level. The value itself will be included in low level
+Type:number
+Default:2
+
+high-threshold
+threshold value between medium and high level. The value itself will be included in high level
+Type:number
+Default:4
+
+colors
+colors for icons. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding color
+Type:array / object
+Default:['#f7ba2a', '#f7ba2a', '#f7ba2a']
+
+void-color
+color of unselected icons
+Type:string
+Default:#c6d1de
+
+disabled-void-color
+color of unselected read-only icons
+Type:string
+Default:#eff2f7
+
+icons
+icon components. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding icon component
+Type:array / object
+Default:[StarFilled, StarFilled, StarFilled]
+
+void-icon
+component of unselected icons
+Type:string / Component
+Default:Star
+
+disabled-void-icon
+component of unselected read-only icons
+Type:string / Component
+Default:StarFilled
+
+show-text
+whether to display texts
+Type:boolean
+Default:false
+
+show-score
+whether to display current score. show-score and show-text cannot be true at the same time
+Type:boolean
+Default:false
+
+text-color
+color of texts
+Type:string
+Default:''
+
+texts
+text array
+Type:array
+Default:['Extremely bad', 'Disappointed', 'Fair', 'Satisfied', 'Surprise']
+
+score-template
+score template
+Type:string
+
+clearable 2.2.18
+whether value can be reset to 0
+Type:boolean
+Default:false
+
+id
+native id attribute
+Type:string
+Default:—
+
+aria-label a11y 2.7.2
+same as aria-label in Rate
+Type:string
+Default:—
+
+label a11y deprecated
+same as aria-label in Rate
+Type:string
+Default:—
+
+change
+Triggers when rate value is changed
+Type:Function
+
+setCurrentValue
+set current value
+Type:Function
+
+resetCurrentValue
+reset current value
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

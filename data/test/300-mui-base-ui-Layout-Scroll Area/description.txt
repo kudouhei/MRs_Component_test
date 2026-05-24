@@ -1,0 +1,16 @@
+Component: Scroll Area
+Library: mui-base-ui
+Category: Layout
+Source URL: https://base-ui.com/react/components/scroll-area
+
+Overview:
+A high-quality, unstyled React scroll area that provides a native scroll container with custom scrollbars.
+A native scroll container with custom scrollbars.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

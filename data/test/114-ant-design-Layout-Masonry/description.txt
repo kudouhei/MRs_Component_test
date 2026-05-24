@@ -1,0 +1,76 @@
+Component: Masonry
+Library: ant-design
+Category: Layout
+Source URL: https://ant.design/components/masonry/
+
+Overview:
+A masonry layout component for displaying content with different heights.
+A masonry layout component for displaying content with different heights.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+columns
+Number of columns, can be a fixed value or a responsive configuration
+Type:number | { xs?: number; sm?: number; md?: number }
+Default:3
+
+fresh
+Whether to continuously monitor the size changes of child items
+Type:boolean
+Default:false
+
+gutter
+Spacing, can be a fixed value, responsive configuration, or a configuration for horizontal and vertical spacing
+Type:Gap | [ Gap , Gap ]
+Default:0
+
+items
+Masonry items
+Type:MasonryItem []
+Default:-
+
+itemRender
+Custom item rendering function
+Type:(item: MasonryItem) => React.ReactNode
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+children
+Custom display content, takes precedence over itemRender
+Type:React.ReactNode
+Default:-
+
+column
+Specifies the column to which the item belongs
+Type:number
+Default:-
+
+data
+Custom data storage
+Type:T
+Default:-
+
+height
+Height of the item
+Type:number
+Default:-
+
+key
+Unique identifier for the item
+Type:string | number
+Default:-
+
+Events:
+
+onLayoutChange
+Callback for column sorting changes
+Type:({ key: React.Key; column: number }[]) => void

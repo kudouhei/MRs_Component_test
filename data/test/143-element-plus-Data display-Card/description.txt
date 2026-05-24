@@ -1,0 +1,54 @@
+Component: Card
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/card
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+header
+title of the card. Also accepts a DOM passed by slot#header
+Type:string
+Default:—
+
+footer 2.4.3
+footer of the card. Also accepts a DOM passed by slot#footer
+Type:string
+Default:—
+
+body-style
+CSS style of card body
+Type:object
+Default:—
+
+header-class 2.9.8
+custom class name of card header
+Type:string
+Default:—
+
+body-class 2.3.10
+custom class name of card body
+Type:string
+Default:—
+
+footer-class 2.9.8
+custom class name of card footer
+Type:string
+Default:—
+
+shadow
+when to show card shadows
+Type:enum
+Default:always
+
+default
+customize default content
+
+footer
+content of the Card footer
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

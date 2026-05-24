@@ -1,0 +1,61 @@
+Component: Tabs
+Library: heroui
+Category: Navigation
+Source URL: https://heroui.com/docs/react/components/tabs
+
+Overview:
+Tabs organize content into multiple sections and allow users to navigate between them.
+Tabs organize content into multiple sections and allow users to navigate between them.
+
+Props Description:
+
+variant
+Visual style variant. Primary uses a filled indicator, secondary uses an underline indicator
+Type:"primary" | "secondary"
+Default:"primary"
+
+orientation
+Tab layout orientation
+Type:"horizontal" | "vertical"
+Default:"horizontal"
+
+selectedKey
+Controlled selected tab key
+Type:string
+Default:-
+
+defaultSelectedKey
+Default selected tab key
+Type:string
+Default:-
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, TabsRenderProps>
+Default:-
+
+aria-label
+Accessibility label for tab list
+Type:string
+Default:-
+
+id
+Unique tab identifier
+Type:string
+Default:-
+
+isDisabled
+Whether tab is disabled
+Type:boolean
+Default:false
+
+Events:
+
+onSelectionChange
+Selection change handler
+Type:(key: Key) => void

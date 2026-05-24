@@ -1,0 +1,250 @@
+Component: DatePicker
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/date-picker
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value, if it is an range picker, the length of the array should be 2
+Type:number / string / Date / array
+Default:''
+
+readonly
+whether DatePicker is read only
+Type:boolean
+Default:false
+
+disabled
+whether DatePicker is disabled
+Type:boolean
+Default:false
+
+size
+size of Input
+Type:enum
+Default:—
+
+editable
+whether the input is editable
+Type:boolean
+Default:true
+
+clearable
+whether to show clear button
+Type:boolean
+Default:true
+
+placeholder
+placeholder in non-range mode
+Type:string
+Default:''
+
+start-placeholder
+placeholder for the start date in range mode
+Type:string
+Default:—
+
+end-placeholder
+placeholder for the end date in range mode
+Type:string
+Default:—
+
+type
+type of the picker
+Type:enum
+Default:date
+
+format
+format of the displayed value in the input box
+Type:string see date formats
+Default:YYYY-MM-DD
+
+popper-class
+custom class name for DatePicker's dropdown
+Type:string
+Default:—
+
+popper-style
+custom style for DatePicker's dropdown
+Type:string / object
+Default:—
+
+popper-options
+Customized popper option see more at popper.js
+Type:object
+Default:{}
+
+range-separator
+range separator
+Type:string
+Default:'-'
+
+default-value
+optional, default date of the calendar
+Type:object
+Default:—
+
+default-time
+optional, the time value to use when selecting date range
+Type:object
+Default:—
+
+value-format
+optional, format of binding value. If not specified, the binding value will be a Date object
+Type:string see date formats
+Default:—
+
+id
+same as id in native input
+Type:string / array
+Default:—
+
+name
+same as name in native input
+Type:string / array
+Default:''
+
+unlink-panels
+unlink two date-panels in range-picker
+Type:boolean
+Default:false
+
+single-panel 2.14.0
+show only one panel in range-picker
+Type:boolean
+Default:false
+
+prefix-icon
+custom prefix icon component. By default, if the value of type is TimeLikeType , the value is Clock , else is Calendar
+Type:string / object
+Default:''
+
+clear-icon
+custom clear icon component
+Type:string / object
+Default:CircleClose
+
+disabled-date
+a function determining if a date is disabled with that date as its parameter. Should return a Boolean
+Type:Function
+Default:—
+
+shortcuts
+an object array to set shortcut options
+Type:array
+Default:[]
+
+cell-class-name
+set custom className
+Type:Function
+Default:—
+
+teleported
+whether date-picker dropdown is teleported to the body
+Type:boolean
+Default:true
+
+empty-values 2.7.0
+empty values of component, see config-provider
+Type:array
+Default:—
+
+value-on-clear 2.7.0
+clear return value, see config-provider
+Type:string / number / boolean / Function
+Default:—
+
+fallback-placements 2.8.4
+list of possible positions for Tooltip popper.js
+Type:array
+Default:['bottom', 'top', 'right', 'left']
+
+placement 2.8.4
+position of dropdown
+Type:Placement
+Default:bottom
+
+show-footer 2.10.5
+whether to show footer
+Type:boolean
+Default:true
+
+show-confirm 2.11.0
+whether to show the confirm button
+Type:boolean
+Default:true
+
+show-week-number 2.10.3
+show the week number besides the week
+Type:boolean
+Default:false
+
+automatic-dropdown 2.11.4
+this prop decides if the date picker panel pops up when the input is focused. (The default value will be set to false in version 3.0)
+Type:boolean
+Default:true
+
+change
+triggers when user confirms the value or click outside
+Type:Function
+
+blur
+triggers when Input blurs
+Type:Function
+
+focus
+triggers when Input focuses
+Type:Function
+
+clear 2.7.7
+triggers when a clear button is clicked
+Type:Function
+
+calendar-change
+triggers when the calendar selected date is changed. Only for range
+Type:Function
+
+panel-change
+triggers when the navigation button click.
+Type:Function
+
+visible-change
+triggers when the DatePicker's dropdown appears/disappears
+Type:Function
+
+default
+custom cell content
+
+prev-month 2.8.0
+prev month icon
+
+next-month 2.8.0
+next month icon
+
+prev-year 2.8.0
+prev year icon
+
+next-year 2.8.0
+next year icon
+
+blur 2.8.7
+blur the DatePicker component
+Type:Function
+
+handleOpen 2.2.16
+open the DatePicker popper
+Type:Function
+
+handleClose 2.2.16
+close the DatePicker popper
+Type:Function
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

@@ -1,0 +1,85 @@
+Component: Layout
+Library: ant-design
+Category: Layout
+Source URL: https://ant.design/components/layout/
+
+Overview:
+Handling the overall layout of a page.
+The first level navigation is left aligned near a logo, and the secondary menu is right aligned.
+
+Props Description:
+
+className
+Container className
+Type:string
+Default:-
+
+hasSider
+Whether contain Sider in children, don't have to assign it normally. Useful in ssr avoid style flickering
+Type:boolean
+Default:-
+
+style
+To customize the styles
+Type:CSSProperties
+Default:-
+
+breakpoint
+Breakpoints of the responsive layout
+Type:xs | sm | md | lg | xl | xxl | xxxl
+Default:-
+
+collapsed
+To set the current status
+Type:boolean
+Default:-
+
+collapsedWidth
+Width of the collapsed sidebar, by setting to 0 a special trigger will appear
+Type:number
+Default:80
+
+collapsible
+Whether can be collapsed
+Type:boolean
+Default:false
+
+defaultCollapsed
+To set the initial status
+Type:boolean
+Default:false
+
+reverseArrow
+Reverse direction of arrow, for a sider that expands from the right
+Type:boolean
+Default:false
+
+theme
+Color theme of the sidebar
+Type:light | dark
+Default:dark
+
+trigger
+Specify the customized trigger, set to null to hide the trigger
+Type:ReactNode
+Default:-
+
+width
+Width of the sidebar
+Type:number | string
+Default:200
+
+zeroWidthTriggerStyle
+To customize the styles of the special trigger that appears when collapsedWidth is 0
+Type:object
+Default:-
+
+Events:
+
+onBreakpoint
+The callback function, executed when breakpoints changed
+Type:(broken) => {}
+
+onCollapse
+The callback function, executed by clicking the trigger or activating the responsive layout
+Type:(collapsed, type) => {}

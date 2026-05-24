@@ -1,0 +1,185 @@
+Component: Tabs
+Library: ant-design
+Category: Navigation
+Source URL: https://ant.design/components/tabs/
+
+Overview:
+Tabs make it easy to explore and switch between different views.
+Ant Design has 3 types of Tabs for different situations.
+
+Props Description:
+
+activeKey
+Current TabPane's key
+Type:string
+Default:-
+
+addIcon
+Customize add icon, only works with type="editable-card"
+Type:ReactNode
+Default:<PlusOutlined />
+
+animated
+Whether to change tabs with animation.
+Type:boolean | { inkBar: boolean, tabPane: boolean }
+Default:{ inkBar: true, tabPane: false }
+
+centered
+Centers tabs
+Type:boolean
+Default:false
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultActiveKey
+Initial active TabPane's key, if activeKey is not set
+Type:string
+Default:The key of first tab
+
+hideAdd
+Hide plus icon or not. Only works while type="editable-card"
+Type:boolean
+Default:false
+
+indicator
+Customize size and align of indicator
+Type:{ size?: number | (origin: number) => number; align: start | center | end ; }
+Default:-
+
+items
+Configure tab content
+Type:TabItemType
+Default:[]
+
+more
+Customize the collapse menu
+Type:MoreProps
+Default:{ icon: <EllipsisOutlined /> , trigger: 'hover' }
+
+removeIcon
+The custom icon of remove, only works with type="editable-card"
+Type:ReactNode
+Default:<CloseOutlined />
+
+popupClassName
+className for more dropdown, please use classNames.popup instead
+Type:string
+Default:-
+
+renderTabBar
+Replace the TabBar
+Type:(props: DefaultTabBarProps, DefaultTabBar: React.ComponentClass) => React.ReactElement
+Default:-
+
+size
+Preset tab bar size
+Type:large | medium | small
+Default:medium
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+tabBarExtraContent
+Extra content in tab bar
+Type:ReactNode | {left?: ReactNode, right?: ReactNode}
+Default:-
+
+tabBarGutter
+The gap between tabs
+Type:number
+Default:-
+
+tabBarStyle
+Tab bar style object
+Type:CSSProperties
+Default:-
+
+tabPlacement
+Placement of tabs
+Type:top | end | bottom | start
+Default:top
+
+tabPosition
+Position of tabs
+Type:top | right | bottom | left , please use tabPlacement instead
+Default:top
+
+destroyInactiveTabPane
+Whether destroy inactive TabPane when change tab, use destroyOnHidden instead
+Type:boolean
+Default:false
+
+destroyOnHidden
+Whether destroy inactive TabPane when change tab
+Type:boolean
+Default:false
+
+type
+Basic style of tabs
+Type:line | card | editable-card
+Default:line
+
+closeIcon
+Customize close icon in TabPane's head. Only works while type="editable-card" . 5.7.0: close button will be hidden when setting to null or false
+Type:ReactNode
+Default:-
+
+disabled
+Set TabPane disabled
+Type:boolean
+Default:false
+
+forceRender
+Forced render of content in tabs, not lazy render after clicking on tabs
+Type:boolean
+Default:false
+
+key
+TabPane's key
+Type:string
+Default:-
+
+label
+Tab header text element
+Type:ReactNode
+Default:-
+
+icon
+Tab header icon element
+Type:ReactNode
+Default:-
+
+children
+Tab content element
+Type:ReactNode
+Default:-
+
+closable
+Whether a close (x) button is visible, Only works while type="editable-card"
+Type:boolean
+Default:true
+
+DropdownProps
+
+Events:
+
+onChange
+Callback executed when active tab is changed
+Type:(activeKey: string) => void
+
+onEdit
+Callback executed when tab is added or removed. Only works while type="editable-card"
+Type:(action === 'add' ? event : targetKey, action) => void
+
+onTabClick
+Callback executed when tab is clicked
+Type:(key: string, event: MouseEvent) => void
+
+onTabScroll
+Trigger when tab scroll
+Type:({ direction: left | right | top | bottom }) => void

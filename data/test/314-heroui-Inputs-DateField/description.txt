@@ -1,0 +1,183 @@
+Component: DateField
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/date-field
+
+Overview:
+Date input field with labels, descriptions, and validation built on React Aria DateField
+Date input field with labels, descriptions, and validation built on React Aria DateField
+
+Props Description:
+
+children
+Child components (Label, DateField.Group, etc.) or render function.
+Type:React.ReactNode | (values: DateFieldRenderProps) => React.ReactNode
+Default:-
+
+className
+CSS classes for styling, supports render props.
+Type:string | (values: DateFieldRenderProps) => string
+Default:-
+
+style
+Inline styles, supports render props.
+Type:React.CSSProperties | (values: DateFieldRenderProps) => React.CSSProperties
+Default:-
+
+fullWidth
+Whether the date field should take full width of its container
+Type:boolean
+Default:false
+
+id
+The element's unique identifier.
+Type:string
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, DateFieldRenderProps>
+Default:-
+
+value
+Current value (controlled). Uses @internationalized/date types.
+Type:DateValue | null
+Default:-
+
+defaultValue
+Default value (uncontrolled). Uses @internationalized/date types.
+Type:DateValue | null
+Default:-
+
+placeholderValue
+Placeholder date that influences the format of the placeholder.
+Type:DateValue | null
+Default:-
+
+isRequired
+Whether user input is required before form submission.
+Type:boolean
+Default:false
+
+isInvalid
+Whether the value is invalid.
+Type:boolean
+Default:-
+
+minValue
+The minimum allowed date that a user may select. Uses @internationalized/date types.
+Type:DateValue | null
+Default:-
+
+maxValue
+The maximum allowed date that a user may select. Uses @internationalized/date types.
+Type:DateValue | null
+Default:-
+
+isDateUnavailable
+Callback that is called for each date. If it returns true, the date is unavailable.
+Type:(date: DateValue) => boolean
+Default:-
+
+validate
+Custom validation function.
+Type:(value: DateValue) => ValidationError | true | null | undefined
+Default:-
+
+validationBehavior
+Whether to use native HTML form validation or ARIA attributes.
+Type:'native' | 'aria'
+Default:'native'
+
+granularity
+Determines the smallest unit displayed. Defaults to "day" for dates, "minute" for times.
+Type:Granularity
+Default:-
+
+hourCycle
+Whether to display time in 12 or 24 hour format. By default, determined by locale.
+Type:12 | 24
+Default:-
+
+hideTimeZone
+Whether to hide the time zone abbreviation.
+Type:boolean
+Default:false
+
+shouldForceLeadingZeros
+Whether to always show leading zeros in month, day, and hour fields.
+Type:boolean
+Default:-
+
+isDisabled
+Whether the input is disabled.
+Type:boolean
+Default:-
+
+isReadOnly
+Whether the input can be selected but not changed.
+Type:boolean
+Default:-
+
+name
+Name of the input element, for HTML form submission. Submits as ISO 8601 string.
+Type:string
+Default:-
+
+autoFocus
+Whether the element should receive focus on render.
+Type:boolean
+Default:-
+
+autoComplete
+Type of autocomplete functionality the input should provide.
+Type:string
+Default:-
+
+aria-label
+Accessibility label when no visible label is present.
+Type:string
+Default:-
+
+aria-labelledby
+ID of elements that label this field.
+Type:string
+Default:-
+
+aria-describedby
+ID of elements that describe this field.
+Type:string
+Default:-
+
+aria-details
+ID of elements with additional details.
+Type:string
+Default:-
+
+isFocused
+Whether the field is currently focused.
+Type:boolean
+
+isFocusWithin
+Whether any child element is focused.
+Type:boolean
+
+isFocusVisible
+Whether focus is visible (keyboard navigation).
+Type:boolean
+
+variant
+Visual variant of the component. primary is the default style with shadow. secondary is a lower emphasis variant without shadow, suitable for use in surfaces.
+Type:"primary" | "secondary"
+Default:"primary"
+
+segment
+The date segment object from the DateField.Input render prop.
+Type:DateSegment
+Default:-
+
+Events:
+
+onChange
+Handler called when the value changes.
+Type:(value: DateValue | null) => void

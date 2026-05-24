@@ -1,0 +1,34 @@
+Component: Statictic
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/statistic
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+prefix
+Numeric prefix
+
+suffix
+Suffixes for numeric values
+
+title
+Numeric titles
+
+displayValue
+current display value
+Type:object
+
+change
+Time difference change event
+Type:Function
+
+finish
+countdown end event
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

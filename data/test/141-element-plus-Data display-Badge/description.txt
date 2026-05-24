@@ -1,0 +1,70 @@
+Component: Badge
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/badge
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+value
+display value.
+Type:string / number
+Default:''
+
+max
+maximum value, shows {max}+ when exceeded. Only works if value is a number.
+Type:number
+Default:99
+
+is-dot
+if a little dot is displayed.
+Type:boolean
+Default:false
+
+hidden
+hidden badge.
+Type:boolean
+Default:false
+
+type
+badge type.
+Type:enum
+Default:danger
+
+show-zero 2.6.0
+Whether to show badge when value is zero.
+Type:boolean
+Default:true
+
+color 2.6.3
+background color of the dot
+Type:string
+
+offset 2.7.0
+offset of badge
+Type:array
+Default:[0, 0]
+
+badge-style 2.7.1
+custom style of badge
+Type:object
+Default:—
+
+badge-class 2.7.1
+custom class of badge
+Type:string
+Default:—
+
+default
+customize default content
+Type:-
+
+content 2.9.1
+customize badge content
+Type:object
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

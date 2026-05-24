@@ -1,0 +1,189 @@
+Component: Drawer
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/drawer
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+Should Drawer be displayed
+Type:boolean
+Default:false
+
+append-to-body
+Controls should Drawer be inserted to DocumentBody Element, nested Drawer must assign this param to true
+Type:boolean
+Default:false
+
+append-to 2.8.0
+which element the Drawer appends to. Will override append-to-body
+Type:CSSSelector / HTMLElement
+Default:body
+
+lock-scroll
+whether scroll of body is disabled while Drawer is displayed
+Type:boolean
+Default:true
+
+before-close
+If set, closing procedure will be halted
+Type:Function
+Default:—
+
+close-on-click-modal
+whether the Drawer can be closed by clicking the mask
+Type:boolean
+Default:true
+
+close-on-press-escape
+Indicates whether Drawer can be closed by pressing ESC
+Type:boolean
+Default:true
+
+open-delay
+Time(milliseconds) before open
+Type:number
+Default:0
+
+close-delay
+Time(milliseconds) before close
+Type:number
+Default:0
+
+destroy-on-close
+Indicates whether children should be destroyed after Drawer closed
+Type:boolean
+Default:false
+
+modal
+Should show shadowing layer
+Type:boolean
+Default:true
+
+modal-penetrable 2.11.7
+whether the mask is penetrable. The modal attribute must be false .
+Type:boolean
+Default:false
+
+direction
+Drawer's opening direction
+Type:enum
+Default:rtl
+
+resizable 2.11.0
+enable resizable feature for Drawer
+Type:boolean
+Default:false
+
+show-close
+Should show close button at the top right of Drawer
+Type:boolean
+Default:true
+
+size
+Drawer's size, if Drawer is horizontal mode, it effects the width property, otherwise it effects the height property, when size is number type, it describes the size by unit of pixels; when size is string type, it should be used with x% notation, other wise it will be interpreted to pixel unit
+Type:number / string
+Default:30%
+
+title
+Drawer's title, can also be set by named slot, detailed descriptions can be found in the slot form
+Type:string
+Default:—
+
+with-header
+Flag that controls the header section's existence, default to true, when withHeader set to false, both title attribute and title slot won't work
+Type:boolean
+Default:true
+
+modal-class
+Extra class names for shadowing layer
+Type:string
+Default:—
+
+header-class 2.9.3
+custom class names for header wrapper
+Type:string
+Default:—
+
+body-class 2.9.3
+custom class names for body wrapper
+Type:string
+Default:—
+
+footer-class 2.9.3
+custom class names for footer wrapper
+Type:string
+Default:—
+
+z-index
+set z-index
+Type:number
+Default:—
+
+header-aria-level a11y
+header's aria-level attribute
+Type:string
+Default:2
+
+custom-class deprecated
+Extra class names for Drawer
+Type:string
+Default:—
+
+open
+Triggered before Drawer opening animation begins
+Type:Function
+
+opened
+Triggered after Drawer opening animation ended
+Type:Function
+
+close
+Triggered before Drawer closing animation begins
+Type:Function
+
+closed
+Triggered after Drawer closing animation ended
+Type:Function
+
+open-auto-focus
+triggers after Drawer opens and content focused
+Type:Function
+
+close-auto-focus
+triggers after Drawer closed and content focused
+Type:Function
+
+resize-start 2.11.8
+Triggered when resizing starts (when resizable is enabled)
+Type:Function
+
+resize 2.11.8
+Triggered while resizing (when resizable is enabled)
+Type:Function
+
+resize-end 2.11.8
+Triggered when resizing ends (when resizable is enabled)
+Type:Function
+
+default
+Drawer's Content
+
+header
+Drawer header section; Replacing this removes the title, but does not remove the close button.
+
+footer
+Drawer footer Section
+
+title deprecated
+Works the same as the header slot. Use that instead.
+
+handleClose
+In order to close Drawer, this method will call before-close .
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

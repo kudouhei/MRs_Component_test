@@ -1,0 +1,16 @@
+Component: Radio
+Library: mui-base-ui
+Category: Inputs
+Source URL: https://base-ui.com/react/components/radio
+
+Overview:
+A high-quality, unstyled React radio button component that is easy to style.
+An easily stylable radio button component.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

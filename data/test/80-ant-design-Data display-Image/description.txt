@@ -1,0 +1,197 @@
+Component: Image
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/image/
+
+Overview:
+Preview-able image.
+Set placeholder via placeholder prop. When placeholder is { progress: true } , it shows a watercolor ink loading animation; when set to { progress: { percent: number } } , it shows a progress bar; you can also pass a custom React node as placeholder.
+
+Props Description:
+
+alt
+Image description
+Type:string
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+fallback
+Fallback URL when load fails
+Type:string
+Default:-
+
+height
+Image height
+Type:string | number
+Default:-
+
+placeholder
+Loading placeholder, supports ReactNode or config object
+Type:PlaceholderType
+Default:-
+
+preview
+Preview configuration; set to false to disable
+Type:boolean | PreviewType
+Default:true
+
+src
+Image URL
+Type:string
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+width
+Image width
+Type:string | number
+Default:-
+
+progress
+Progress config, set to true to show gradient animation, set { percent: number } to show progress, render for custom rendering
+Type:boolean | ImageProgressConfig
+Default:-
+
+percent
+Progress value
+Type:number
+Default:-
+
+render
+Custom rendering, receives default progress UI and percentage
+Type:(progress: React.ReactNode, percent: number) => React.ReactNode
+Default:-
+
+actionsRender
+Custom toolbar render
+Type:(originalNode: React.ReactElement, info: ToolbarRenderInfoType) => React.ReactNode
+Default:-
+
+closeIcon
+Custom close icon
+Type:React.ReactNode
+Default:-
+
+cover
+Custom preview mask
+Type:React.ReactNode | CoverConfig
+Default:-
+
+focusTrap
+Whether to trap focus within the preview when open
+Type:boolean
+Default:true
+
+destroyOnClose
+Destroy child elements on preview close (removed, no longer supported)
+Type:boolean
+Default:false
+
+forceRender
+Force render preview image (removed, no longer supported)
+Type:boolean
+Default:-
+
+getContainer
+Specify container for preview mounting; still full screen; false mounts at current location
+Type:string | HTMLElement | (() => HTMLElement) | false
+Default:-
+
+imageRender
+Custom preview content
+Type:(originalNode: React.ReactElement, info: { transform: TransformType , image: ImgInfo }) => React.ReactNode
+Default:-
+
+mask
+preview mask effect
+Type:boolean | { enabled?: boolean, blur?: boolean, closable?: boolean }
+Default:true
+
+maskClassName
+Thumbnail mask class name; please use 'classNames.cover' instead
+Type:string
+Default:-
+
+maxScale
+Maximum zoom scale
+Type:number
+Default:50
+
+minScale
+Minimum zoom scale
+Type:number
+Default:1
+
+movable
+Whether it is movable
+Type:boolean
+Default:true
+
+open
+Whether to display preview
+Type:boolean
+Default:-
+
+rootClassName
+Root DOM class name for preview; applies to both image and preview wrapper
+Type:string
+Default:-
+
+scaleStep
+Each step's zoom multiplier is 1 + scaleStep
+Type:number
+Default:0.5
+
+toolbarRender
+Custom toolbar; please use 'actionsRender' instead
+Type:(originalNode: React.ReactElement, info: Omit<ToolbarRenderInfoType, 'current' | 'total'>) => React.ReactNode
+Default:-
+
+visible
+Whether to show; please use 'open' instead
+Type:boolean
+Default:-
+
+items
+Array of preview items
+Type:string[] | { src: string, crossOrigin: string, ... }[]
+Default:-
+
+countRender
+Custom preview count render
+Type:(current: number, total: number) => React.ReactNode
+Default:-
+
+current
+Index of the current preview image
+Type:number
+Default:-
+
+Events:
+
+onError
+Callback when loading error occurs
+Type:(event: Event) => void
+
+onOpenChange
+Callback when preview open state changes
+Type:(visible: boolean) => void
+
+onTransform
+Callback for preview transform changes
+Type:{ transform: TransformType , action: TransformAction }
+
+onVisibleChange
+Callback when 'visible' changes; please use 'onOpenChange' instead
+Type:(visible: boolean, prevVisible: boolean) => void
+
+onChange
+Callback when changing preview image
+Type:(current: number, prevCurrent: number) => void

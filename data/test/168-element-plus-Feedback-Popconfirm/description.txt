@@ -1,0 +1,107 @@
+Component: Popconfirm
+Library: element-plus
+Category: Feedback
+Source URL: https://element-plus.org/en-US/component/popconfirm
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+title
+Title
+Type:string
+Default:—
+
+effect 2.11.2
+Tooltip theme, built-in theme: dark / light
+Type:enum / string
+Default:light
+
+confirm-button-text
+Confirm button text
+Type:string
+Default:—
+
+cancel-button-text
+Cancel button text
+Type:string
+Default:—
+
+confirm-button-type
+Confirm button type
+Type:enum
+Default:primary
+
+cancel-button-type
+Cancel button type
+Type:enum
+Default:text
+
+icon
+Icon Component
+Type:string / Component
+Default:QuestionFilled
+
+icon-color
+Icon color
+Type:string
+Default:#f90
+
+hide-icon
+is hide Icon
+Type:boolean
+Default:false
+
+hide-after
+delay of disappear, in millisecond
+Type:number
+Default:200
+
+teleported
+whether popconfirm is teleported to the body
+Type:boolean
+Default:true
+
+persistent
+when popconfirm inactive and persistent is false , popconfirm will be destroyed
+Type:boolean
+Default:false
+
+width
+popconfirm width, min width 150px
+Type:string / number
+Default:150
+
+tooltip
+Inherits all attributes from Tooltip, except: popper-class , popper-style , fallback-placements
+Type:—
+Default:—
+
+confirm
+triggers when click confirm button
+Type:Function
+
+cancel
+triggers when click cancel button
+Type:Function
+
+reference
+HTML element that triggers Popconfirm
+Type:—
+
+actions 2.8.1
+content of the Popconfirm footer
+Type:object
+
+popperRef 2.10.7
+el-popper component instance
+Type:object
+
+hide 2.10.7
+hide popconfirm
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

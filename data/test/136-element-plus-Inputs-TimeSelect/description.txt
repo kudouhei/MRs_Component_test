@@ -1,0 +1,134 @@
+Component: TimeSelect
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/time-select
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:string
+Default:—
+
+disabled
+whether TimeSelect is disabled
+Type:boolean
+Default:false
+
+editable
+whether the input is editable
+Type:boolean
+Default:true
+
+clearable
+whether to show clear button
+Type:boolean
+Default:true
+
+include-end-time 2.9.3
+whether end is included in options
+Type:boolean
+Default:false
+
+size
+size of Input
+Type:enum
+Default:default
+
+placeholder
+placeholder in non-range mode
+Type:string
+Default:—
+
+name 2.13.3
+same as name in native input
+Type:string
+Default:—
+
+effect
+Tooltip theme, built-in theme: dark / light
+Type:string / enum
+Default:light
+
+prefix-icon
+custom prefix icon component
+Type:string / Component
+Default:Clock
+
+clear-icon
+custom clear icon component
+Type:string / Component
+Default:CircleClose
+
+start
+start time
+Type:string
+Default:09:00
+
+end
+end time
+Type:string
+Default:18:00
+
+step
+time step
+Type:string
+Default:00:30
+
+min-time
+minimum time, any time before this time will be disabled
+Type:string
+Default:—
+
+max-time
+maximum time, any time after this time will be disabled
+Type:string
+Default:—
+
+format
+set format of time
+Type:string see formats
+Default:HH:mm
+
+empty-values 2.7.0
+empty values of component, see config-provider
+Type:array
+Default:—
+
+value-on-clear 2.7.0
+clear return value, see config-provider
+Type:string / number / boolean / Function
+Default:—
+
+popper-class 2.11.4
+custom class name for TimeSelect's dropdown
+Type:string
+Default:''
+
+popper-style 2.11.4
+custom style for TimeSelect's dropdown
+Type:string / object
+Default:—
+
+change
+triggers when user confirms the value
+Type:Function
+
+blur
+triggers when Input blurs
+Type:Function
+
+focus
+triggers when Input focuses
+Type:Function
+
+clear 2.7.7
+triggers when the clear icon is clicked in a clearable TimeSelect
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

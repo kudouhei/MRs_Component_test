@@ -1,0 +1,16 @@
+Component: Accordion
+Library: mui-base-ui
+Category: Navigation
+Source URL: https://base-ui.com/react/components/accordion
+
+Overview:
+A high-quality, unstyled React accordion component that displays a set of collapsible panels with headings.
+A set of collapsible panels with headings.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

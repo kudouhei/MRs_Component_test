@@ -1,0 +1,31 @@
+Component: Layout Container
+Library: element-plus
+Category: Layout
+Source URL: https://element-plus.org/en-US/component/container
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+direction
+layout direction for child elements
+Type:enum
+Default:vertical when nested with el-header or el-footer ; horizontal otherwise
+
+default
+customize default content
+
+height
+height of the header
+Type:string
+Default:60px
+
+width
+width of the side section
+Type:string
+Default:300px
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

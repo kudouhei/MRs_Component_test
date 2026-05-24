@@ -1,0 +1,72 @@
+Component: Collapse
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/collapse
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+currently active panel, the type is string in accordion mode, otherwise it is array
+Type:string / array
+Default:[]
+
+accordion
+whether to activate accordion mode
+Type:boolean
+Default:false
+
+expand-icon-position 2.9.10
+set expand icon position
+Type:enum
+Default:right
+
+before-collapse 2.9.11
+before-collapse hook before the collapse state changes. If false is returned or a Promise is returned and then is rejected, will stop collapsing
+Type:Function
+Default:—
+
+change
+triggers when active panels change, the parameter type is string in accordion mode, otherwise it is array
+Type:Function
+
+default
+customize default content
+
+activeNames
+currently active panel names
+Type:object
+
+setActiveNames
+set active panel names
+Type:Function
+
+name
+unique identification of the panel
+Type:string / number
+Default:—
+
+title
+title of the panel
+Type:string
+Default:''
+
+icon 2.8.3
+icon of the collapse item
+Type:string / Component
+Default:ArrowRight
+
+disabled
+disable the collapse item
+Type:boolean
+Default:false
+
+isActive
+whether the current collapse item is active
+Type:object
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

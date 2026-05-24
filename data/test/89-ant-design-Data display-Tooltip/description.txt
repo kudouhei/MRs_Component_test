@@ -1,0 +1,121 @@
+Component: Tooltip
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/tooltip/
+
+Overview:
+Simple text popup box.
+You can configure global unique display for Tooltip through ConfigProvider. When unique is set to true , only one Tooltip under the ConfigProvider will be displayed at the same time, providing better user experience and smooth transition effects.
+
+Props Description:
+
+title
+The text shown in the tooltip
+Type:ReactNode | () => ReactNode
+Default:-
+
+color
+The background color. After using this attribute, the internal text color will adapt automatically
+Type:string
+Default:-
+
+classNames
+Semantic DOM class
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+styles
+Semantic DOM style
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+align
+Please refer to the settings dom-align
+Type:object
+Default:-
+
+arrow
+Change arrow's visible state and change whether the arrow is pointed at the center of target.
+Type:boolean | { pointAtCenter: boolean }
+Default:true
+
+autoAdjustOverflow
+Whether to adjust popup placement automatically when popup is off screen
+Type:boolean
+Default:true
+
+defaultOpen
+Whether the floating tooltip card is open by default
+Type:boolean
+Default:false
+
+destroyTooltipOnHide
+Whether destroy dom when close
+Type:boolean
+Default:false
+
+destroyOnHidden
+Whether destroy dom when close
+Type:boolean
+Default:false
+
+fresh
+Tooltip will cache content when it is closed by default. Setting this property will always keep updating
+Type:boolean
+Default:false
+
+getPopupContainer
+The DOM container of the tip, the default behavior is to create a div element in body
+Type:(triggerNode: HTMLElement) => HTMLElement
+Default:() => document.body
+
+mouseEnterDelay
+Delay in seconds, before tooltip is shown on mouse enter
+Type:number
+Default:0.1
+
+mouseLeaveDelay
+Delay in seconds, before tooltip is hidden on mouse leave
+Type:number
+Default:0.1
+
+overlayClassName
+Class name of the tooltip card, please use classNames.root instead
+Type:string
+Default:-
+
+overlayStyle
+Style of the tooltip card, please use styles.root
+Type:React.CSSProperties
+Default:-
+
+overlayInnerStyle
+Style of the tooltip inner content, please use styles.container instead
+Type:React.CSSProperties
+Default:-
+
+placement
+The position of the tooltip relative to the target, which can be one of top left right bottom topLeft topRight bottomLeft bottomRight leftTop leftBottom rightTop rightBottom
+Type:string
+Default:top
+
+trigger
+Tooltip trigger mode. Could be multiple by passing an array
+Type:hover | focus | click | contextMenu | Array<string>
+Default:hover
+
+open
+Whether the floating tooltip card is open or not. Use visible under 4.23.0 ( why? )
+Type:boolean
+Default:false
+
+zIndex
+Config z-index of Tooltip
+Type:number
+Default:-
+
+Events:
+
+onOpenChange
+Callback executed when visibility of the tooltip card is changed
+Type:(open: boolean) => void

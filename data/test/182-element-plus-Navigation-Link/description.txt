@@ -1,0 +1,46 @@
+Component: Link
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/link
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+type
+type
+Type:enum
+Default:default
+
+underline
+when underlines should appear
+Type:enum
+Default:hover
+
+disabled
+whether the component is disabled
+Type:boolean
+Default:false
+
+href
+same as native hyperlink's href
+Type:string
+Default:—
+
+target
+same as native hyperlink's target
+Type:enum
+Default:_self
+
+icon
+icon component
+Type:string / Component
+Default:—
+
+default
+customize default content
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

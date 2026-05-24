@@ -1,0 +1,94 @@
+Component: Switch
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/switch
+
+Overview:
+A toggle switch component for boolean states
+A toggle switch component for boolean states
+
+Props Description:
+
+size
+The size of the switch
+Type:'sm' | 'md' | 'lg'
+Default:'md'
+
+isSelected
+Whether the switch is on
+Type:boolean
+Default:false
+
+defaultSelected
+Whether the switch is on by default (uncontrolled)
+Type:boolean
+Default:false
+
+isDisabled
+Whether the switch is disabled
+Type:boolean
+Default:false
+
+name
+The name of the input element, used when submitting an HTML form
+Type:string
+Default:-
+
+value
+The value of the input element, used when submitting an HTML form
+Type:string
+Default:-
+
+children
+Switch content or render prop
+Type:React.ReactNode | (values: SwitchRenderProps) => React.ReactNode
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, SwitchRenderProps>
+Default:-
+
+isHovered
+Whether the switch is hovered
+Type:boolean
+
+isPressed
+Whether the switch is currently pressed
+Type:boolean
+
+isFocused
+Whether the switch is focused
+Type:boolean
+
+isFocusVisible
+Whether the switch is keyboard focused
+Type:boolean
+
+isReadOnly
+Whether the switch is read only
+Type:boolean
+
+state
+State of the switch.
+Type:-
+
+orientation
+The orientation of the switch group
+Type:'horizontal' | 'vertical'
+Default:'vertical'
+
+className
+Additional CSS class names
+Type:string
+Default:-
+
+Events:
+
+onChange
+Handler called when the switch value changes
+Type:(isSelected: boolean) => void
+
+onPress
+Handler called when the switch is pressed
+Type:(e: PressEvent) => void

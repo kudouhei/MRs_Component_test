@@ -1,0 +1,182 @@
+Component: Transfer
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/transfer/
+
+Overview:
+Double column transfer choice box.
+Transfer the elements between two columns in an intuitive and efficient way.
+
+Props Description:
+
+actions
+A set of operations that are sorted from top to bottom. When an array of strings is provided, default buttons will be used; when an array of ReactNode is provided, custom elements will be used
+Type:ReactNode[]
+Default:[ > , < ]
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+dataSource
+Used for setting the source data. The elements that are part of this array will be present the left column. Except the elements whose keys are included in targetKeys prop
+Type:RecordType extends TransferItem = TransferItem []
+Default:[]
+
+disabled
+Whether disabled transfer
+Type:boolean
+Default:false
+
+selectionsIcon
+custom dropdown icon
+Type:React.ReactNode
+
+filterOption
+A function to determine whether an item should show in search result list, only works when searching, (add direction support since 5.9.0+)
+Type:(inputValue, option, direction: left | right ): boolean
+Default:-
+
+footer
+A function used for rendering the footer
+Type:(props, { direction }) => ReactNode
+Default:-
+
+listStyle
+A custom CSS style used for rendering the transfer columns. Use styles.section instead
+Type:object | ({direction: left | right }) => object
+Default:-
+
+locale
+The i18n text including filter, empty text, item unit, etc
+Type:{ itemUnit: string; itemsUnit: string; searchPlaceholder: string; notFoundContent: ReactNode | ReactNode[]; }
+Default:{ itemUnit: item , itemsUnit: items , notFoundContent: The list is empty , searchPlaceholder: Search here }
+
+operations
+A set of operations that are sorted from top to bottom. Use actions instead.
+Type:string[]
+Default:[ > , < ]
+
+operationStyle
+A custom CSS style used for rendering the operations column. Use styles.actions instead.
+Type:object
+Default:-
+
+pagination
+Use pagination. Not work in render props
+Type:boolean | { pageSize: number, simple: boolean, showSizeChanger?: boolean, showLessItems?: boolean }
+Default:false
+
+render
+The function to generate the item shown on a column. Based on an record (element of the dataSource array), this function should return a React element which is generated from that record. Also, it can return a plain object with value and label , label is a React element and value is for title
+Type:(record) => ReactNode
+Default:-
+
+selectAllLabels
+A set of customized labels for select all checkboxes on the header
+Type:(ReactNode | (info: { selectedCount: number, totalCount: number }) => ReactNode)[]
+Default:-
+
+selectedKeys
+A set of keys of selected items
+Type:string[] | number[]
+Default:[]
+
+showSearch
+If included, a search box is shown on each column
+Type:boolean | { placeholder:string,defaultValue:string }
+Default:false
+
+showSelectAll
+Show select all checkbox on the header
+Type:boolean
+Default:true
+
+status
+Set validation status
+Type:'error' | 'warning'
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+targetKeys
+A set of keys of elements that are listed on the right column
+Type:string[] | number[]
+Default:[]
+
+titles
+A set of titles that are sorted from left to right
+Type:ReactNode[]
+Default:-
+
+direction
+List render direction
+Type:left | right
+
+filteredItems
+Filtered items
+Type:RecordType[]
+
+content1
+description of content1
+
+content2
+description of content2
+
+content3
+description of content3
+
+content4
+description of content4
+
+content5
+description of content5
+
+content6
+description of content6
+
+content7
+description of content7
+
+content8
+description of content8
+
+content9
+description of content9
+
+content10
+description of content10
+
+Events:
+
+oneWay
+Display as single direction style
+Type:boolean
+
+onChange
+A callback function that is executed when the transfer between columns is complete
+Type:(targetKeys, direction, moveKeys): void
+
+onScroll
+A callback function which is executed when scroll options list
+Type:(direction, event): void
+
+onSearch
+A callback function which is executed when search field are changed
+Type:(direction: left | right , value: string): void
+
+onSelectChange
+A callback function which is executed when selected items are changed
+Type:(sourceSelectedKeys, targetSelectedKeys): void
+
+onItemSelect
+Select item
+Type:(key: string | number, selected: boolean)
+
+onItemSelectAll
+Select a group of items
+Type:(keys: string[] | number[], selected: boolean)

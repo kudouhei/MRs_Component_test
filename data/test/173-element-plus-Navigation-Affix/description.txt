@@ -1,0 +1,62 @@
+Component: Affix
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/affix
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+offset
+offset distance
+Type:number
+Default:0
+
+position
+position of affix
+Type:enum
+Default:top
+
+target
+target container (CSS selector)
+Type:string
+Default:—
+
+z-index
+z-index of affix
+Type:number
+Default:100
+
+teleported 2.13.0
+whether affix element is teleported, if true it will be teleported to where append-to sets
+Type:boolean
+Default:false
+
+append-to 2.13.0
+which element the affix element appends to
+Type:CSSSelector / HTMLElement
+Default:body
+
+change
+triggers when fixed state changed
+Type:Function
+
+scroll
+triggers when scrolling
+Type:Function
+
+default
+customize default content
+
+update
+update affix state manually
+Type:Function
+
+updateRoot
+update rootRect info
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

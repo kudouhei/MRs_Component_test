@@ -1,0 +1,77 @@
+Component: Drawer
+Library: mui-material
+Category: Navigation
+Source URL: https://mui.com/material-ui/api/drawer/
+
+Overview:
+Drawer API
+API reference docs for the React Drawer component. Learn about the props, CSS, and other APIs of this exported module.
+For examples and details on the usage of this React component, visit the component demo pages:
+
+Props Description:
+
+anchor
+Side from which the drawer will appear.
+Type:'bottom' | 'left' | 'right' | 'top'
+Default:'left'
+
+children
+The content of the component.
+Type:node
+Default:-
+
+classes
+Override or extend the styles applied to the component. See CSS classes API below for more details.
+Type:object
+Default:-
+
+elevation
+The elevation of the drawer.
+Type:integer
+Default:16
+
+hideBackdrop
+If true , the backdrop is not rendered.
+Type:bool
+Default:false
+
+ModalProps
+Props applied to the Modal element.
+Type:object
+Default:{}
+
+open
+If true , the component is shown.
+Type:bool
+Default:false
+
+slotProps
+The props used for each slot inside.
+Type:{ backdrop?: func | object, docked?: func | object, paper?: func | object, root?: func | object, transition?: func | object }
+Default:{}
+
+slots
+The components used for each slot inside.
+Type:{ backdrop?: elementType, docked?: elementType, paper?: elementType, root?: elementType, transition?: elementType }
+Default:{}
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details.
+Type:Array<func | object | bool> | func | object
+Default:-
+
+transitionDuration
+The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.
+Type:number | { appear?: number, enter?: number, exit?: number }
+Default:{ enter: theme.transitions.duration.enteringScreen, exit: theme.transitions.duration.leavingScreen, }
+
+variant
+The variant to use.
+Type:'permanent' | 'persistent' | 'temporary'
+Default:'temporary'
+
+Events:
+
+onClose
+Callback fired when the component requests to be closed. The reason parameter can optionally be used to control the response to onClose . Signature : function(event: object, reason: string) => void event The event source of the callback. reason Can be: "escapeKeyDown" , "backdropClick" .
+Type:func

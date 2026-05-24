@@ -1,0 +1,90 @@
+Component: Statistic
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/statistic/
+
+Overview:
+Display statistic number.
+Statistic supports root , header , title , content , value , prefix , and suffix semantic DOM nodes.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the Statistic component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+decimalSeparator
+The decimal separator
+Type:string
+Default:.
+
+formatter
+Customize value display logic
+Type:(value) => ReactNode
+Default:-
+
+groupSeparator
+Group separator
+Type:string
+Default:,
+
+loading
+Loading status of Statistic
+Type:boolean
+Default:false
+
+precision
+The precision of input value
+Type:number
+Default:-
+
+prefix
+The prefix node of value
+Type:ReactNode
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the Statistic component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+suffix
+The suffix node of value
+Type:ReactNode
+Default:-
+
+title
+Display title
+Type:ReactNode
+Default:-
+
+value
+Display value
+Type:string | number
+Default:-
+
+valueStyle
+Set value section style, please use styles.content instead
+Type:CSSProperties
+Default:-
+
+format
+Format as dayjs
+Type:string
+Default:HH:mm:ss
+
+type
+Timer direction, count down or count up
+Type:countdown | countup
+Default:-
+
+Events:
+
+onFinish
+Trigger when time's up
+Type:() => void
+
+onChange
+Trigger when time's changing
+Type:(value: number) => void

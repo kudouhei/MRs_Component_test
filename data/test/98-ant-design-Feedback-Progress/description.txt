@@ -1,0 +1,114 @@
+Component: Progress
+Library: ant-design
+Category: Feedback
+Source URL: https://ant.design/components/progress/
+
+Overview:
+Display the current progress of the operation.
+If it will take a long time to complete an operation, you can use Progress to show the current progress and status.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+format
+The template function of the content
+Type:function(percent, successPercent)
+Default:(percent) => percent + %
+
+percent
+To set the completion percentage
+Type:number
+Default:0
+
+railColor
+The color of unfilled part
+Type:string
+Default:-
+
+showInfo
+Whether to display the progress value and the status icon
+Type:boolean
+Default:true
+
+status
+To set the status of the Progress, options: success exception normal active (line only)
+Type:string
+Default:-
+
+strokeColor
+The color of progress bar
+Type:string
+Default:-
+
+strokeLinecap
+To set the style of the progress linecap
+Type:round | butt | square , see stroke-linecap
+Default:round
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+success
+Configs of successfully progress bar
+Type:{ percent: number, strokeColor: string }
+Default:-
+
+trailColor
+The color of unfilled part. Please use railColor instead
+Type:string
+Default:-
+
+type
+To set the type, options: line circle dashboard
+Type:string
+Default:line
+
+size
+Progress size
+Type:number | [number | string, number] | { width: number, height: number } | "small" | "medium"
+Default:"medium"
+
+steps
+The total step count
+Type:number
+Default:-
+
+rounding
+The function to round the value
+Type:(step: number) => number
+Default:Math.round
+
+percentPosition
+Progress value position, passed in object, align indicates the horizontal position of the value, type indicates whether the value is inside or outside the progress bar
+Type:{ align: string; type: string }
+Default:{ align: "end", type: "outer" }
+
+strokeWidth
+To set the width of the circular progress, unit: percentage of the canvas width
+Type:number
+Default:6
+
+gapDegree
+The gap degree of half circle, 0 ~ 295
+Type:number
+Default:75
+
+gapPlacement
+The gap placement, options: top bottom start end
+Type:string
+Default:bottom
+
+gapPosition
+The gap position, options: top bottom left right , please use gapPlacement instead
+Type:string
+Default:bottom
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

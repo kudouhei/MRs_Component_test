@@ -1,0 +1,80 @@
+Component: Accordion
+Library: heroui
+Category: Navigation
+Source URL: https://heroui.com/docs/react/components/accordion
+
+Overview:
+A collapsible content panel for organizing information in a compact space
+A collapsible content panel for organizing information in a compact space
+
+Props Description:
+
+allowsMultipleExpanded
+Whether multiple items can be expanded at once
+Type:boolean
+Default:false
+
+defaultExpandedKeys
+The initial expanded keys
+Type:Iterable<Key>
+Default:-
+
+expandedKeys
+The controlled expanded keys
+Type:Iterable<Key>
+Default:-
+
+isDisabled
+Whether the entire accordion is disabled
+Type:boolean
+Default:false
+
+variant
+The visual variant of the accordion
+Type:"default" | "surface"
+Default:"default"
+
+hideSeparator
+Hide separator lines between accordion items
+Type:boolean
+Default:false
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+The accordion items
+Type:ReactNode
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, AccordionRenderProps>
+Default:-
+
+id
+Unique identifier for the item
+Type:Key
+Default:-
+
+defaultExpanded
+Whether item is initially expanded
+Type:boolean
+Default:false
+
+isExpanded
+Controlled expanded state
+Type:boolean
+Default:-
+
+Events:
+
+onExpandedChange
+Handler called when expanded keys change
+Type:(keys: Set<Key>) => void
+
+onPress
+Additional press handler
+Type:() => void

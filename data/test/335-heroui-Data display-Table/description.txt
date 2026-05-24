@@ -1,0 +1,167 @@
+Component: Table
+Library: heroui
+Category: Data display
+Source URL: https://heroui.com/docs/react/components/table
+
+Overview:
+Tables display structured data in rows and columns with support for sorting, selection, column resizing, and infinite scrolling.
+Tables display structured data in rows and columns with support for sorting, selection, column resizing, and infinite scrolling.
+
+Props Description:
+
+Kate Moore
+
+John Smith
+
+Sara Johnson
+
+Michael Brown
+
+Emily Davis
+
+Documents
+Type:Directory
+
+Project
+Type:Directory
+
+Photos
+Type:Directory
+
+No results found
+
+Davis Wilson
+
+variant
+Visual variant. Primary has a gray background container; secondary is flat with transparent rows.
+Type:"primary" | "secondary"
+Default:"primary"
+
+className
+Additional CSS classes for the root container
+Type:string
+Default:-
+
+children
+Table content (ScrollContainer, Footer, etc.)
+Type:React.ReactNode
+Default:-
+
+aria-label
+Accessible label for the table
+Type:string
+Default:-
+
+selectionMode
+Selection behavior
+Type:"none" | "single" | "multiple"
+Default:"none"
+
+selectedKeys
+Controlled selected keys
+Type:Selection
+Default:-
+
+sortDescriptor
+Current sort state
+Type:SortDescriptor
+Default:-
+
+columns
+Dynamic column data for render prop pattern
+Type:T[]
+Default:-
+
+id
+Column identifier
+Type:string
+Default:-
+
+allowsSorting
+Whether the column is sortable
+Type:boolean
+Default:false
+
+isRowHeader
+Whether this column is a row header
+Type:boolean
+Default:false
+
+defaultWidth
+Default width for resizable columns
+Type:string | number
+Default:-
+
+minWidth
+Minimum width for resizable columns
+Type:number
+Default:-
+
+items
+Dynamic row data for render prop pattern
+Type:T[]
+Default:-
+
+renderEmptyState
+Content to display when the table is empty
+Type:() => React.ReactNode
+Default:-
+
+isLoading
+Whether data is currently loading
+Type:boolean
+Default:false
+
+rowHeight
+The fixed height of a row in px.
+Type:number | undefined
+Default:48
+
+estimatedRowHeight
+The estimated height of a row, when row heights are variable.
+Type:number | undefined
+Default:—
+
+headingHeight
+The fixed height of a section header in px.
+Type:number | undefined
+Default:48
+
+estimatedHeadingHeight
+The estimated height of a section header, when the height is variable.
+Type:number | undefined
+Default:—
+
+loaderHeight
+The fixed height of a loader element in px. This loader is specifically for "load more" elements rendered when loading more rows at the root level or inside nested row/sections.
+Type:number | undefined
+Default:48
+
+dropIndicatorThickness
+The thickness of the drop indicator.
+Type:number | undefined
+Default:2
+
+gap
+The gap between items.
+Type:number | undefined
+Default:0
+
+padding
+The padding around the list.
+Type:number | undefined
+Default:0
+
+Events:
+
+onSelectionChange
+Selection change handler
+Type:(keys: Selection) => void
+
+onSortChange
+Sort change handler
+Type:(descriptor: SortDescriptor) => void
+
+onLoadMore
+Handler called when the sentinel row is visible
+Type:() => void

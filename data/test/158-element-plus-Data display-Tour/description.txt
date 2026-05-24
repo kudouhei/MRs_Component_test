@@ -1,0 +1,136 @@
+Component: Tour
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/tour
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+append-to
+which element the TourContent appends to
+Type:CSSSelector / HTMLElement
+Default:body
+
+show-arrow
+whether to show the arrow
+Type:boolean
+Default:true
+
+placement
+position of the guide card relative to the target element
+Type:enum
+Default:bottom
+
+content-style
+custom style for content
+Type:CSSProperties
+Default:—
+
+mask
+whether to enable masking, change mask style and fill color by pass custom props
+Type:boolean | Object
+Default:true
+
+gap
+transparent gap between mask and target
+Type:TourGap
+Default:Object
+
+type
+type, affects the background color and text color
+Type:default | primary
+Default:default
+
+model-value / v-model
+open tour
+Type:boolean
+Default:false
+
+current / v-model:current
+what is the current step
+Type:number
+Default:0
+
+scroll-into-view-options
+support pass custom scrollIntoView options
+Type:boolean | ScrollIntoViewOptions
+Default:Object
+
+z-index
+Tour's zIndex
+Type:number
+Default:2001
+
+show-close
+whether to show a close button
+Type:boolean
+Default:true
+
+close-icon
+custom close icon, default is Close
+Type:string | Component
+Default:—
+
+close-on-press-escape
+whether the Dialog can be closed by pressing ESC
+Type:boolean
+Default:true
+
+target-area-clickable
+whether the target element can be clickable, when using mask
+Type:boolean
+Default:true
+
+default
+tourStep component list
+Type:—
+
+indicators
+custom indicator
+Type:object
+
+close
+callback function on shutdown
+Type:Function
+
+finish
+callback function on finished
+Type:Function
+
+change
+callback when the step changes
+Type:Function
+
+target
+get the element the guide card points to. Empty makes it show in center of screen. the string and Function types are supported since 2.5.2 . the string type is selectors of document.querySelector.
+Type:HTMLElement | string | Function
+Default:—
+
+title
+title
+Type:string
+Default:—
+
+description
+description
+Type:string
+Default:—
+
+next-button-props
+properties of the Next button
+Type:Object
+Default:—
+
+prev-button-props
+properties of the previous button
+Type:Object
+Default:—
+
+header
+custom header content
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

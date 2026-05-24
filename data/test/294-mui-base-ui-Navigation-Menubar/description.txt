@@ -1,0 +1,16 @@
+Component: Menubar
+Library: mui-base-ui
+Category: Navigation
+Source URL: https://base-ui.com/react/components/menubar
+
+Overview:
+A menu bar providing commands and options for your application.
+A menu bar providing commands and options for your application.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

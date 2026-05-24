@@ -1,0 +1,38 @@
+Component: Infinite Scroll
+Library: element-plus
+Category: Layout
+Source URL: https://element-plus.org/en-US/component/infinite-scroll
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+v-infinite-scroll
+Load more data while reach bottom of the page
+Type:Function
+Default:—
+
+infinite-scroll-disabled
+is disabled
+Type:boolean
+Default:false
+
+infinite-scroll-delay
+throttle delay (ms)
+Type:number
+Default:200
+
+infinite-scroll-distance
+trigger distance (px)
+Type:number
+Default:0
+
+infinite-scroll-immediate
+Whether to execute the loading method immediately, in case the content cannot be filled up in the initial state.
+Type:boolean
+Default:true
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

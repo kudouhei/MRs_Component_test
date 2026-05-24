@@ -1,0 +1,16 @@
+Component: Icons
+Library: mui-material
+Category: Data display
+Source URL: https://mui.com/material-ui/icons/
+
+Overview:
+Guidance and suggestions for using icons with Material UI.
+Guidance and suggestions for using icons with Material UI.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,96 @@
+Component: Watermark
+Library: ant-design
+Category: Feedback
+Source URL: https://ant.design/components/watermark/
+
+Overview:
+Add specific text or patterns to the page.
+This component is available since antd@5.1.0 .
+
+Props Description:
+
+width
+The width of the watermark, the default value of content is its own width
+Type:number
+Default:120
+
+height
+The height of the watermark, the default value of content is its own height
+Type:number
+Default:64
+
+inherit
+Pass the watermark to the pop-up component such as Modal, Drawer
+Type:boolean
+Default:true
+
+rotate
+When the watermark is drawn, the rotation Angle, unit °
+Type:number
+Default:-22
+
+zIndex
+The z-index of the appended watermark element
+Type:number
+Default:999
+
+image
+Image source, it is recommended to export 2x or 3x image, high priority (support base64 format)
+Type:string
+Default:-
+
+content
+Watermark text content
+Type:string | string[]
+Default:-
+
+font
+Text style
+Type:Font
+Default:Font
+
+gap
+The spacing between watermarks
+Type:[number, number]
+Default:[100, 100]
+
+offset
+The offset of the watermark from the upper left corner of the container. The default is gap/2
+Type:[number, number]
+Default:[gap[0]/2, gap[1]/2]
+
+color
+font color
+Type:CanvasFillStrokeStyles.fillStyle
+Default:rgba(0,0,0,.15)
+
+fontSize
+font size
+Type:number
+Default:16
+
+fontWeight
+font weight
+Type:normal | lighter | bold | bolder | number
+Default:normal
+
+fontFamily
+font family
+Type:string
+Default:sans-serif
+
+fontStyle
+font style
+Type:none | normal | italic | oblique
+Default:normal
+
+textAlign
+specify the text alignment direction
+Type:CanvasTextAlign
+Default:center
+
+Events:
+
+onRemove
+Callback when the watermark is removed by DOM mutation
+Type:() => void

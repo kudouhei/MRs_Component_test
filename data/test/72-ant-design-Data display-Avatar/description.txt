@@ -1,0 +1,86 @@
+Component: Avatar
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/avatar/
+
+Overview:
+Used to represent users or things, supporting the display of images, icons, or characters.
+Tip: You can set icon or children as the fallback for image load error, with the priority of icon > children
+
+Props Description:
+
+alt
+This attribute defines the alternative text describing the image
+Type:string
+Default:-
+
+gap
+Letter type unit distance between left and right sides
+Type:number
+Default:4
+
+icon
+Custom icon type for an icon avatar
+Type:ReactNode
+Default:-
+
+shape
+The shape of avatar
+Type:circle | square
+Default:circle
+
+size
+The size of the avatar
+Type:number | large | medium | small | { xs: number, sm: number, ...}
+Default:medium
+
+src
+The address of the image for an image avatar or image element
+Type:string | ReactNode
+Default:-
+
+srcSet
+A list of sources to use for different screen resolutions
+Type:string
+Default:-
+
+draggable
+Whether the picture is allowed to be dragged
+Type:boolean | 'true' | 'false'
+Default:true
+
+crossOrigin
+CORS settings attributes
+Type:'anonymous' | 'use-credentials' | ''
+Default:-
+
+max
+Set maximum display related configurations
+Type:{ count?: number; style?: CSSProperties; popover?: PopoverProps }
+Default:-
+
+maxCount
+Deprecated, please use max={{ count: number }}
+Type:number
+Default:-
+
+maxPopoverPlacement
+Deprecated, please use max={{ popover: PopoverProps }}
+Type:top | bottom
+Default:top
+
+maxPopoverTrigger
+Deprecated, please use max={{ popover: PopoverProps }}
+Type:hover | focus | click
+Default:hover
+
+maxStyle
+Deprecated, please use max={{ style: CSSProperties }}
+Type:CSSProperties
+Default:-
+
+Events:
+
+onError
+Handler when img load error, return false to prevent default fallback behavior
+Type:() => boolean

@@ -1,0 +1,126 @@
+Component: Collapse
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/collapse/
+
+Overview:
+A content area which can be collapsed and expanded.
+When using version >= 5.6.0, we prefer to configuring the panel by items .
+
+Props Description:
+
+accordion
+If true, Collapse renders as Accordion
+Type:boolean
+Default:false
+
+activeKey
+Key of the active panel
+Type:string[] | string number[] | number
+Default:No default value. In accordion mode , it's the key of the first panel
+
+bordered
+Toggles rendering of the border around the collapse block
+Type:boolean
+Default:true
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+collapsible
+Specify how to trigger Collapse. Either by clicking icon or by clicking any area in header or disable collapse functionality itself
+Type:header | icon | disabled
+Default:-
+
+defaultActiveKey
+Key of the initial active panel
+Type:string[] | string number[] | number
+Default:-
+
+destroyInactivePanel
+Destroy Inactive Panel
+Type:boolean
+Default:false
+
+destroyOnHidden
+Destroy Inactive Panel
+Type:boolean
+Default:false
+
+expandIcon
+Allow to customize collapse icon
+Type:(panelProps) => ReactNode
+Default:-
+
+expandIconPlacement
+Set expand icon placement
+Type:start | end
+Default:start
+
+expandIconPosition
+Set expand icon position, Please use expandIconPlacement instead
+Type:start | end
+Default:-
+
+ghost
+Make the collapse borderless and its background transparent
+Type:boolean
+Default:false
+
+size
+Set the size of collapse
+Type:large | medium | small
+Default:medium
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+items
+collapse items content
+Type:ItemType
+Default:-
+
+children
+Body area content
+Type:ReactNode
+Default:-
+
+extra
+The extra element in the corner
+Type:ReactNode
+Default:-
+
+forceRender
+Forced render of content on panel, instead of lazy rendering after clicking on header
+Type:boolean
+Default:false
+
+key
+Unique key identifying the panel from among its siblings
+Type:string | number
+Default:-
+
+label
+Title of the panel
+Type:ReactNode
+Default:-
+
+showArrow
+If false, panel will not show arrow icon. If false, collapsible can't be set as icon
+Type:boolean
+Default:true
+
+header
+Title of the panel
+Type:ReactNode
+Default:-
+
+Events:
+
+onChange
+Callback function executed when active panel is changed
+Type:function

@@ -1,0 +1,131 @@
+Component: Card
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/card/
+
+Overview:
+A container for displaying information.
+A card can be used to display content related to a single subject. The content can consist of multiple elements of varying types and sizes.
+
+Props Description:
+
+actions
+The action list, shows at the bottom of the Card
+Type:Array<ReactNode>
+Default:-
+
+activeTabKey
+Current TabPane's key
+Type:string
+Default:-
+
+bordered
+Toggles rendering of the border around the card, please use variant instead
+Type:boolean
+Default:true
+
+bodyStyle
+Style of card body, please use styles.body instead
+Type:CSSProperties
+Default:-
+
+variant
+Variants of Card
+Type:outlined | borderless |
+Default:outlined
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+cover
+Card cover
+Type:ReactNode
+Default:-
+
+defaultActiveTabKey
+Initial active TabPane's key, if activeTabKey is not set
+Type:string
+Default:The key of first tab
+
+extra
+Content to render in the top-right corner of the card
+Type:ReactNode
+Default:-
+
+hoverable
+Lift up when hovering card
+Type:boolean
+Default:false
+
+headStyle
+Style of card head, please use styles.header instead
+Type:CSSProperties
+Default:-
+
+loading
+Shows a loading indicator while the contents of the card are being fetched
+Type:boolean
+Default:false
+
+size
+Size of card
+Type:medium | small
+Default:medium
+
+tabBarExtraContent
+Extra content in tab bar
+Type:ReactNode
+Default:-
+
+tabList
+List of TabPane's head
+Type:TabItemType []
+Default:-
+
+tabProps
+Tabs
+Type:-
+Default:-
+
+title
+Card title
+Type:ReactNode
+Default:-
+
+type
+Card style type, can be set to inner or not set
+Type:string
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+className
+The className of container
+Type:string
+Default:-
+
+style
+The style object of container
+Type:CSSProperties
+Default:-
+
+avatar
+Avatar or icon
+Type:ReactNode
+Default:-
+
+description
+Description content
+Type:ReactNode
+Default:-
+
+Events:
+
+onTabChange
+Callback when tab is switched
+Type:(key) => void

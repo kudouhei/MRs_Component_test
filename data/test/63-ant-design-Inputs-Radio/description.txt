@@ -1,0 +1,127 @@
+Component: Radio
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/radio/
+
+Overview:
+Used to select a single state from multiple options.
+The block property will make a Radio.Group fit to its parent width.
+
+Props Description:
+
+checked
+Specifies whether the radio is selected
+Type:boolean
+Default:false
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultChecked
+Specifies the initial state: whether or not the radio is selected
+Type:boolean
+Default:false
+
+disabled
+Disable radio
+Type:boolean
+Default:false
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+value
+According to value for comparison, to determine whether the selected
+Type:any
+Default:-
+
+block
+Option to fit RadioGroup width to its parent width
+Type:boolean
+Default:false
+
+buttonStyle
+The style type of radio button
+Type:outline | solid
+Default:outline
+
+defaultValue
+Default selected value
+Type:any
+Default:-
+
+name
+The name property of all input[type="radio"] children. If not set, it will fallback to a randomly generated name
+Type:string
+Default:-
+
+options
+Set children optional
+Type:string[] | number[] | Array< CheckboxOptionType >
+Default:-
+
+optionType
+Set Radio optionType
+Type:default | button
+Default:default
+
+orientation
+Orientation
+Type:horizontal | vertical
+Default:horizontal
+
+size
+The size of radio button style
+Type:large | medium | small
+Default:-
+
+vertical
+If true, the Radio group will be vertical. Simultaneously existing with orientation , orientation takes priority
+Type:boolean
+Default:false
+
+label
+The text used to display as the Radio option
+Type:string
+Default:-
+
+style
+The style to apply to the Radio option
+Type:React.CSSProperties
+Default:-
+
+className
+className of the Radio option
+Type:string
+Default:-
+
+title
+Adds the Title attribute value
+Type:string
+Default:-
+
+id
+Adds the Radio Id attribute value
+Type:string
+Default:-
+
+required
+Specifies whether the Radio option is required
+Type:boolean
+Default:false
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+Events:
+
+onChange
+The callback function that is triggered when the state changes
+Type:function(e:Event)

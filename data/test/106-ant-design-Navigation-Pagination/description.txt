@@ -1,0 +1,124 @@
+Component: Pagination
+Library: ant-design
+Category: Navigation
+Source URL: https://ant.design/components/pagination/
+
+Overview:
+A long list can be divided into several pages, and only one page will be loaded at a time.
+
+Props Description:
+
+align
+Align
+Type:start | center | end
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+current
+Current page number
+Type:number
+Default:-
+
+defaultCurrent
+Default initial page number
+Type:number
+Default:1
+
+defaultPageSize
+Default number of data items per page
+Type:number
+Default:10
+
+disabled
+Disable pagination
+Type:boolean
+Default:-
+
+hideOnSinglePage
+Whether to hide pager on single page
+Type:boolean
+Default:false
+
+itemRender
+To customize item's innerHTML
+Type:(page, type: 'page' | 'prev' | 'next', originalElement) => React.ReactNode
+Default:-
+
+pageSize
+Number of data items per page
+Type:number
+Default:-
+
+pageSizeOptions
+Specify the sizeChanger options
+Type:number[]
+Default:[ 10 , 20 , 50 , 100 ]
+
+responsive
+If size is not specified, Pagination would resize according to the width of the window
+Type:boolean
+Default:-
+
+showLessItems
+Show less page items
+Type:boolean
+Default:false
+
+showQuickJumper
+Determine whether you can jump to pages directly
+Type:boolean | { goButton: ReactNode }
+Default:false
+
+showSizeChanger
+Determine whether to show pageSize select
+Type:boolean | SelectProps
+Default:-
+
+totalBoundaryShowSizeChanger
+When total larger than it, showSizeChanger will be true
+Type:number
+Default:50
+
+showTitle
+Show page item's title
+Type:boolean
+Default:true
+
+showTotal
+To display the total number and range
+Type:function(total, range)
+Default:-
+
+simple
+Whether to use simple mode
+Type:boolean | { readOnly?: boolean }
+Default:-
+
+size
+Component size
+Type:large | medium | small
+Default:medium
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+total
+Total number of data items
+Type:number
+Default:0
+
+Events:
+
+onChange
+Called when the page number or pageSize is changed, and it takes the resulting page number and pageSize as its arguments
+Type:function(page, pageSize)
+
+onShowSizeChange
+Called when pageSize is changed
+Type:function(current, size)

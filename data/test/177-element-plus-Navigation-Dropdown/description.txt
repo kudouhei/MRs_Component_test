@@ -1,0 +1,164 @@
+Component: Dropdown
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/dropdown
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+type
+menu button type, refer to Button Component, only works when split-button is true
+Type:enum
+Default:''
+
+size
+menu size, also works on the split button
+Type:enum
+Default:''
+
+button-props
+props for the button component, refer to Button Attributes
+Type:object
+Default:—
+
+max-height
+the max height of menu
+Type:string / number
+Default:''
+
+split-button
+whether a button group is displayed
+Type:boolean
+Default:false
+
+disabled
+whether to disable
+Type:boolean
+Default:false
+
+placement
+placement of pop menu
+Type:enum
+Default:bottom
+
+effect
+Tooltip theme, built-in theme: dark / light
+Type:enum / string
+Default:light
+
+trigger
+how to trigger
+Type:enum / array
+Default:hover
+
+trigger-keys 2.9.1
+specify which keys on the keyboard can trigger when pressed
+Type:array
+Default:['Enter', 'Space', 'ArrowDown', 'NumpadEnter']
+
+virtual-triggering 2.11.3
+indicates whether virtual triggering is enabled
+Type:boolean
+Default:—
+
+virtual-ref 2.11.3
+indicates the reference element to which the dropdown is attached
+Type:HTMLElement
+Default:—
+
+hide-on-click
+whether to hide menu after clicking menu-item
+Type:boolean
+Default:true
+
+show-arrow 2.11.3
+whether the tooltip content has an arrow
+Type:boolean
+Default:true
+
+show-timeout
+delay time before show a dropdown (only works when trigger is hover )
+Type:number
+Default:150
+
+hide-timeout
+delay time before hide a dropdown (only works when trigger is hover )
+Type:number
+Default:150
+
+role
+the ARIA role attribute for the dropdown menu. Depending on the use case, you may want to change this to 'navigation'
+Type:enum
+Default:menu
+
+tabindex
+tabindex of Dropdown
+Type:number / string
+Default:0
+
+popper-class
+custom class name for Dropdown's dropdown
+Type:string / object
+Default:''
+
+popper-style 2.11.5
+custom style for Dropdown's dropdown
+Type:string / object
+Default:—
+
+popper-options
+popper.js parameters
+Type:object
+Default:{modifiers: [{name: 'computeStyles',options: {gpuAcceleration: false}}]}
+
+teleported 2.2.20
+whether the dropdown popup is teleported to the body
+Type:boolean
+Default:true
+
+append-to 2.13.0
+which element the dropdown CONTENT appends to
+Type:CSSSelector / HTMLElement
+Default:—
+
+persistent 2.9.5
+when dropdown inactive and persistent is false , dropdown menu will be destroyed
+Type:boolean
+Default:true
+
+default
+content of Dropdown. Notice: Must be a valid html dom element (ex. <span>, <button> etc. ) or el-component , to attach the trigger listener
+
+dropdown
+content of the Dropdown Menu, usually a <el-dropdown-menu> element
+
+click
+if split-button is true , triggers when left button is clicked
+Type:Function
+
+command
+triggers when a dropdown item is clicked, the parameters is the command dispatched from the dropdown item
+Type:Function
+
+visible-change
+triggers when the dropdown appears/disappears, the param is true when it appears, and false otherwise
+Type:Function
+
+divided
+whether a divider is displayed
+Type:boolean
+Default:false
+
+icon
+custom icon
+Type:string / Component
+Default:—
+
+icon 2.13.1
+custom icon, it will override the icon prop
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

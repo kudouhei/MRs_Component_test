@@ -1,0 +1,79 @@
+Component: Skeleton
+Library: ant-design
+Category: Feedback
+Source URL: https://ant.design/components/skeleton/
+
+Overview:
+Provide a placeholder while you wait for content to load, or to visualize content that doesn't exist yet.
+Complex combination with avatar and multiple paragraphs.
+
+Props Description:
+
+active
+Show animation effect
+Type:boolean
+Default:false
+
+classNames
+Customize class for each semantic structure inside the Skeleton component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the Skeleton component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+avatar
+Show avatar placeholder
+Type:boolean | SkeletonAvatarProps
+Default:false
+
+loading
+Display the skeleton when true
+Type:boolean
+Default:-
+
+paragraph
+Show paragraph placeholder
+Type:boolean | SkeletonParagraphProps
+Default:true
+
+round
+Show paragraph and title radius when true
+Type:boolean
+Default:false
+
+title
+Show title placeholder
+Type:boolean | SkeletonTitleProps
+Default:true
+
+width
+Set the width of title
+Type:number | string
+Default:-
+
+rows
+Set the row count of paragraph
+Type:number
+Default:-
+
+shape
+Set the shape of avatar
+Type:circle | square
+Default:circle
+
+size
+Set the size of avatar
+Type:number | large | medium | small
+Default:medium
+
+block
+Option to fit button width to its parent width
+Type:boolean
+Default:false
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

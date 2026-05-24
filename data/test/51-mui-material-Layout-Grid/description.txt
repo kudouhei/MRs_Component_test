@@ -1,0 +1,65 @@
+Component: Grid
+Library: mui-material
+Category: Layout
+Source URL: https://mui.com/material-ui/api/grid/
+
+Overview:
+Grid API
+API reference docs for the React Grid component. Learn about the props, CSS, and other APIs of this exported module.
+For examples and details on the usage of this React component, visit the component demo pages:
+
+Props Description:
+
+children
+The content of the component.
+Type:node
+Default:-
+
+columns
+The number of columns.
+Type:Array<number> | number | object
+Default:12
+
+columnSpacing
+Defines the horizontal space between the type item components. It overrides the value of the spacing prop.
+Type:Array<number | string> | number | object | string
+Default:-
+
+container
+If true , the component will have the flex container behavior. You should be wrapping items with a container .
+Type:bool
+Default:false
+
+direction
+Defines the flex-direction style property for the container. ⚠️ Only row and row-reverse are supported. column and column-reverse are not supported, because the Grid component is designed to subdivide layouts into columns , not rows. For vertical layouts, use Stack instead.
+Type:'row-reverse' | 'row' | Array<'row-reverse' | 'row'> | object
+Default:'row'
+
+offset
+Defines the offset value for the type item components.
+Type:string | number | Array<string | number> | object
+Default:-
+
+rowSpacing
+Defines the vertical space between the type item components. It overrides the value of the spacing prop.
+Type:Array<number | string> | number | object | string
+Default:-
+
+size
+Defines the size of the the type item components.
+Type:string | bool | number | Array<string | bool | number> | object
+Default:-
+
+spacing
+Defines the space between the type item components. It can only be used on a type container component.
+Type:Array<number | string> | number | object | string
+Default:0
+
+wrap
+Defines the flex-wrap style property. It's applied for all screen sizes.
+Type:'nowrap' | 'wrap-reverse' | 'wrap'
+Default:'wrap'
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

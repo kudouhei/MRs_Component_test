@@ -1,0 +1,16 @@
+Component: Input
+Library: mui-base-ui
+Category: Inputs
+Source URL: https://base-ui.com/react/components/input
+
+Overview:
+A high-quality, unstyled React input component.
+A native input element that automatically works with Field .
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

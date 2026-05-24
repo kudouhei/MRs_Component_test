@@ -1,0 +1,111 @@
+Component: Alert
+Library: ant-design
+Category: Feedback
+Source URL: https://ant.design/components/alert/
+
+Overview:
+Display warning messages that require attention.
+Display Alert as a banner at top of page.
+
+Props Description:
+
+action
+The action of Alert
+Type:ReactNode
+Default:-
+
+afterClose
+Called when close animation is finished, please use closable.afterClose instead
+Type:() => void
+Default:-
+
+banner
+Whether to show as banner
+Type:boolean
+Default:false
+
+variant
+Variant of Alert style
+Type:outlined | filled
+Default:outlined
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+closable
+The config of closable
+Type:boolean | ClosableType & React.AriaAttributes
+Default:false
+
+closeIcon
+(Only supports global configuration) Custom close icon
+Type:ReactNode
+Default:-
+
+description
+Additional content of Alert
+Type:ReactNode
+Default:-
+
+errorIcon
+(Only supports global configuration) Custom error icon in Alert icon
+Type:ReactNode
+Default:-
+
+icon
+Custom icon, effective when showIcon is true
+Type:ReactNode
+Default:-
+
+infoIcon
+(Only supports global configuration) Custom info icon in Alert icon
+Type:ReactNode
+Default:-
+
+message
+Content of Alert, please use title instead
+Type:ReactNode
+Default:-
+
+closeText
+Close text to show, please use closable.closeIcon instead
+Type:ReactNode
+Default:-
+
+showIcon
+Whether to show icon
+Type:boolean
+Default:false, in banner mode default is true
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+successIcon
+(Only supports global configuration) Custom success icon in Alert icon
+Type:ReactNode
+Default:-
+
+title
+Content of Alert
+Type:ReactNode
+Default:-
+
+type
+Type of Alert styles, options: success , info , warning , error
+Type:string
+Default:info , in banner mode default is warning
+
+warningIcon
+(Only supports global configuration) Custom warning icon in Alert icon
+Type:ReactNode
+Default:-
+
+Events:
+
+onClose
+Callback when Alert is closed, please use closable.onClose instead
+Type:(e: MouseEvent) => void

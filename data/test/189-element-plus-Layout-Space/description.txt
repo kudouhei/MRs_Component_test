@@ -1,0 +1,66 @@
+Component: Space
+Library: element-plus
+Category: Layout
+Source URL: https://element-plus.org/en-US/component/space
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+alignment
+Controls the alignment of items
+Type:enum align-items
+Default:center
+
+class
+className
+Type:string / object / array
+Default:—
+
+direction
+Placement direction
+Type:enum
+Default:horizontal
+
+prefix-cls
+Prefix for space-items
+Type:string
+Default:—
+
+style
+Extra style rules
+Type:string / object
+Default:—
+
+spacer
+Spacer
+Type:string / number / VNode
+Default:—
+
+size
+Spacing size
+Type:enum / number / array
+Default:small
+
+wrap
+Auto wrapping
+Type:boolean
+Default:false
+
+fill
+Whether to fill the container
+Type:boolean
+Default:false
+
+fill-ratio
+Ratio of fill
+Type:number
+Default:100
+
+default
+Items to be spaced
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

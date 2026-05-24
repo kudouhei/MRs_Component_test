@@ -1,0 +1,63 @@
+Component: Alert
+Library: element-plus
+Category: Feedback
+Source URL: https://element-plus.org/en-US/component/alert
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+title
+alert title.
+Type:string
+Default:—
+
+type
+alert type.
+Type:enum
+Default:info
+
+description
+descriptive text.
+Type:string
+Default:—
+
+closable
+whether alert can be dismissed.
+Type:boolean
+Default:true
+
+center
+whether content is placed in the center.
+Type:boolean
+Default:false
+
+close-text
+customized close button text.
+Type:string
+Default:—
+
+show-icon
+whether a type icon is displayed.
+Type:boolean
+Default:false
+
+effect
+theme style.
+Type:enum
+Default:light
+
+close
+trigger when alert is closed.
+Type:Function
+
+default
+content of the alert description.
+
+icon 2.9.7
+content of the alert icon.
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

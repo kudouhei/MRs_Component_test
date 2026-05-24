@@ -1,0 +1,86 @@
+Component: Switch
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/switch/
+
+Overview:
+Used to toggle between two states.
+Form.Item default bind value to value property, but Switch value property is checked . You can use valuePropName to change bind property.
+
+Props Description:
+
+checked
+Determine whether the Switch is checked
+Type:boolean
+Default:false
+
+checkedChildren
+The content to be shown when the state is checked
+Type:ReactNode
+Default:-
+
+className
+The additional class to Switch
+Type:string
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultChecked
+Whether to set the initial state
+Type:boolean
+Default:false
+
+defaultValue
+Alias for defaultChecked
+Type:boolean
+Default:-
+
+disabled
+Disable switch
+Type:boolean
+Default:false
+
+loading
+Loading state of switch
+Type:boolean
+Default:false
+
+size
+The size of the Switch, options: medium small
+Type:string
+Default:medium
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+unCheckedChildren
+The content to be shown when the state is unchecked
+Type:ReactNode
+Default:-
+
+value
+Alias for checked
+Type:boolean
+Default:-
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+Events:
+
+onChange
+Trigger when the checked state is changing
+Type:function(checked: boolean, event: Event)
+
+onClick
+Trigger when clicked
+Type:function(checked: boolean, event: Event)

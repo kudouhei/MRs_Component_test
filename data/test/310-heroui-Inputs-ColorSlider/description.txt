@@ -1,0 +1,88 @@
+Component: ColorSlider
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/color-slider
+
+Overview:
+A color slider allows users to adjust an individual channel of a color value
+A color slider allows users to adjust an individual channel of a color value
+
+Props Description:
+
+channel
+The color channel that the slider manipulates (hue, saturation, lightness, brightness, alpha, red, green, blue)
+Type:ColorChannel
+Default:-
+
+colorSpace
+The color space (hsl, hsb, rgb). Defaults to the color space of the value
+Type:ColorSpace
+Default:-
+
+value
+The current color value (controlled)
+Type:string | Color
+Default:-
+
+defaultValue
+The default color value (uncontrolled)
+Type:string | Color
+Default:-
+
+orientation
+The orientation of the slider
+Type:"horizontal" | "vertical"
+Default:"horizontal"
+
+isDisabled
+Whether the slider is disabled
+Type:boolean
+Default:-
+
+name
+The name of the input element for form submission
+Type:string
+Default:-
+
+aria-label
+Accessibility label for the slider
+Type:string
+Default:-
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+Slider content or render function
+Type:ReactNode | RenderFunction
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSliderRenderProps>
+Default:-
+
+style
+Inline styles or render function
+Type:CSSProperties | RenderFunction
+Default:-
+
+state
+The state of the color slider
+Type:ColorSliderState
+
+color
+The current color value
+Type:Color
+
+Events:
+
+onChange
+Handler called when the value changes during dragging
+Type:(value: Color) => void
+
+onChangeEnd
+Handler called when dragging ends
+Type:(value: Color) => void

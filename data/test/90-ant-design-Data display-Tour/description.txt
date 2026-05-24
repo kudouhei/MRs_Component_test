@@ -1,0 +1,139 @@
+Component: Tour
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/tour/
+
+Overview:
+A popup component for guiding users through a product.
+Use when you want to guide users through a product.
+
+Props Description:
+
+arrow
+Whether to show the arrow, including the configuration whether to point to the center of the element
+Type:boolean | { pointAtCenter: boolean }
+Default:true
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+closeIcon
+Customize close icon
+Type:React.ReactNode
+Default:true
+
+disabledInteraction
+Disable interaction on highlighted area.
+Type:boolean
+Default:false
+
+gap
+Control the radius of the highlighted area and the offset between highlighted area and the element.
+Type:{ offset?: number | [number, number]; radius?: number }
+Default:{ offset?: 6 ; radius?: 2 }
+
+keyboard
+Whether to enable keyboard shortcuts
+Type:boolean
+Default:true
+
+placement
+Position of the guide card relative to the target element
+Type:center | left | leftTop | leftBottom | right | rightTop | rightBottom | top | topLeft | topRight | bottom | bottomLeft | bottomRight
+Default:bottom
+
+mask
+Whether to enable masking, change mask style and fill color by pass custom props
+Type:boolean | { style?: React.CSSProperties; color?: string; }
+Default:true
+
+type
+Type, affects the background color and text color
+Type:default | primary
+Default:default
+
+open
+Open tour
+Type:boolean
+Default:-
+
+current
+What is the current step
+Type:number
+Default:-
+
+scrollIntoViewOptions
+support pass custom scrollIntoView options
+Type:boolean | ScrollIntoViewOptions
+Default:true
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+indicatorsRender
+custom indicator
+Type:(current: number, total: number) => ReactNode
+Default:-
+
+actionsRender
+custom action
+Type:(originNode: ReactNode, info: { current: number, total: number }) => ReactNode
+Default:-
+
+zIndex
+Tour's zIndex
+Type:number
+Default:1001
+
+getPopupContainer
+Set the rendering node of Tour floating layer
+Type:(node: HTMLElement) => HTMLElement
+Default:body
+
+target
+Get the element the guide card points to. Empty makes it show in center of screen
+Type:() => HTMLElement | HTMLElement
+Default:-
+
+cover
+Displayed pictures or videos
+Type:ReactNode
+Default:-
+
+title
+title
+Type:ReactNode
+Default:-
+
+description
+description
+Type:ReactNode
+Default:-
+
+nextButtonProps
+Properties of the Next button
+Type:{ children: ReactNode; onClick: Function }
+Default:-
+
+prevButtonProps
+Properties of the previous button
+Type:{ children: ReactNode; onClick: Function }
+Default:-
+
+Events:
+
+onClose
+Callback function on shutdown
+Type:Function
+
+onFinish
+Callback when the tour is finished
+Type:Function
+
+onChange
+Callback when the step changes. Current is the previous step
+Type:(current: number) => void

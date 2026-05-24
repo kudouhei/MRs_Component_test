@@ -1,0 +1,98 @@
+Component: Rating
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/rate/
+
+Overview:
+Used for rating operation on something.
+Replace the default star to other character like alphabet, digit, iconfont or even Chinese word.
+
+Props Description:
+
+allowClear
+Whether to allow clear when click again
+Type:boolean
+Default:true
+
+allowHalf
+Whether to allow semi selection
+Type:boolean
+Default:false
+
+character
+The custom character of rate
+Type:ReactNode | (RateProps) => ReactNode
+Default:<StarFilled />
+
+className
+The custom class name of rate
+Type:string
+Default:-
+
+count
+Star count
+Type:number
+Default:5
+
+defaultValue
+The default value
+Type:number
+Default:0
+
+disabled
+If read only, unable to interact
+Type:boolean
+Default:false
+
+keyboard
+Support keyboard operation
+Type:boolean
+Default:true
+
+size
+Star size
+Type:'small' | 'medium' | 'large'
+Default:'medium'
+
+style
+The custom style object of rate
+Type:CSSProperties
+Default:-
+
+tooltips
+Customize tooltip by each character
+Type:TooltipProps [] | string[]
+Default:-
+
+value
+The current value
+Type:number
+Default:-
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+Events:
+
+onBlur
+Callback when component lose focus
+Type:function()
+
+onChange
+Callback when select value
+Type:function(value: number)
+
+onFocus
+Callback when component get focus
+Type:function()
+
+onHoverChange
+Callback when hover item
+Type:function(value: number)
+
+onKeyDown
+Callback when keydown on component
+Type:function(event)

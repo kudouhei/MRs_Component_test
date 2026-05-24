@@ -1,0 +1,41 @@
+Component: ColorPicker
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/color-picker
+
+Overview:
+A composable color picker that synchronizes color value between multiple color components
+A composable color picker that synchronizes color value between multiple color components
+
+Props Description:
+
+value
+The current color value (controlled)
+Type:string | Color
+Default:-
+
+defaultValue
+The default color value (uncontrolled)
+Type:string | Color
+Default:-
+
+children
+Content of the color picker (Trigger, Popover, etc.)
+Type:React.ReactNode
+Default:-
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+placement
+Placement of the popover
+Type:Placement
+Default:"bottom left"
+
+Events:
+
+onChange
+Handler called when the color changes
+Type:(color: Color) => void

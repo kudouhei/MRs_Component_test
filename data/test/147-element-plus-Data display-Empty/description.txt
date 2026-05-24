@@ -1,0 +1,31 @@
+Component: Empty
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/empty
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+image
+image URL of empty
+Type:string
+Default:''
+
+image-size
+image size (width) of empty
+Type:number
+Default:—
+
+description
+description of empty
+Type:string
+Default:''
+
+default
+content as bottom content
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

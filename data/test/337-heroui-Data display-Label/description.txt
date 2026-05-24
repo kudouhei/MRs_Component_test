@@ -1,0 +1,44 @@
+Component: Label
+Library: heroui
+Category: Data display
+Source URL: https://heroui.com/docs/react/components/label
+
+Overview:
+Renders an accessible label associated with form controls
+Renders an accessible label associated with form controls
+
+Props Description:
+
+htmlFor
+The id of the element the label is associated with
+Type:string
+Default:-
+
+isRequired
+Whether to display a required indicator
+Type:boolean
+Default:false
+
+isDisabled
+Whether the label is in a disabled state
+Type:boolean
+Default:false
+
+isInvalid
+Whether the label is in an invalid state
+Type:boolean
+Default:false
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+The content of the label
+Type:ReactNode
+Default:-
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

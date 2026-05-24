@@ -1,0 +1,16 @@
+Component: Tabs
+Library: mui-base-ui
+Category: Navigation
+Source URL: https://base-ui.com/react/components/tabs
+
+Overview:
+A high-quality, unstyled React tabs component for toggling between related panels on the same page.
+A component for toggling between related panels on the same page.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

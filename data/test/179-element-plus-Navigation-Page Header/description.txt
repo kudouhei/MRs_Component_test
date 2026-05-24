@@ -1,0 +1,41 @@
+Component: Page Header
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/page-header
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+icon
+icon component of page header
+Type:string / Component
+Default:Back
+
+title
+main title of page header, default is Back that built-in a11y
+Type:string
+Default:''
+
+content
+content of page header
+Type:string
+Default:''
+
+back
+triggers when right side is clicked
+Type:Function
+
+extra
+extra
+
+breadcrumb
+content as breadcrumb
+
+default
+main content
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

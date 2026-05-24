@@ -1,0 +1,208 @@
+Component: Drawer
+Library: ant-design
+Category: Navigation
+Source URL: https://ant.design/components/drawer/
+
+Overview:
+A panel that slides out from the edge of the screen.
+A Drawer is a panel that is typically overlaid on top of a page and slides in from the side. It contains a set of information or actions. Since the user can interact with the Drawer without leaving the current page, tasks can be achieved more efficiently within the same context.
+
+Props Description:
+
+afterOpenChange
+Callback after the animation ends when switching drawers
+Type:function(open)
+Default:-
+
+bodyStyle
+Style of the drawer body, please use styles.body instead
+Type:CSSProperties
+Default:-
+
+className
+Config Drawer Panel className. Use rootClassName if want to config top DOM style
+Type:string
+Default:-
+
+classNames
+Customize class for each semantic structure inside the Drawer component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+closable
+Whether to show a close button. The position can be configured with placement
+Type:boolean | { closeIcon?: React.ReactNode; disabled?: boolean; placement?: 'start' | 'end' }
+Default:true
+
+contentWrapperStyle
+Style of the drawer wrapper, please use styles.wrapper instead
+Type:CSSProperties
+Default:-
+
+destroyOnClose
+Whether to unmount child components on closing drawer or not
+Type:boolean
+Default:false
+
+destroyInactivePanel
+Whether to unmount child components on closing drawer or not, please use destroyOnHidden instead
+Type:boolean
+Default:false
+
+destroyOnHidden
+Whether to unmount child components on closing drawer or not
+Type:boolean
+Default:false
+
+drawerStyle
+Style of the drawer panel, please use styles.section instead
+Type:CSSProperties
+Default:-
+
+extra
+Extra actions area at corner
+Type:ReactNode
+Default:-
+
+footer
+The footer for Drawer
+Type:ReactNode
+Default:-
+
+footerStyle
+Style of the drawer footer, please use styles.footer instead
+Type:CSSProperties
+Default:-
+
+forceRender
+Pre-render Drawer component forcibly
+Type:boolean
+Default:false
+
+focusable
+Configuration for focus management in the Drawer
+Type:{ trap?: boolean, focusTriggerAfterClose?: boolean }
+Default:-
+
+getContainer
+mounted node and display window for Drawer
+Type:HTMLElement | () => HTMLElement | Selectors | false
+Default:body
+
+headerStyle
+Style of the drawer header part, please use styles.header instead
+Type:CSSProperties
+Default:-
+
+height
+Placement is top or bottom , height of the Drawer dialog, please use size instead
+Type:string | number
+Default:378
+
+keyboard
+Whether support press esc to close
+Type:boolean
+Default:true
+
+loading
+Show the Skeleton
+Type:boolean
+Default:false
+
+mask
+Mask effect
+Type:boolean | { enabled?: boolean, blur?: boolean, closable?: boolean }
+Default:true
+
+maskClosable
+Clicking on the mask (area outside the Drawer) to close the Drawer or not
+Type:boolean
+Default:true
+
+maskStyle
+Style of the drawer mask, please use styles.mask instead
+Type:CSSProperties
+Default:-
+
+maxSize
+Maximum size (width or height depending on placement ) when resizable
+Type:number
+Default:-
+
+open
+Whether the Drawer dialog is visible or not
+Type:boolean
+Default:false
+
+placement
+The placement of the Drawer
+Type:top | right | bottom | left
+Default:right
+
+push
+Nested drawers push behavior
+Type:boolean | { distance: string | number }
+Default:{ distance: 180 }
+
+resizable
+Enable resizable by dragging
+Type:boolean | ResizableConfig
+Default:-
+
+rootStyle
+Style of wrapper element which contains mask compare to style
+Type:CSSProperties
+Default:-
+
+size
+preset size of drawer, default 378px and large 736px , or a custom number
+Type:'default' | 'large' | number | string
+Default:'default'
+
+style
+Style of Drawer panel. Use styles.body if want to config body only
+Type:CSSProperties
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the Drawer component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+title
+The title for Drawer
+Type:ReactNode
+Default:-
+
+width
+Width of the Drawer dialog, please use size instead
+Type:string | number
+Default:378
+
+zIndex
+The z-index of the Drawer
+Type:number
+Default:1000
+
+drawerRender
+Custom drawer content render
+Type:(node: ReactNode) => ReactNode
+Default:-
+
+Events:
+
+onClose
+Specify a callback that will be called when a user clicks mask, close button or Cancel button
+Type:function(e)
+
+onResizeStart
+Callback when resize starts
+Type:() => void
+
+onResize
+Callback during resizing
+Type:(size: number) => void
+
+onResizeEnd
+Callback when resize ends
+Type:() => void

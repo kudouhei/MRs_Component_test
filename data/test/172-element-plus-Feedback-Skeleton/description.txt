@@ -1,0 +1,51 @@
+Component: Skeleton
+Library: element-plus
+Category: Feedback
+Source URL: https://element-plus.org/en-US/component/skeleton
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+animated
+whether showing the animation
+Type:boolean
+Default:false
+
+count
+how many fake items to render to the DOM
+Type:number
+Default:1
+
+loading
+whether showing the real DOM
+Type:boolean
+Default:false
+
+rows
+numbers of the row, only useful when no template slot were given
+Type:number
+Default:3
+
+throttle
+rendering delay in milliseconds. Numbers represent delayed display, and can also be set to delay hide, for example { leading: 500, trailing: 500 } . When needing to control the initial value of loading, you can set { initVal: true }
+Type:number / object
+Default:0
+
+default
+real rendering DOM
+Type:object
+
+template
+content as rendering skeleton template
+Type:object
+
+variant
+the current rendering skeleton type
+Type:enum
+Default:text
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

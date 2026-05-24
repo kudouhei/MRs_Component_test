@@ -1,0 +1,79 @@
+Component: Form
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/form
+
+Overview:
+Wrapper component for form validation and submission handling
+Wrapper component for form validation and submission handling
+
+Props Description:
+
+action
+The URL to submit the form data to.
+Type:string | FormHTMLAttributes['action']
+Default:-
+
+className
+Tailwind CSS classes applied to the form element.
+Type:string
+Default:-
+
+children
+Form content (fields, buttons, etc.).
+Type:React.ReactNode
+Default:-
+
+encType
+The encoding type for form data submission.
+Type:'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain'
+Default:-
+
+method
+The HTTP method to use when submitting the form.
+Type:'get' | 'post'
+Default:-
+
+target
+Where to display the response after submitting the form.
+Type:'_self' | '_blank' | '_parent' | '_top'
+Default:-
+
+validationBehavior
+Whether to use native HTML validation or ARIA validation. 'native' blocks form submission, 'aria' displays errors in realtime.
+Type:'native' | 'aria'
+Default:'native'
+
+validationErrors
+Server-side validation errors mapped by field name. Displayed immediately and cleared when user modifies the field.
+Type:ValidationErrors
+Default:-
+
+aria-label
+Accessibility label for the form.
+Type:string
+Default:-
+
+aria-labelledby
+ID of element that labels the form. Creates a form landmark when provided.
+Type:string
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, undefined>
+Default:-
+
+Events:
+
+onInvalid
+Handler called when the form validation fails. By default, the first invalid field will be focused. Use preventDefault() to customize focus behavior.
+Type:(event: FormEvent<HTMLFormElement>) => void
+
+onReset
+Handler called when the form is reset.
+Type:(event: FormEvent<HTMLFormElement>) => void
+
+onSubmit
+Handler called when the form is submitted.
+Type:(event: FormEvent<HTMLFormElement>) => void

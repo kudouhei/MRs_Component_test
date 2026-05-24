@@ -1,0 +1,95 @@
+Component: Tag
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/tag/
+
+Overview:
+Used for marking and categorization.
+It can be used to tag by dimension or property.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+closeIcon
+Custom close icon. 5.7.0: close button will be hidden when setting to null or false
+Type:ReactNode
+Default:false
+
+color
+Color of the Tag
+Type:string
+Default:default when variant="solid"
+
+disabled
+Whether the tag is disabled
+Type:boolean
+Default:false
+
+href
+The address to jump when clicking, when this property is specified, the tag component will be rendered as an <a> tag
+Type:string
+Default:-
+
+icon
+Set the icon of tag
+Type:ReactNode
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+target
+Same as target attribute of a, works when href is specified
+Type:string
+Default:-
+
+variant
+Variant of the tag
+Type:'filled' | 'solid' | 'outlined'
+Default:'filled'
+
+bordered
+Whether has border style, please use variant="filled" instead
+Type:boolean
+Default:true
+
+checked
+Checked status of Tag
+Type:boolean
+Default:false
+
+defaultValue
+Initial value
+Type:string | number | Array<string | number> | null
+Default:-
+
+multiple
+Multiple select mode
+Type:boolean
+Default:-
+
+options
+Option list. Object options support per-item className and style .
+Type:Array<{ className?: string; label: ReactNode; style?: CSSProperties; value: string | number } | string | number>
+Default:-
+
+value
+Value of checked tag(s)
+Type:string | number | Array<string | number> | null
+Default:-
+
+Events:
+
+onClose
+Callback executed when tag is closed (can be prevented by e.preventDefault() )
+Type:(e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+
+onChange
+Callback executed when Tag is checked/unchecked
+Type:(checked) => void

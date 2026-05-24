@@ -1,0 +1,16 @@
+Component: Meter
+Library: mui-base-ui
+Category: Inputs
+Source URL: https://base-ui.com/react/components/meter
+
+Overview:
+A high-quality, unstyled React meter component that provides a graphical display of a numeric value.
+A graphical display of a numeric value within a range.
+
+Props Description:
+
+(No props table extracted from documentation page.)
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,24 @@
+Component: FieldError
+Library: heroui
+Category: Data display
+Source URL: https://heroui.com/docs/react/components/field-error
+
+Overview:
+Displays validation error messages for form fields
+Displays validation error messages for form fields
+
+Props Description:
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+Error message content or render function
+Type:ReactNode | ((validation: ValidationResult) => ReactNode)
+Default:-
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

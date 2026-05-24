@@ -1,0 +1,79 @@
+Component: Badge
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/badge/
+
+Overview:
+Small numerical value or status descriptor for UI elements.
+Badge normally appears in proximity to notifications or user avatars with eye-catching appeal, typically displaying unread messages count.
+
+Props Description:
+
+color
+Customize Badge dot color
+Type:string
+Default:-
+
+count
+Number to show in badge
+Type:ReactNode
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+dot
+Whether to display a red dot instead of count
+Type:boolean
+Default:false
+
+offset
+Set offset of the badge dot
+Type:[number, number]
+Default:-
+
+overflowCount
+Max count to show
+Type:number
+Default:99
+
+showZero
+Whether to show badge when count is zero
+Type:boolean
+Default:false
+
+size
+If count is set, size sets the size of badge
+Type:medium | small
+Default:-
+
+status
+Set Badge as a status dot
+Type:success | processing | default | error | warning
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+text
+If status is set, text sets the display text of the status dot
+Type:ReactNode
+Default:-
+
+title
+Text to show when hovering over the badge
+Type:string
+Default:-
+
+placement
+The placement of the Ribbon, start and end follow text direction (RTL or LTR)
+Type:start | end
+Default:end
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

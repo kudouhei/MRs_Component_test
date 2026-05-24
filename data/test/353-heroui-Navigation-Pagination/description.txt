@@ -1,0 +1,41 @@
+Component: Pagination
+Library: heroui
+Category: Navigation
+Source URL: https://heroui.com/docs/react/components/pagination
+
+Overview:
+Page navigation with composable page links, previous/next buttons, and ellipsis indicators
+Page navigation with composable page links, previous/next buttons, and ellipsis indicators
+
+Props Description:
+
+size
+Size of the pagination items
+Type:"sm" | "md" | "lg"
+Default:"md"
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+Pagination parts (Summary, Content)
+Type:ReactNode
+Default:-
+
+isActive
+Whether this is the current page
+Type:boolean
+Default:false
+
+isDisabled
+Whether the link is disabled
+Type:boolean
+Default:false
+
+Events:
+
+onPress
+Press handler (from React Aria)
+Type:(e: PressEvent) => void

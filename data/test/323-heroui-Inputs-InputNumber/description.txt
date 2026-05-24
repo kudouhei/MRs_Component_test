@@ -1,0 +1,168 @@
+Component: InputNumber
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/number-field
+
+Overview:
+Number input fields with increment/decrement buttons, validation, and internationalized formatting
+Number input fields with increment/decrement buttons, validation, and internationalized formatting
+
+Props Description:
+
+children
+Child components (Label, Group, Input, etc.) or render function.
+Type:React.ReactNode | (values: NumberFieldRenderProps) => React.ReactNode
+Default:-
+
+className
+CSS classes for styling, supports render props.
+Type:string | (values: NumberFieldRenderProps) => string
+Default:-
+
+style
+Inline styles, supports render props.
+Type:React.CSSProperties | (values: NumberFieldRenderProps) => React.CSSProperties
+Default:-
+
+fullWidth
+Whether the number field should take full width of its container
+Type:boolean
+Default:false
+
+id
+The element's unique identifier.
+Type:string
+Default:-
+
+variant
+Visual variant of the component. primary is the default style with shadow. secondary is a lower emphasis variant without shadow, suitable for use in surfaces.
+Type:"primary" | "secondary"
+Default:"primary"
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, NumberFieldRenderProps>
+Default:-
+
+value
+Current value (controlled).
+Type:number
+Default:-
+
+defaultValue
+Default value (uncontrolled).
+Type:number
+Default:-
+
+formatOptions
+Options for formatting numbers (currency, percent, decimal, unit).
+Type:Intl.NumberFormatOptions
+Default:-
+
+locale
+Locale for number formatting.
+Type:string
+Default:-
+
+isRequired
+Whether user input is required before form submission.
+Type:boolean
+Default:false
+
+isInvalid
+Whether the value is invalid.
+Type:boolean
+Default:-
+
+validate
+Custom validation function.
+Type:(value: number) => ValidationError | true | null | undefined
+Default:-
+
+validationBehavior
+Whether to use native HTML form validation or ARIA attributes.
+Type:'native' | 'aria'
+Default:'native'
+
+validationErrors
+Server-side validation errors.
+Type:string[]
+Default:-
+
+minValue
+Minimum allowed value.
+Type:number
+Default:-
+
+maxValue
+Maximum allowed value.
+Type:number
+Default:-
+
+step
+Step value for increment/decrement operations.
+Type:number
+Default:1
+
+isDisabled
+Whether the input is disabled.
+Type:boolean
+Default:-
+
+isReadOnly
+Whether the input can be selected but not changed.
+Type:boolean
+Default:-
+
+name
+Name of the input element, for HTML form submission.
+Type:string
+Default:-
+
+autoFocus
+Whether the element should receive focus on render.
+Type:boolean
+Default:-
+
+aria-label
+Accessibility label when no visible label is present.
+Type:string
+Default:-
+
+aria-labelledby
+ID of elements that label this field.
+Type:string
+Default:-
+
+aria-describedby
+ID of elements that describe this field.
+Type:string
+Default:-
+
+aria-details
+ID of elements with additional details.
+Type:string
+Default:-
+
+slot
+Must be set to "increment" (automatically set).
+Type:"increment"
+Default:"increment"
+
+isFocused
+Whether the field is currently focused (DEPRECATED - use isFocusWithin ).
+Type:boolean
+
+isFocusWithin
+Whether any child element is focused.
+Type:boolean
+
+isFocusVisible
+Whether focus is visible (keyboard navigation).
+Type:boolean
+
+Events:
+
+onChange
+Handler called when the value changes.
+Type:(value: number | undefined) => void

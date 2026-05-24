@@ -1,0 +1,93 @@
+Component: Segmented
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/segmented/
+
+Overview:
+Display multiple options and allow users to select a single option.
+This component is available since antd@4.20.0 .
+
+Props Description:
+
+block
+Option to fit width to its parent's width
+Type:boolean
+Default:false
+
+classNames
+Customize class for each semantic structure inside the Segmented component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props }) => Record< SemanticDOM , string>
+Default:-
+
+defaultValue
+Default selected value
+Type:string | number
+
+disabled
+Disable all segments
+Type:boolean
+Default:false
+
+options
+Set children optional
+Type:string[] | number[] | SegmentedItemType[]
+Default:[]
+
+orientation
+Orientation
+Type:horizontal | vertical
+Default:horizontal
+
+size
+The size of the Segmented.
+Type:large | medium | small
+Default:medium
+
+styles
+Customize inline style for each semantic structure inside the Segmented component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props }) => Record< SemanticDOM , CSSProperties>
+Default:-
+
+vertical
+Orientation. Simultaneously existing with orientation , orientation takes priority
+Type:boolean
+Default:false
+
+value
+Currently selected value
+Type:string | number
+
+shape
+shape of Segmented
+Type:default | round
+Default:default
+
+name
+The name property of all input[type="radio"] children. if not set, it will fallback to a randomly generated name
+Type:string
+
+className
+The additional css class
+Type:string
+Default:-
+
+icon
+Display icon for Segmented item
+Type:ReactNode
+Default:-
+
+label
+Display text for Segmented item
+Type:ReactNode
+Default:-
+
+tooltip
+tooltip for Segmented item
+Type:string | TooltipProps
+Default:-
+
+Events:
+
+onChange
+The callback function that is triggered when the state changes
+Type:function(value: string | number)

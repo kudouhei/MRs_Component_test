@@ -1,0 +1,55 @@
+Component: CloseButton
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/close-button
+
+Overview:
+Button component for closing dialogs, modals, or dismissing content
+Button component for closing dialogs, modals, or dismissing content
+
+Props Description:
+
+variant
+Visual variant of the button
+Type:"default"
+Default:"default"
+
+children
+Content to display (defaults to close icon)
+Type:ReactNode | function
+Default:<CloseIcon />
+
+isDisabled
+Whether the button is disabled
+Type:boolean
+Default:false
+
+aria-label
+Accessible label for screen readers
+Type:string
+
+aria-labelledby
+ID of element that labels the button
+Type:string
+
+aria-describedby
+ID of element that describes the button
+Type:string
+
+isHovered
+Whether the button is hovered
+Type:boolean
+
+isPressed
+Whether the button is pressed
+Type:boolean
+
+isFocused
+Whether the button is focused
+Type:boolean
+
+Events:
+
+onPress
+Handler called when the button is pressed
+Type:() => void

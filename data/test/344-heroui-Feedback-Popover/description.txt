@@ -1,0 +1,56 @@
+Component: Popover
+Library: heroui
+Category: Feedback
+Source URL: https://heroui.com/docs/react/components/popover
+
+Overview:
+Displays rich content in a portal triggered by a button or any custom element
+Displays rich content in a portal triggered by a button or any custom element
+
+Props Description:
+
+children
+Trigger and content elements
+Type:React.ReactNode
+Default:-
+
+isOpen
+Controls popover visibility (controlled)
+Type:boolean
+Default:-
+
+defaultOpen
+Initial open state (uncontrolled)
+Type:boolean
+Default:false
+
+placement
+Placement of the popover
+Type:"top" | "bottom" | "left" | "right" (and variants)
+Default:"bottom"
+
+offset
+Distance from the trigger element
+Type:number
+Default:8
+
+shouldFlip
+Whether popover can change orientation to fit
+Type:boolean
+Default:true
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, PopoverRenderProps>
+Default:-
+
+Events:
+
+onOpenChange
+Called when open state changes
+Type:(isOpen: boolean) => void

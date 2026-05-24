@@ -1,0 +1,175 @@
+Component: Slider
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/slider/
+
+Overview:
+A Slider component for displaying current value and intervals in range.
+Used to input a value within a specified range.
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultValue
+The default value of the slider. When range is false, use number, otherwise, use [number, number]
+Type:number | [number, number]
+Default:0 | [0, 0]
+
+disabled
+If true, the slider will not be interactive
+Type:boolean
+Default:false
+
+keyboard
+Support using keyboard to move handlers
+Type:boolean
+Default:true
+
+dots
+Whether the thumb can only be dragged to tick marks
+Type:boolean
+Default:false
+
+included
+Takes effect when marks is not null. True means containment and false means coordinative
+Type:boolean
+Default:true
+
+marks
+Tick marks of Slider. The type of key must be number , and must be in closed interval [min, max]. Each mark can declare its own style
+Type:object
+Default:{ number: ReactNode } | { number: { style: CSSProperties, label: ReactNode } }
+
+max
+The maximum value the slider can slide to
+Type:number
+Default:100
+
+min
+The minimum value the slider can slide to
+Type:number
+Default:0
+
+orientation
+Orientation
+Type:horizontal | vertical
+Default:horizontal
+
+range
+Enable dual thumb mode for range selection
+Type:boolean
+Default:false
+
+reverse
+Reverse the component
+Type:boolean
+Default:false
+
+step
+The granularity the slider can step through values. Must be greater than 0, and be divisible by (max - min). When step is null and marks exist, valid points will only be marks, min and max
+Type:number | null
+Default:1
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+tooltip
+The tooltip related props
+Type:tooltip
+Default:-
+
+value
+The value of slider. When range is false, use number, otherwise, use [number, number]
+Type:number | [number, number]
+Default:-
+
+vertical
+If true, the slider will be vertical. Simultaneously existing with orientation , orientation takes priority
+Type:boolean
+Default:false
+
+handleStyle
+Style of the slider handle, please use styles.handle instead
+Type:CSSProperties
+Default:-
+
+railStyle
+Style of the slider rail, please use styles.rail instead
+Type:CSSProperties
+Default:-
+
+trackStyle
+Style of the slider track, please use styles.track instead
+Type:CSSProperties
+Default:-
+
+draggableTrack
+Whether range track can be dragged
+Type:boolean
+Default:false
+
+editable
+Dynamic edit nodes. Cannot be used with draggableTrack
+Type:boolean
+Default:false
+
+minCount
+The minimum count of nodes
+Type:number
+Default:0
+
+maxCount
+The maximum count of nodes
+Type:number
+Default:-
+
+autoAdjustOverflow
+Whether to automatically adjust the popup position
+Type:boolean
+Default:true
+
+open
+If true, Tooltip will always be visible; if false, it will never be visible, even when dragging or hovering
+Type:boolean
+Default:-
+
+placement
+Set Tooltip display position. Ref Tooltip
+Type:string
+Default:-
+
+getPopupContainer
+The DOM container of the Tooltip. The default behavior is to create a div element in the body
+Type:(triggerNode) => HTMLElement
+Default:() => document.body
+
+formatter
+Slider will pass its value to formatter , display its value in Tooltip, and hide the Tooltip when the returned value is null
+Type:value => ReactNode | null
+Default:IDENTITY
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+Events:
+
+onChangeComplete
+Fire when mouseup or keyup is fired
+Type:(value) => void
+
+onChange
+Callback function that is fired when the user changes the slider's value
+Type:(value) => void
+
+onAfterChange
+Callback fired when mouseup or keyup is fired, please use onChangeComplete instead
+Type:(value) => void

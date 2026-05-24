@@ -1,0 +1,98 @@
+Component: Checkbox
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/checkbox/
+
+Overview:
+Collect user's choices.
+Form.Item default bind value to value property, but Checkbox value property is checked . You can use valuePropName to change bind property.
+
+Props Description:
+
+checked
+Specifies whether the checkbox is selected
+Type:boolean
+Default:false
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultChecked
+Specifies the initial state: whether or not the checkbox is selected
+Type:boolean
+Default:false
+
+disabled
+If disable checkbox
+Type:boolean
+Default:false
+
+indeterminate
+The indeterminate checked state of checkbox
+Type:boolean
+Default:false
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+defaultValue
+Default selected value
+Type:(string | number)[]
+Default:[]
+
+name
+The name property of all input[type="checkbox"] children
+Type:string
+Default:-
+
+options
+Specifies options
+Type:string[] | number[] | Option[]
+Default:[]
+
+value
+Used for setting the currently selected value
+Type:(string | number | boolean)[]
+Default:[]
+
+title
+title of the option
+Type:string
+Default:-
+
+className
+className of the option
+Type:string
+Default:-
+
+style
+styles of the option
+Type:React.CSSProperties
+Default:-
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+nativeElement
+Returns the DOM node of the Checkbox
+
+Events:
+
+onChange
+The callback function that is triggered when the state changes
+Type:(e: CheckboxChangeEvent) => void
+
+onBlur
+Called when leaving the component
+Type:function()
+
+onFocus
+Called when entering the component
+Type:function()

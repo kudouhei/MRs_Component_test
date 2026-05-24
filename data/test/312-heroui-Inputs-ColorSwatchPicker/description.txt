@@ -1,0 +1,66 @@
+Component: ColorSwatchPicker
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/color-swatch-picker
+
+Overview:
+A list of color swatches that allows users to select a color from a predefined palette.
+A list of color swatches that allows users to select a color from a predefined palette.
+
+Props Description:
+
+value
+The current selected color (controlled)
+Type:string | Color
+Default:-
+
+defaultValue
+The default selected color (uncontrolled)
+Type:string | Color
+Default:-
+
+size
+Size of the swatches
+Type:"xs" | "sm" | "md" | "lg" | "xl"
+Default:"md"
+
+variant
+Shape of the swatches
+Type:"circle" | "square"
+Default:"circle"
+
+layout
+Layout direction
+Type:"grid" | "stack"
+Default:"grid"
+
+className
+Additional CSS classes
+Type:string
+Default:-
+
+children
+ColorSwatchPicker.Item elements
+Type:React.ReactNode
+Default:-
+
+render
+Overrides the default DOM element with a custom render function.
+Type:DOMRenderFunction<keyof React.JSX.IntrinsicElements, ColorSwatchPickerRenderProps>
+Default:-
+
+color
+The color of the swatch
+Type:string | Color
+Default:Required
+
+isDisabled
+Whether the item is disabled
+Type:boolean
+Default:false
+
+Events:
+
+onChange
+Handler called when selection changes
+Type:(value: Color) => void

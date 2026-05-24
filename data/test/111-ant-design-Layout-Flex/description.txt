@@ -1,0 +1,54 @@
+Component: Flex
+Library: ant-design
+Category: Layout
+Source URL: https://ant.design/components/flex/
+
+Overview:
+A flex layout container for alignment.
+This component is available since antd@5.10.0 . The default behavior of Flex in horizontal mode is to align upward, In vertical mode, aligns the stretch, You can adjust this via properties.
+
+Props Description:
+
+vertical
+Is direction of the flex vertical, use flex-direction: column
+Type:boolean
+Default:false
+
+wrap
+Set whether the element is displayed in a single line or in multiple lines
+Type:flex-wrap | boolean
+Default:nowrap
+
+justify
+Sets the alignment of elements in the direction of the main axis
+Type:justify-content
+Default:normal
+
+align
+Sets the alignment of elements in the direction of the cross axis
+Type:align-items
+Default:normal
+
+flex
+flex CSS shorthand properties
+Type:flex
+Default:normal
+
+gap
+Sets the gap between grids
+Type:small | medium | large | string | number
+Default:-
+
+component
+custom element type
+Type:React.ComponentType
+Default:div
+
+orientation
+direction of the flex
+Type:horizontal | vertical
+Default:horizontal
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,349 @@
+Component: Select
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/select/
+
+Overview:
+A dropdown menu for displaying choices.
+Note, if you find that the drop-down menu scrolls with the page, or you need to trigger Select in other popup layers, please try to use getPopupContainer={triggerNode => triggerNode.parentElement} to fix the drop-down popup rendering node in the parent element of the trigger .
+
+Props Description:
+
+allowClear
+Customize clear icon
+Type:boolean | { clearIcon?: ReactNode }
+Default:false
+
+autoClearSearchValue
+Whether the current search will be cleared on selecting an item. Only applies when mode is set to multiple or tags
+Type:boolean
+Default:true
+
+bordered
+Whether has border style, please use variant instead
+Type:boolean
+Default:true
+
+classNames
+Customize class for each semantic structure inside the Select component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultActiveFirstOption
+Whether active first option by default
+Type:boolean
+Default:true
+
+defaultOpen
+Initial open state of dropdown
+Type:boolean
+Default:-
+
+defaultValue
+Initial selected option
+Type:string | string[] | number | number[] | LabeledValue | LabeledValue[]
+Default:-
+
+disabled
+Whether disabled select
+Type:boolean
+Default:false
+
+dropdownClassName
+The className of dropdown menu, please use classNames.popup.root instead
+Type:string
+Default:-
+
+dropdownMatchSelectWidth
+Determine whether the popup menu and the select input are the same width, please use popupMatchSelectWidth instead
+Type:boolean | number
+Default:true
+
+popupClassName
+The className of dropdown menu, use classNames.popup.root instead
+Type:string
+Default:-
+
+popupMatchSelectWidth
+Determine whether the popup menu and the select input are the same width. Default set min-width same as input. Will ignore when value less than select width. false will disable virtual scroll
+Type:boolean | number
+Default:true
+
+dropdownRender
+Customize dropdown content, use popupRender instead
+Type:(originNode: ReactNode) => ReactNode
+Default:-
+
+popupRender
+Customize dropdown content
+Type:(originNode: ReactNode) => ReactNode
+Default:-
+
+dropdownStyle
+The style of dropdown menu, use styles.popup.root instead
+Type:CSSProperties
+Default:-
+
+fieldNames
+Customize node label, value, options，groupLabel field name
+Type:object
+Default:{ label: label , value: value , options: options , groupLabel: label }
+
+filterOption
+If true, filter options by input, if function, filter options against it. The function will receive two arguments, inputValue and option , if the function returns true , the option will be included in the filtered set; Otherwise, it will be excluded
+Type:boolean | function(inputValue, option)
+Default:true
+
+filterSort
+Sort function for search options sorting, see Array.sort 's compareFunction
+Type:(optionA: Option, optionB: Option, info: { searchValue: string }) => number
+Default:-
+
+getPopupContainer
+Parent Node which the selector should be rendered to. Default to body . When position issues happen, try to modify it into scrollable content and position it relative. Example
+Type:function(triggerNode)
+Default:() => document.body
+
+labelInValue
+Whether to embed label in value, turn the format of value from string to { value: string, label: ReactNode }
+Type:boolean
+Default:false
+
+listHeight
+Config popup height
+Type:number
+Default:256
+
+loading
+Indicate loading state
+Type:boolean
+Default:false
+
+loadingIcon
+Customize the loading icon
+Type:ReactNode
+Default:<LoadingOutlined spin />
+
+maxCount
+The max number of items can be selected, only applies when mode is multiple or tags
+Type:number
+Default:-
+
+maxTagCount
+Max tag count to show. responsive will cost render performance
+Type:number | responsive
+Default:-
+
+maxTagPlaceholder
+Placeholder for not showing tags
+Type:ReactNode | function(omittedValues)
+Default:-
+
+maxTagTextLength
+Max tag text length to show
+Type:number
+Default:-
+
+menuItemSelectedIcon
+The custom menuItemSelected icon with multiple options
+Type:ReactNode
+Default:<CheckOutlined />
+
+mode
+Set mode of Select
+Type:multiple | tags
+Default:-
+
+notFoundContent
+Specify content to show when no result matches
+Type:ReactNode
+Default:Not Found
+
+open
+Controlled open state of dropdown
+Type:boolean
+Default:-
+
+optionFilterProp
+Deprecated, see showSearch.optionFilterProp
+
+optionLabelProp
+Which prop value of option will render as content of select. Example
+Type:string
+Default:children
+
+options
+Select options. Will get better perf than jsx definition
+Type:{ label, value }[]
+Default:-
+
+optionRender
+Customize the rendering dropdown options
+Type:(option: FlattenOptionData<BaseOptionType> , info: { index: number }) => React.ReactNode
+Default:-
+
+placeholder
+Placeholder of select
+Type:ReactNode
+Default:-
+
+placement
+The position where the selection box pops up
+Type:bottomLeft bottomRight topLeft topRight
+Default:bottomLeft
+
+prefix
+The custom prefix
+Type:ReactNode
+Default:-
+
+removeIcon
+The custom remove icon
+Type:ReactNode
+Default:<CloseOutlined />
+
+searchValue
+The current input "search" text
+Type:string
+Default:-
+
+showArrow
+Whether to show the arrow icon, please use suffixIcon={null} instead
+Type:boolean
+Default:true
+
+showSearch
+Whether select is searchable
+Type:boolean | Object
+Default:single: false, multiple: true
+
+size
+Size of Select input
+Type:large | medium | small
+Default:medium
+
+status
+Set validation status
+Type:'error' | 'warning'
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the Select component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+suffixIcon
+The custom suffix icon. Custom icons will not respond to clicks to open, because the replaced icon may be designed for other interactions. You can use pointer-events: none style to bypass
+Type:ReactNode
+Default:<DownOutlined />
+
+tagRender
+Customize tag render, only applies when mode is set to multiple or tags
+Type:(props) => ReactNode
+Default:-
+
+labelRender
+Customize selected label render (LabelInValueType definition see LabelInValueType )
+Type:(props: LabelInValueType) => ReactNode
+Default:-
+
+tokenSeparators
+Separator used to tokenize, only applies when mode="tags"
+Type:string[]
+Default:-
+
+value
+Current selected option (considered as a immutable array)
+Type:string | string[] | number | number[] | LabeledValue | LabeledValue[]
+Default:-
+
+variant
+Variants of selector
+Type:outlined | borderless | filled | underlined
+Default:outlined
+
+virtual
+Disable virtual scroll when set to false
+Type:boolean
+Default:true
+
+searchIcon
+Customize the search icon
+Type:ReactNode
+Default:<SearchOutlined />
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+className
+The additional class to option
+Type:string
+Default:-
+
+title
+title attribute of Select Option
+Type:string
+Default:-
+
+key
+Group key
+Type:string
+Default:-
+
+label
+Group label
+Type:React.ReactNode
+Default:-
+
+Events:
+
+onActive
+Called when keyboard or mouse interaction occurs
+Type:function(value: string | number | LabeledValue)
+
+onBlur
+Called when blur
+Type:function
+
+onChange
+Called when select an option or input value change
+Type:function(value, option:Option | Array<Option>)
+
+onClear
+Called when clear
+Type:function
+
+onDeselect
+Called when an option is deselected, param is the selected option's value. Only called for multiple or tags , effective in multiple or tags mode only
+Type:function(value: string | number | LabeledValue)
+
+onDropdownVisibleChange
+Called when dropdown open, use onOpenChange instead
+Type:(open: boolean) => void
+
+onOpenChange
+Called when dropdown open
+Type:(open: boolean) => void
+
+onFocus
+Called when focus
+Type:(event: FocusEvent) => void
+
+onInputKeyDown
+Called when key pressed
+Type:(event: KeyboardEvent) => void
+
+onPopupScroll
+Called when dropdown scrolls
+Type:(event: UIEvent) => void
+
+onSearch
+Callback function that is fired when input changed
+Type:function(value: string)
+
+onSelect
+Called when an option is selected, the params are option's value (or key) and option instance
+Type:function(value: string | number | LabeledValue, option: Option)

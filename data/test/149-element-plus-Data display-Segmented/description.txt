@@ -1,0 +1,73 @@
+Component: Segmented
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/segmented
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:string / number / boolean
+Default:—
+
+options
+data of the options
+Type:array
+Default:[]
+
+props 2.9.8
+configuration options, see the following table
+Type:object
+Default:—
+
+size
+size of component
+Type:enum
+Default:''
+
+block
+fit width of parent content
+Type:boolean
+Default:false
+
+disabled
+whether segmented is disabled
+Type:boolean
+Default:false
+
+name
+native name attribute
+Type:string
+Default:—
+
+id
+native id attribute
+Type:string
+Default:—
+
+aria-label a11y
+native aria-label attribute
+Type:string
+Default:—
+
+direction 2.8.7
+display direction
+Type:enum
+Default:horizontal
+
+change
+triggers when the selected value changes, the param is current selected value
+Type:Function
+
+default
+option renderer
+Type:object
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

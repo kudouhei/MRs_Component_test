@@ -1,0 +1,87 @@
+Component: Progress
+Library: element-plus
+Category: Feedback
+Source URL: https://element-plus.org/en-US/component/progress
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+percentage required
+percentage
+Type:number
+Default:0
+
+type
+the type of progress bar
+Type:enum
+Default:line
+
+stroke-width
+the width of progress bar
+Type:number
+Default:6
+
+text-inside
+whether to place the percentage inside progress bar, only works when type is 'line'
+Type:boolean
+Default:false
+
+status
+the current status of progress bar
+Type:enum
+Default:—
+
+indeterminate
+set indeterminate progress
+Type:boolean
+Default:false
+
+duration
+control the animation duration of indeterminate progress or striped flow progress
+Type:number
+Default:3
+
+color
+background color of progress bar. Overrides status prop
+Type:string / function / Array
+Default:''
+
+width
+the canvas width of circle progress bar
+Type:number
+Default:126
+
+show-text
+whether to show percentage
+Type:boolean
+Default:true
+
+stroke-linecap
+circle/dashboard type shape at the end path
+Type:enum
+Default:round
+
+format
+custom text format
+Type:Function
+Default:—
+
+striped 2.3.4
+stripe over the progress bar's color
+Type:boolean
+Default:false
+
+striped-flow 2.3.4
+get the stripes to flow
+Type:boolean
+Default:false
+
+default
+Customized content
+Type:object
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

@@ -1,0 +1,162 @@
+Component: Checkbox
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/checkbox
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:string / number / boolean
+Default:—
+
+value 2.6.0
+value of the Checkbox when used inside a checkbox-group
+Type:string / number / boolean / object
+Default:—
+
+label
+label of the Checkbox when used inside a checkbox-group . If there's no value, label will act as value
+Type:string / number / boolean / object
+Default:—
+
+true-value 2.6.0
+value of the Checkbox if it's checked
+Type:string / number
+Default:—
+
+false-value 2.6.0
+value of the Checkbox if it's not checked
+Type:string / number
+Default:—
+
+disabled
+whether the Checkbox is disabled
+Type:boolean
+Default:false
+
+border
+whether to add a border around Checkbox
+Type:boolean
+Default:false
+
+size
+size of the Checkbox
+Type:enum
+Default:—
+
+name
+native 'name' attribute
+Type:string
+Default:—
+
+checked
+if the Checkbox is checked
+Type:boolean
+Default:false
+
+indeterminate
+Set indeterminate state, only responsible for style control
+Type:boolean
+Default:false
+
+tabindex
+input tabindex
+Type:string / number
+Default:—
+
+id
+input id
+Type:string
+Default:—
+
+aria-controls a11y 2.7.2
+same as aria-controls , takes effect when indeterminate is true
+Type:string
+Default:—
+
+aria-label a11y
+native aria-label attribute
+Type:string
+Default:—
+
+true-label deprecated
+value of the Checkbox if it's checked
+Type:string / number
+Default:—
+
+false-label deprecated
+value of the Checkbox if it's not checked
+Type:string / number
+Default:—
+
+controls a11y deprecated
+same as aria-controls , takes effect when indeterminate is true
+Type:string
+Default:—
+
+change
+triggers when the binding value changes
+Type:Function
+
+default
+customize default content
+
+min
+minimum number of checkbox checked
+Type:number
+Default:—
+
+max
+maximum number of checkbox checked
+Type:number
+Default:—
+
+aria-label a11y 2.7.2
+native aria-label attribute
+Type:string
+Default:—
+
+text-color
+font color when button is active
+Type:string
+Default:#ffffff
+
+fill
+border and background color when button is active
+Type:string
+Default:#409eff
+
+tag
+element tag of the checkbox group
+Type:string
+Default:div
+
+label a11y deprecated
+native aria-label attribute
+Type:string
+Default:—
+
+options 2.11.2
+data of the options, the key of value and label and disabled can be customize by props
+Type:array
+Default:—
+
+props 2.11.2
+configuration options
+Type:object
+Default:{value: 'value', label: 'label', disabled: 'disabled'}
+
+type 2.11.5
+component type to render options (e.g. 'button' )
+Type:enum
+Default:'checkbox'
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean

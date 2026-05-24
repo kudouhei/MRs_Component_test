@@ -1,0 +1,83 @@
+Component: Tag
+Library: element-plus
+Category: Data display
+Source URL: https://element-plus.org/en-US/component/tag
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+type
+type of Tag
+Type:enum
+Default:primary
+
+closable
+whether Tag can be removed
+Type:boolean
+Default:false
+
+disable-transitions
+whether to disable animations
+Type:boolean
+Default:false
+
+hit
+whether Tag has a highlighted border
+Type:boolean
+Default:false
+
+color
+background color of the Tag
+Type:string
+Default:—
+
+size
+size of Tag
+Type:enum
+Default:—
+
+effect
+theme of Tag
+Type:enum
+Default:light
+
+round
+whether Tag is rounded
+Type:boolean
+Default:false
+
+click
+triggers when Tag is clicked
+Type:Function
+
+close
+triggers when Tag is removed
+Type:Function
+
+default
+customize default content
+
+checked / v-model:checked
+is checked
+Type:boolean
+Default:false
+
+disabled 2.8.2
+whether the check-tag is disabled
+Type:boolean
+Default:false
+
+type 2.5.4
+type of CheckTag
+Type:enum
+Default:primary
+
+change
+triggers when Check Tag is clicked
+Type:Function
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

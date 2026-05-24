@@ -1,0 +1,133 @@
+Component: Scrollbar
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/scrollbar
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+height
+height of scrollbar
+Type:string / number
+Default:—
+
+max-height
+max height of scrollbar
+Type:string / number
+Default:—
+
+native
+whether to use the native scrollbar style
+Type:boolean
+Default:false
+
+wrap-style
+style of wrap container
+Type:string / object
+Default:—
+
+wrap-class
+class of wrap container
+Type:string
+Default:—
+
+view-style
+style of view
+Type:string / object
+Default:—
+
+view-class
+class of view
+Type:string
+Default:—
+
+noresize
+do not respond to container size changes, if the container size does not change, it is better to set it to optimize performance
+Type:boolean
+Default:false
+
+tag
+element tag of the view
+Type:string
+Default:div
+
+always
+always show scrollbar
+Type:boolean
+Default:false
+
+min-size
+minimum size of scrollbar
+Type:number
+Default:20
+
+id 2.4.0
+id of view
+Type:string
+Default:—
+
+role 2.4.0 a11y
+role of view
+Type:string
+Default:—
+
+aria-label 2.4.0 a11y
+aria-label of view
+Type:string
+Default:—
+
+aria-orientation 2.4.0 a11y
+aria-orientation of view
+Type:enum
+Default:—
+
+tabindex 2.8.3
+tabindex of wrap container
+Type:number / string
+Default:—
+
+distance 2.10.5
+trigger end-reached event distance(px)
+Type:number
+Default:0
+
+scroll
+triggers when scrolling, return distance of scrolling
+Type:Function
+
+end-reached 2.10.0
+triggers when the end of a scroll is triggered
+Type:Function
+
+default
+customize default content
+
+handleScroll
+handle scroll event
+Type:Function
+
+scrollTo
+scrolls to a particular set of coordinates
+Type:Function
+
+setScrollTop
+Set distance to scroll top
+Type:Function
+
+setScrollLeft
+Set distance to scroll left
+Type:Function
+
+update
+update scrollbar state manually
+Type:Function
+
+wrapRef
+scrollbar wrap ref
+Type:object
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

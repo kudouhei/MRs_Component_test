@@ -1,0 +1,110 @@
+Component: InputOTP
+Library: heroui
+Category: Inputs
+Source URL: https://heroui.com/docs/react/components/input-otp
+
+Overview:
+A one-time password input component for verification codes and secure authentication
+A one-time password input component for verification codes and secure authentication
+
+Props Description:
+
+maxLength
+Required. Number of input slots.
+Type:number
+Default:-
+
+value
+Controlled value (uncontrolled if not provided).
+Type:string
+Default:-
+
+className
+Additional CSS classes for the container.
+Type:string
+Default:-
+
+containerClassName
+CSS classes for the inner container.
+Type:string
+Default:-
+
+variant
+Visual variant of the component. primary is the default style with shadow. secondary is a lower emphasis variant without shadow, suitable for use in surfaces.
+Type:"primary" | "secondary"
+Default:"primary"
+
+children
+InputOTP.Group, InputOTP.Slot, and InputOTP.Separator components.
+Type:React.ReactNode
+Default:-
+
+isDisabled
+Whether the input is disabled.
+Type:boolean
+Default:false
+
+isInvalid
+Whether the input is in an invalid state.
+Type:boolean
+Default:false
+
+validationErrors
+Server-side or custom validation errors.
+Type:string[]
+Default:-
+
+validationDetails
+HTML5 validation details.
+Type:ValidityState
+Default:-
+
+pattern
+Regex pattern for allowed characters (e.g., REGEXP_ONLY_DIGITS ).
+Type:string
+Default:-
+
+textAlign
+Text alignment within slots.
+Type:'left' | 'center' | 'right'
+Default:'left'
+
+inputMode
+Virtual keyboard type on mobile devices.
+Type:'numeric' | 'text' | 'decimal' | 'tel' | 'search' | 'email' | 'url'
+Default:'numeric'
+
+placeholder
+Placeholder text for empty slots.
+Type:string
+Default:-
+
+pasteTransformer
+Transform pasted text (e.g., remove hyphens).
+Type:(text: string) => string
+Default:-
+
+name
+Name attribute for form submission.
+Type:string
+Default:-
+
+autoFocus
+Whether to focus the first slot on mount.
+Type:boolean
+Default:-
+
+index
+Required. Zero-based index of the slot.
+Type:number
+Default:-
+
+Events:
+
+onChange
+Handler called when the value changes.
+Type:(value: string) => void
+
+onComplete
+Handler called when all slots are filled.
+Type:(value: string) => void

@@ -1,0 +1,55 @@
+Component: Image List
+Library: mui-material
+Category: Layout
+Source URL: https://mui.com/material-ui/api/image-list/
+
+Overview:
+ImageList API
+API reference docs for the React ImageList component. Learn about the props, CSS, and other APIs of this exported module.
+For examples and details on the usage of this React component, visit the component demo pages:
+
+Props Description:
+
+children *
+The content of the component, normally ImageListItem s.
+Type:node
+Default:-
+
+classes
+Override or extend the styles applied to the component. See CSS classes API below for more details.
+Type:object
+Default:-
+
+cols
+Number of columns.
+Type:integer
+Default:2
+
+component
+The component used for the root node. Either a string to use a HTML element or a component.
+Type:elementType
+Default:-
+
+gap
+The gap between items in px.
+Type:number
+Default:4
+
+rowHeight
+The height of one row in px.
+Type:'auto' | number
+Default:'auto'
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles. See the `sx` page for more details.
+Type:Array<func | object | bool> | func | object
+Default:-
+
+variant
+The variant to use.
+Type:'masonry' | 'quilted' | 'standard' | 'woven' | string
+Default:'standard'
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

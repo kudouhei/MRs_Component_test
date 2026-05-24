@@ -1,0 +1,41 @@
+Component: Empty
+Library: ant-design
+Category: Data display
+Source URL: https://ant.design/components/empty/
+
+Overview:
+Empty state placeholder.
+You can choose another style of image by setting image to Empty.PRESENTED_IMAGE_SIMPLE .
+
+Props Description:
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+description
+Customize description
+Type:ReactNode
+Default:-
+
+image
+Customize image. Will treat as image url when string provided
+Type:ReactNode
+Default:Empty.PRESENTED_IMAGE_DEFAULT
+
+imageStyle
+The style of image, please use styles.image instead
+Type:CSSProperties
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+Data Not Found
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

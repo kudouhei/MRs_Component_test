@@ -1,0 +1,81 @@
+Component: Anchor
+Library: element-plus
+Category: Navigation
+Source URL: https://element-plus.org/en-US/component/anchor
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+container
+Scroll container.
+Type:string | HTMLElement | Window
+Default:—
+
+offset
+Set the offset of the anchor scroll.
+Type:number
+Default:0
+
+bound
+The offset of the element starting to trigger the anchor.
+Type:number
+Default:15
+
+duration
+Set the scroll duration of the container, in milliseconds.
+Type:number
+Default:300
+
+marker
+Whether to show the marker.
+Type:boolean
+Default:true
+
+type
+Set Anchor type.
+Type:enum
+Default:default
+
+direction
+Set Anchor direction.
+Type:enum
+Default:vertical
+
+select-scroll-top 2.9.2
+Scroll whether link is selected at the top
+Type:boolean
+Default:false
+
+change
+Callback when the step changes
+Type:Function
+
+click
+Triggered when the user clicks on the link
+Type:Function
+
+scrollTo
+Manually scroll to the specific position.
+Type:Function
+
+default
+AnchorLink component list
+
+title
+The text content of the anchor link.
+Type:string
+Default:—
+
+href
+The address of the anchor link.
+Type:string
+Default:—
+
+sub-link
+Slots for child links.
+
+Events:
+
+(No events / callbacks extracted from documentation page.)

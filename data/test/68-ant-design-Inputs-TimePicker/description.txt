@@ -1,0 +1,200 @@
+Component: TimePicker
+Library: ant-design
+Category: Inputs
+Source URL: https://ant.design/components/time-picker/
+
+Overview:
+To select/input a time.
+By clicking the input box, you can select a time from a popup panel.
+
+Props Description:
+
+allowClear
+Customize clear icon
+Type:boolean | { clearIcon?: ReactNode }
+Default:true
+
+addon
+Called from time picker panel to render an addon to its bottom, please use renderExtraFooter instead
+Type:() => ReactNode
+Default:-
+
+cellRender
+Custom rendering function for picker cells
+Type:(current: number, info: { originNode: React.ReactElement, today: dayjs, range?: 'start' | 'end', subType: 'hour' | 'minute' | 'second' | 'meridiem' }) => React.ReactNode
+Default:-
+
+changeOnScroll
+Trigger selection when scroll the column
+Type:boolean
+Default:false
+
+className
+The className of picker
+Type:string
+Default:-
+
+classNames
+Customize class for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , string> | (info: { props })=> Record< SemanticDOM , string>
+Default:-
+
+defaultValue
+To set default time
+Type:dayjs
+Default:-
+
+disabled
+Determine whether the TimePicker is disabled
+Type:boolean
+Default:false
+
+disabledTime
+To specify the time that cannot be selected
+Type:DisabledTime
+Default:-
+
+format
+To set the time format
+Type:string
+Default:HH:mm:ss
+
+getPopupContainer
+To set the container of the floating layer, while the default is to create a div element in body
+Type:function(trigger)
+Default:-
+
+hideDisabledOptions
+Whether hide the options that can not be selected
+Type:boolean
+Default:false
+
+hourStep
+Interval between hours in picker
+Type:number
+Default:1
+
+inputReadOnly
+Set the readonly attribute of the input tag (avoids virtual keyboard on touch devices)
+Type:boolean
+Default:false
+
+minuteStep
+Interval between minutes in picker
+Type:number
+Default:1
+
+needConfirm
+Need click confirm button to trigger value change
+Type:boolean
+Default:-
+
+open
+Whether to popup panel
+Type:boolean
+Default:false
+
+placeholder
+Display when there's no value
+Type:string | [string, string]
+Default:Select a time
+
+placement
+The position where the selection box pops up
+Type:bottomLeft bottomRight topLeft topRight
+Default:bottomLeft
+
+popupClassName
+The className of panel, please use classNames.popup instead
+Type:string
+Default:-
+
+popupStyle
+The style of panel, please use styles.popup instead
+Type:CSSProperties
+Default:-
+
+prefix
+The custom prefix
+Type:ReactNode
+Default:-
+
+previewValue
+When the user selects the time hover option, the value of the input field undergoes a temporary change
+Type:false | hover
+Default:hover
+
+renderExtraFooter
+Called from time picker panel to render some addon to its bottom
+Type:() => ReactNode
+Default:-
+
+secondStep
+Interval between seconds in picker
+Type:number
+Default:1
+
+showNow
+Whether to show Now button on panel
+Type:boolean
+Default:-
+
+size
+To determine the size of the input box, the height of large and small , are 40px and 24px respectively, while default size is 32px
+Type:large | medium | small
+Default:-
+
+status
+Set validation status
+Type:'error' | 'warning' | 'success' | 'validating'
+Default:-
+
+styles
+Customize inline style for each semantic structure inside the component. Supports object or function.
+Type:Record< SemanticDOM , CSSProperties> | (info: { props })=> Record< SemanticDOM , CSSProperties>
+Default:-
+
+suffixIcon
+The custom suffix icon
+Type:ReactNode
+Default:-
+
+use12Hours
+Display as 12 hours format, with default format h:mm:ss a
+Type:boolean
+Default:false
+
+value
+To set time
+Type:dayjs
+Default:-
+
+variant
+Variants of picker
+Type:outlined | borderless | filled | underlined
+Default:outlined
+
+blur()
+Remove focus
+
+focus()
+Get focus
+
+order
+Order start and end time
+Type:boolean
+Default:true
+
+Events:
+
+onCalendarChange
+Callback function, can be executed when the start time or the end time of the range is changing. info argument is added in 4.4.0
+Type:function(dates: [dayjs, dayjs], dateStrings: [string, string], info: { range: start | end })
+
+onChange
+A callback function, can be executed when the selected time is changing
+Type:function(time: dayjs, timeString: string): void
+
+onOpenChange
+A callback function which will be called while panel opening/closing
+Type:(open: boolean) => void

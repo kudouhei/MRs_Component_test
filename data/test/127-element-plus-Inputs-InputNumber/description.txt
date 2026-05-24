@@ -1,0 +1,154 @@
+Component: InputNumber
+Library: element-plus
+Category: Inputs
+Source URL: https://element-plus.org/en-US/component/input-number
+
+Overview:
+A Vue 3 based component library for designers and developers
+
+Props Description:
+
+model-value / v-model
+binding value
+Type:number / null
+Default:—
+
+min
+the minimum allowed value
+Type:number
+Default:Number.MIN_SAFE_INTEGER
+
+max
+the maximum allowed value
+Type:number
+Default:Number.MAX_SAFE_INTEGER
+
+step
+incremental step
+Type:number
+Default:1
+
+step-strictly
+whether input value can only be multiple of step
+Type:boolean
+Default:false
+
+precision
+precision of input value
+Type:number
+Default:—
+
+size
+size of the component
+Type:enum
+Default:default
+
+readonly 2.2.16
+same as readonly in native input
+Type:boolean
+Default:false
+
+disabled
+whether the component is disabled
+Type:boolean
+Default:false
+
+controls
+whether to enable the control buttons
+Type:boolean
+Default:true
+
+controls-position
+position of the control buttons
+Type:enum
+Default:—
+
+name
+same as name in native input
+Type:string
+Default:—
+
+aria-label a11y 2.7.2
+same as aria-label in native input
+Type:string
+Default:—
+
+placeholder
+same as placeholder in native input
+Type:string
+Default:—
+
+id
+same as id in native input
+Type:string
+Default:—
+
+value-on-clear 2.2.0
+value should be set when input box is cleared
+Type:number / null / enum
+Default:—
+
+label a11y deprecated
+same as aria-label in native input
+Type:string
+Default:—
+
+inputmode 2.10.3
+same as inputmode in native input
+Type:string
+Default:—
+
+align 2.10.5
+alignment for the inner input text
+Type:enum
+Default:'center'
+
+disabled-scientific 2.10.5
+disables input of scientific notation (e.g. 'e')
+Type:boolean
+Default:false
+
+tabindex 2.14.0
+same as tabindex in native input
+Type:string / number
+Default:0
+
+formatter 2.14.0
+specifies the format of the value presented in the input
+Type:Function
+Default:—
+
+parser 2.14.0
+specifies the value extracted from the formatted input
+Type:Function
+Default:—
+
+decrease-icon 2.6.3
+custom input box button decrease icon
+
+increase-icon 2.6.3
+custom input box button increase icon
+
+prefix 2.8.4
+content as Input prefix
+
+suffix 2.8.4
+content as Input suffix
+
+change
+triggers when the value changes
+Type:Function
+
+blur
+triggers when Input blurs
+Type:Function
+
+focus
+triggers when Input focuses
+Type:Function
+
+Events:
+
+validate-event
+whether to trigger form validation
+Type:boolean
