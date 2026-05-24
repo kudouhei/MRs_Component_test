@@ -1,0 +1,397 @@
+[
+  {
+    "library": "element-plus",
+    "component": "Link",
+    "open_bug_count": 56
+  },
+  {
+    "library": "mui-material",
+    "component": "Link",
+    "open_bug_count": 49
+  },
+  {
+    "library": "mui-material",
+    "component": "Text Field",
+    "open_bug_count": 30
+  },
+  {
+    "library": "element-plus",
+    "component": "Empty",
+    "open_bug_count": 24
+  },
+  {
+    "library": "mui-material",
+    "component": "Icons",
+    "open_bug_count": 24
+  },
+  {
+    "library": "mui-material",
+    "component": "Autocomplete",
+    "open_bug_count": 18
+  },
+  {
+    "library": "mui-material",
+    "component": "Tooltip",
+    "open_bug_count": 14
+  },
+  {
+    "library": "mui-material",
+    "component": "Container",
+    "open_bug_count": 11
+  },
+  {
+    "library": "mui-material",
+    "component": "Popover",
+    "open_bug_count": 11
+  },
+  {
+    "library": "ant-design",
+    "component": "Steps",
+    "open_bug_count": 8
+  },
+  {
+    "library": "element-plus",
+    "component": "Popover",
+    "open_bug_count": 8
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Dialog",
+    "open_bug_count": 7
+  },
+  {
+    "library": "heroui",
+    "component": "Button",
+    "open_bug_count": 6
+  },
+  {
+    "library": "mui-material",
+    "component": "Drawer",
+    "open_bug_count": 6
+  },
+  {
+    "library": "mui-material",
+    "component": "Rating",
+    "open_bug_count": 5
+  },
+  {
+    "library": "ant-design",
+    "component": "Image",
+    "open_bug_count": 4
+  },
+  {
+    "library": "element-plus",
+    "component": "Cascader",
+    "open_bug_count": 4
+  },
+  {
+    "library": "element-plus",
+    "component": "DatePicker",
+    "open_bug_count": 4
+  },
+  {
+    "library": "element-plus",
+    "component": "Dropdown",
+    "open_bug_count": 4
+  },
+  {
+    "library": "heroui",
+    "component": "Toast",
+    "open_bug_count": 4
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Field",
+    "open_bug_count": 4
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Menu",
+    "open_bug_count": 4
+  },
+  {
+    "library": "mui-material",
+    "component": "Popper",
+    "open_bug_count": 4
+  },
+  {
+    "library": "mui-material",
+    "component": "Snackbar",
+    "open_bug_count": 4
+  },
+  {
+    "library": "mui-material",
+    "component": "Stack",
+    "open_bug_count": 4
+  },
+  {
+    "library": "element-plus",
+    "component": "Scrollbar",
+    "open_bug_count": 3
+  },
+  {
+    "library": "heroui",
+    "component": "Description",
+    "open_bug_count": 3
+  },
+  {
+    "library": "heroui",
+    "component": "Popover",
+    "open_bug_count": 3
+  },
+  {
+    "library": "mui-material",
+    "component": "Accordion",
+    "open_bug_count": 3
+  },
+  {
+    "library": "mui-material",
+    "component": "App Bar",
+    "open_bug_count": 3
+  },
+  {
+    "library": "mui-material",
+    "component": "Button Group",
+    "open_bug_count": 3
+  },
+  {
+    "library": "mui-material",
+    "component": "Grid",
+    "open_bug_count": 3
+  },
+  {
+    "library": "ant-design",
+    "component": "Layout",
+    "open_bug_count": 2
+  },
+  {
+    "library": "ant-design",
+    "component": "Select",
+    "open_bug_count": 2
+  },
+  {
+    "library": "element-plus",
+    "component": "Autocomplete",
+    "open_bug_count": 2
+  },
+  {
+    "library": "element-plus",
+    "component": "Checkbox",
+    "open_bug_count": 2
+  },
+  {
+    "library": "element-plus",
+    "component": "Color",
+    "open_bug_count": 2
+  },
+  {
+    "library": "element-plus",
+    "component": "Drawer",
+    "open_bug_count": 2
+  },
+  {
+    "library": "heroui",
+    "component": "AlertDialog",
+    "open_bug_count": 2
+  },
+  {
+    "library": "heroui",
+    "component": "ButtonGroup",
+    "open_bug_count": 2
+  },
+  {
+    "library": "heroui",
+    "component": "Dropdown",
+    "open_bug_count": 2
+  },
+  {
+    "library": "heroui",
+    "component": "Input",
+    "open_bug_count": 2
+  },
+  {
+    "library": "heroui",
+    "component": "Tooltip",
+    "open_bug_count": 2
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Input",
+    "open_bug_count": 2
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Tooltip",
+    "open_bug_count": 2
+  },
+  {
+    "library": "mui-material",
+    "component": "Skeleton",
+    "open_bug_count": 2
+  },
+  {
+    "library": "mui-material",
+    "component": "Speed Dial",
+    "open_bug_count": 2
+  },
+  {
+    "library": "ant-design",
+    "component": "Skeleton",
+    "open_bug_count": 1
+  },
+  {
+    "library": "ant-design",
+    "component": "Tooltip",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Alert",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Badge",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Carousel",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Collapse",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "DateTime Picker",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Pagination",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Result",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Skeleton",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Space",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Switch",
+    "open_bug_count": 1
+  },
+  {
+    "library": "element-plus",
+    "component": "Tooltip",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "Accordion",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "Checkbox",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "CheckboxGroup",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "FieldError",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "Label",
+    "open_bug_count": 1
+  },
+  {
+    "library": "heroui",
+    "component": "Select",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Avatar",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Checkbox",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Fieldset",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Select",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Tabs",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Toast",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-base-ui",
+    "component": "Toggle Group",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Badge",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Bottom Navigation",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Breadcrumbs",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Modal",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Stepper",
+    "open_bug_count": 1
+  },
+  {
+    "library": "mui-material",
+    "component": "Toggle",
+    "open_bug_count": 1
+  }
+]
