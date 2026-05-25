@@ -12,6 +12,7 @@ from .models import MetamorphicRelation, SampleMeta
 from .taxonomy import (
     RELATION_TYPE_CATEGORIES,
     RELATION_TYPE_TO_CATEGORY,
+    normalize_type_category,
 )
 from .versioning import MR_INFERENCE_PROMPT_VERSION, TAXONOMY_VERSION, taxonomy_fingerprint
 
@@ -50,7 +51,7 @@ def _normalize_type(rt: str) -> tuple[str, str]:
     if key in aliases:
         k = aliases[key]
         return k, RELATION_TYPE_TO_CATEGORY[k]
-    return key, "input_property_relations"
+    return key, "input_prop_relations"
 
 
 def _build_phase1_messages(
@@ -137,8 +138,7 @@ def infer_mrs_llm(
         if rt in seen:
             continue
         seen.add(rt)
-        if r.get("type_category"):
-            cat = str(r["type_category"])
+        cat = normalize_type_category(str(r.get("type_category") or cat), rt)
         mrs.append(
             MetamorphicRelation(
                 id=f"mr:{meta.sample_id}:llm:{i+1}:{rt}",

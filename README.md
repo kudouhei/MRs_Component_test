@@ -22,6 +22,14 @@ Each sample: `{id}-{library}-{Category}-{ComponentName}/`
 4. **Open issues** alignment (RQ3, co-occurrence only)  
 5. **Priorities** + **improvement suggestions**
 
+## MR taxonomy
+
+The versioned taxonomy uses six top-level categories:
+`input_prop_relations`, `state_event_relations`, `interaction_accessibility_relations`,
+`visual_layout_relations`, `composition_context_relations`, and `data_flow_relations`.
+They are derived from a UI component behavior model covering props, state/events,
+interaction/accessibility, visual layout, composition/context, and data flow.
+
 ## Setup
 
 ```bash
