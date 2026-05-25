@@ -18,6 +18,7 @@ from .phase5_priorities import (
     build_test_priorities,
     insufficient_attention_evidence,
 )
+from .batch_progress import BatchProgressReporter, collect_sample_metas
 from .samples import PROJECT_ROOT, SampleMeta, iter_samples, read_sample_files
 from .versioning import FRAMEWORK_VERSION, build_run_provenance, write_run_config
 
@@ -100,6 +101,7 @@ def run_batch(
     sample_id: str | None = None,
     model: str | None = None,
     version_snapshot: str | None = None,
+    show_progress: bool = True,
 ) -> dict[str, Any]:
     v = version_snapshot or utc_now_iso()
     cfg = build_run_provenance(
@@ -110,16 +112,46 @@ def run_batch(
     )
     write_run_config(RUN_CONFIG, cfg)
 
+    metas = collect_sample_metas(
+        library=library,
+        category=category,
+        limit=limit,
+        sample_id=sample_id,
+    )
+    progress = BatchProgressReporter(total=len(metas), enabled=show_progress)
+    progress.start()
+
     rows: list[dict[str, Any]] = []
     saved: list[str] = []
-    for meta in iter_samples(library=library, category=category, limit=limit, sample_id=sample_id):
-        report = analyze_sample(
-            meta,
-            model=model,
-            version_snapshot=v,
+    failed_samples: list[dict[str, str]] = []
+    for index, meta in enumerate(metas, start=1):
+        progress.begin_sample(
+            index,
+            meta.sample_id,
+            meta.library,
+            meta.category,
+            meta.component_name,
         )
+        try:
+            report = analyze_sample(
+                meta,
+                model=model,
+                version_snapshot=v,
+            )
+        except Exception as exc:  # noqa: BLE001 — continue batch on single-sample failure
+            progress.end_sample(index, failed=True, error_message=str(exc)[:200])
+            failed_samples.append({"sample_id": meta.sample_id, "error": str(exc)[:500]})
+            continue
         rows.append(report.to_dict())
         saved.append(str(save_report(report)))
+        c = report.completeness
+        progress.end_sample(
+            index,
+            touch_rate=float(c.get("touch_rate") or 0),
+            coverage_rate=float(c.get("coverage_rate") or 0),
+        )
+
+    progress.finish(extra_message=f"Saved {len(saved)} reports → {REPORTS_DIR}")
 
     alignment = build_alignment_report(rows, version_snapshot=v)
     agg = _aggregate(rows, cfg)
@@ -133,6 +165,8 @@ def run_batch(
     return {
         "framework_version": FRAMEWORK_VERSION,
         "n_samples": len(rows),
+        "n_failed": len(failed_samples),
+        "failed_samples": failed_samples,
         "version_snapshot": v,
         "run_config": str(RUN_CONFIG),
         "reports_saved": len(saved),

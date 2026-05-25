@@ -50,8 +50,15 @@ python3 scripts/run_batch.py --limit 3
 # Full corpus (190) — requires API quota
 python3 scripts/run_batch.py
 
+# Background: progress written to output/batch_progress.txt (human) and .json
+nohup python3 scripts/run_batch.py > output/batch_run.log 2>&1 &
+tail -f output/batch_progress.txt
+
 # By category (paper stratification)
 python3 scripts/run_batch.py --category Inputs --limit 20
+
+# No progress UI
+python3 scripts/run_batch.py --quiet
 ```
 
 ## Outputs
@@ -62,3 +69,4 @@ python3 scripts/run_batch.py --category Inputs --limit 20
 - `output/aggregate/per_sample_metrics.csv`
 - `output/aggregate/test_priorities.csv` — top component × MR type supplementation priorities
 - `output/run_config.json` — frozen provenance
+- `output/batch_progress.txt` / `batch_progress.json` — live batch progress (updated per sample)
