@@ -2,9 +2,6 @@
 
 **Scope:** Framework capabilities are defined based on the research topics and method flowchart; not bound to any particular technology stack. However, in Phase 4, **open issues (current version, open)** serve as the sole main external anchor.
 
-**Supporting Documentation:**
-- Development guide (architecture, CLI, provenance, extension): [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md)
-- Open Issues corpus definition and fields: [`analysis/open_issues/2026-0510-README.md`](analysis/open_issues/2026-0510-README.md)
 
 ---
 
@@ -152,6 +149,17 @@ Example: 1-mui-material-Inputs-Autocomplete refers to the Autocomplete component
 | Category | Inputs | Component category |
 | Component Name | Autocomplete | Component name |
 
-- Each component directory typically contains two main files, corresponding to Framework's Source C and Test T:
-  - source.js: The component implementation (C), extracted/trimmed from the open-source library
-  - test.js: The tests for that component (T), mostly using React Testing Library
+- Each component directory contains three main files:
+  - **source.js** — implementation **C**
+  - **test.js** — tests **T** (e.g. React Testing Library)
+  - **description.txt** — API/docs description **D** (used with **C** and **category** in Phase 1 LLM inference)
+
+## Implementation
+
+See [`README.md`](README.md). Run from `backend/`:
+
+```bash
+pip install -r requirements.txt
+cp ../.env.example ../.env   # DEEPSEEK_API_KEY or OPENAI_API_KEY
+python3 scripts/run_batch.py --limit 5
+```
