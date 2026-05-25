@@ -67,7 +67,7 @@ def _build_phase1_messages(
     code_block = (code or "")[:14000]
     focus = category_focus_text(meta.category)
     system = (
-        "You are an expert in UI component testing and metamorphic relations (MRs). "
+        "You are an expert in Front-end development, particularly for UI components libraries and testing, and metamorphic relations (MRs). "
         "Infer component-specific MRs from source code AND API/description docs. "
         "Use relation_type from the taxonomy (snake_case). "
         "Account for the component CATEGORY — different categories imply different MR priorities. "
