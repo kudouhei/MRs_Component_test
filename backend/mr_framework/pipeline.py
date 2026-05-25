@@ -150,11 +150,22 @@ def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any
 
     by_lib: dict[str, list[float]] = {}
     by_cat: dict[str, list[float]] = {}
+    total_mrs = 0
+    total_touched_mrs = 0
+    total_covered_mrs = 0
+    total_weak_oracle = 0
+    total_untouched = 0
     for r in rows:
         m = r["meta"]
-        cr = float((r.get("completeness") or {}).get("coverage_rate") or 0)
+        c = r.get("completeness") or {}
+        cr = float(c.get("coverage_rate") or 0)
         by_lib.setdefault(m["library"], []).append(cr)
         by_cat.setdefault(m["category"], []).append(cr)
+        total_mrs += int(c.get("total_mrs") or 0)
+        total_touched_mrs += int(c.get("touched_mrs") or 0)
+        total_covered_mrs += int(c.get("covered_mrs") or 0)
+        total_weak_oracle += int(c.get("touched_not_covered") or 0)
+        total_untouched += int(c.get("miss_at_uncov") or 0)
 
     blind_global: dict[str, int] = {}
     weak_global: dict[str, int] = {}
@@ -174,11 +185,28 @@ def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any
         "n_samples": len(rows),
         "provenance": cfg,
         "rq1": {
+            "total_mrs": total_mrs,
+            "total_touched_mrs": total_touched_mrs,
+            "total_covered_mrs": total_covered_mrs,
+            "total_weak_oracle": total_weak_oracle,
+            "total_untouched": total_untouched,
             "mean_touch_rate": mean("touch_rate"),
             "mean_coverage_rate": mean("coverage_rate"),
             "mean_weighted_touch_rate": mean("weighted_touch_rate"),
             "mean_weighted_coverage_rate": mean("weighted_coverage_rate"),
             "mean_strict_gap_rate": mean("strict_gap_rate"),
+            "coverage_distribution": _distribution(
+                [float((r.get("completeness") or {}).get("coverage_rate") or 0) for r in rows]
+            ),
+            "touch_distribution": _distribution(
+                [float((r.get("completeness") or {}).get("touch_rate") or 0) for r in rows]
+            ),
+            "zero_coverage_samples": sum(
+                1 for r in rows if float((r.get("completeness") or {}).get("coverage_rate") or 0) == 0
+            ),
+            "full_coverage_samples": sum(
+                1 for r in rows if float((r.get("completeness") or {}).get("coverage_rate") or 0) == 1
+            ),
             "by_library": {k: round(sum(v) / len(v), 6) for k, v in by_lib.items()},
             "by_category": {k: round(sum(v) / len(v), 6) for k, v in by_cat.items()},
         },
@@ -198,6 +226,29 @@ def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any
         },
         "top_test_priorities": _aggregate_priorities(rows),
     }
+
+
+def _distribution(vals: list[float]) -> dict[str, float]:
+    if not vals:
+        return {"min": 0.0, "p25": 0.0, "median": 0.0, "p75": 0.0, "max": 0.0}
+    xs = sorted(vals)
+    return {
+        "min": round(xs[0], 6),
+        "p25": round(_percentile(xs, 25), 6),
+        "median": round(_percentile(xs, 50), 6),
+        "p75": round(_percentile(xs, 75), 6),
+        "max": round(xs[-1], 6),
+    }
+
+
+def _percentile(xs: list[float], pct: float) -> float:
+    if len(xs) == 1:
+        return xs[0]
+    pos = (len(xs) - 1) * pct / 100
+    lo = int(pos)
+    hi = min(lo + 1, len(xs) - 1)
+    frac = pos - lo
+    return xs[lo] * (1 - frac) + xs[hi] * frac
 
 
 def _export_csv(rows: list[dict[str, Any]]) -> None:
@@ -255,6 +306,8 @@ def _export_priorities_csv(rows: list[dict[str, Any]]) -> None:
         "relation_type",
         "type_category",
         "reason",
+        "test_transformation",
+        "expected_oracle",
         "priority_score",
     ]
     with path.open("w", encoding="utf-8", newline="") as f:
