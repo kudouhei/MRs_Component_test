@@ -19,7 +19,14 @@ from .phase5_priorities import (
     insufficient_attention_evidence,
 )
 from .batch_progress import BatchProgressReporter, collect_sample_metas
-from .samples import PROJECT_ROOT, SampleMeta, iter_samples, read_sample_files
+from .samples import (
+    PROJECT_ROOT,
+    SampleMeta,
+    describe_shards,
+    list_sample_metas,
+    read_sample_files,
+    shard_bounds,
+)
 from .versioning import FRAMEWORK_VERSION, build_run_provenance, write_run_config
 
 OUTPUT_ROOT = PROJECT_ROOT / "output"
@@ -93,15 +100,76 @@ def save_report(report: SampleReport) -> Path:
     return path
 
 
+def load_saved_report_rows() -> list[dict[str, Any]]:
+    if not REPORTS_DIR.is_dir():
+        return []
+    rows: list[dict[str, Any]] = []
+    for path in sorted(REPORTS_DIR.glob("*.json")):
+        try:
+            rows.append(json.loads(path.read_text(encoding="utf-8")))
+        except (json.JSONDecodeError, OSError):
+            continue
+    return rows
+
+
+def merge_aggregate_from_reports(
+    *,
+    version_snapshot: str | None = None,
+    model: str | None = None,
+) -> dict[str, Any]:
+    """Rebuild aggregate CSV/JSON from all per-sample reports on disk."""
+    rows = load_saved_report_rows()
+    v = version_snapshot or utc_now_iso()
+    cfg: dict[str, Any] = {}
+    if RUN_CONFIG.exists():
+        try:
+            cfg = json.loads(RUN_CONFIG.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            cfg = {}
+    if not cfg:
+        cfg = build_run_provenance(
+            version_snapshot=v,
+            mr_inference_mode="llm",
+            alignment_mode="hybrid",
+            llm_model=model or DEFAULT_LLM_MODEL,
+        )
+    cfg["merge_from_reports"] = True
+    cfg["n_reports_on_disk"] = len(rows)
+
+    alignment = build_alignment_report(rows, version_snapshot=v)
+    agg = _aggregate(rows, cfg)
+    _export_csv(rows)
+    _export_priorities_csv(rows)
+    AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
+    (AGGREGATE_DIR / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
+    (AGGREGATE_DIR / "alignment_val.json").write_text(
+        json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    return {
+        "framework_version": FRAMEWORK_VERSION,
+        "n_samples": len(rows),
+        "version_snapshot": v,
+        "run_config": str(RUN_CONFIG),
+        "aggregate": agg,
+        "alignment": alignment.to_dict(),
+        "merged_from_reports": True,
+    }
+
+
 def run_batch(
     *,
     library: str | None = None,
     category: str | None = None,
     limit: int | None = None,
+    offset: int = 0,
+    shard_index: int | None = None,
+    num_shards: int | None = None,
     sample_id: str | None = None,
     model: str | None = None,
     version_snapshot: str | None = None,
     show_progress: bool = True,
+    skip_aggregate: bool = False,
+    merge_reports_after: bool = False,
 ) -> dict[str, Any]:
     v = version_snapshot or utc_now_iso()
     cfg = build_run_provenance(
@@ -110,15 +178,35 @@ def run_batch(
         alignment_mode="hybrid",
         llm_model=model or DEFAULT_LLM_MODEL,
     )
+    if shard_index is not None and num_shards is not None:
+        cfg["shard_index"] = shard_index
+        cfg["num_shards"] = num_shards
     write_run_config(RUN_CONFIG, cfg)
+
+    corpus = list_sample_metas(library=library, category=category, sample_id=sample_id)
+    global_total = len(corpus)
+    global_offset = 0
+    shard_label = ""
+    if shard_index is not None and num_shards is not None and not sample_id:
+        global_offset, end = shard_bounds(global_total, shard_index, num_shards)
+        shard_label = f"[shard {shard_index}/{num_shards}]"
 
     metas = collect_sample_metas(
         library=library,
         category=category,
         limit=limit,
+        offset=offset,
+        shard_index=shard_index,
+        num_shards=num_shards,
         sample_id=sample_id,
     )
-    progress = BatchProgressReporter(total=len(metas), enabled=show_progress)
+    progress = BatchProgressReporter(
+        total=len(metas),
+        enabled=show_progress,
+        global_total=global_total if shard_label else len(metas),
+        global_offset=global_offset,
+        shard_label=shard_label,
+    )
     progress.start()
 
     rows: list[dict[str, Any]] = []
@@ -153,16 +241,7 @@ def run_batch(
 
     progress.finish(extra_message=f"Saved {len(saved)} reports → {REPORTS_DIR}")
 
-    alignment = build_alignment_report(rows, version_snapshot=v)
-    agg = _aggregate(rows, cfg)
-    _export_csv(rows)
-    _export_priorities_csv(rows)
-    AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
-    (AGGREGATE_DIR / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
-    (AGGREGATE_DIR / "alignment_val.json").write_text(
-        json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
-    )
-    return {
+    result: dict[str, Any] = {
         "framework_version": FRAMEWORK_VERSION,
         "n_samples": len(rows),
         "n_failed": len(failed_samples),
@@ -170,9 +249,30 @@ def run_batch(
         "version_snapshot": v,
         "run_config": str(RUN_CONFIG),
         "reports_saved": len(saved),
-        "aggregate": agg,
-        "alignment": alignment.to_dict(),
+        "shard_index": shard_index,
+        "num_shards": num_shards,
+        "shard_count": len(metas),
+        "corpus_total": global_total,
     }
+
+    if not skip_aggregate:
+        alignment = build_alignment_report(rows, version_snapshot=v)
+        agg = _aggregate(rows, cfg)
+        _export_csv(rows)
+        _export_priorities_csv(rows)
+        AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
+        (AGGREGATE_DIR / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
+        (AGGREGATE_DIR / "alignment_val.json").write_text(
+            json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        result["aggregate"] = agg
+        result["alignment"] = alignment.to_dict()
+
+    if merge_reports_after:
+        merged = merge_aggregate_from_reports(version_snapshot=v, model=model)
+        result["merged_aggregate"] = merged
+
+    return result
 
 
 def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any]:

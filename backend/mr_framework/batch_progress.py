@@ -39,6 +39,9 @@ class BatchProgressState:
     status: str  # pending | running | done | error
     total: int
     current: int
+    global_total: int
+    global_current: int
+    shard_label: str
     percent: float
     current_sample_id: str
     current_component: str
@@ -66,8 +69,14 @@ class BatchProgressReporter:
         json_path: Path | None = DEFAULT_PROGRESS_JSON,
         txt_path: Path | None = DEFAULT_PROGRESS_TXT,
         stream: TextIO | None = None,
+        global_total: int | None = None,
+        global_offset: int = 0,
+        shard_label: str = "",
     ) -> None:
         self.total = max(total, 0)
+        self.global_total = global_total if global_total is not None else self.total
+        self.global_offset = global_offset
+        self.shard_label = shard_label
         self.enabled = enabled and total > 0
         self.json_path = json_path
         self.txt_path = txt_path
@@ -156,10 +165,15 @@ class BatchProgressReporter:
         avg = (elapsed / done) if done > 0 else None
         eta = (avg * (total - done)) if avg is not None and done < total else (0.0 if done >= total and total else None)
 
+        global_done = self.global_offset + done
+        shard_label = self.shard_label
         state = BatchProgressState(
             status=status,
             total=total,
             current=done,
+            global_total=self.global_total,
+            global_current=global_done,
+            shard_label=shard_label,
             percent=round(pct, 2),
             current_sample_id=self._last_meta.get("sample_id", ""),
             current_component=self._last_meta.get("component_name", ""),
@@ -212,8 +226,13 @@ def _format_progress_line(state: BatchProgressState) -> str:
         else "cov=--"
     )
     fail = f" fail={state.failed_count}" if state.failed_count else ""
+    global_part = ""
+    if state.global_total and state.global_total != state.total:
+        g_done = state.global_current
+        global_part = f" | global {g_done}/{state.global_total}"
+    shard = f" {state.shard_label}" if state.shard_label else ""
     return (
-        f"{bar} {idx} ({state.percent:5.1f}%) "
+        f"{bar} {idx} ({state.percent:5.1f}%){shard}{global_part} "
         f"{lib_cat} {comp} | {cov} | {elapsed} elapsed, ETA {eta}{fail}"
     )
 
@@ -229,8 +248,21 @@ def collect_sample_metas(
     library: str | None = None,
     category: str | None = None,
     limit: int | None = None,
+    offset: int = 0,
+    shard_index: int | None = None,
+    num_shards: int | None = None,
     sample_id: str | None = None,
 ) -> list:
     from .samples import iter_samples
 
-    return list(iter_samples(library=library, category=category, limit=limit, sample_id=sample_id))
+    return list(
+        iter_samples(
+            library=library,
+            category=category,
+            limit=limit,
+            offset=offset,
+            shard_index=shard_index,
+            num_shards=num_shards,
+            sample_id=sample_id,
+        )
+    )
