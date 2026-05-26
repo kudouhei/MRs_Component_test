@@ -86,6 +86,9 @@ python3 scripts/run_batch.py --quiet
 # 从 output/reports 重新生成统计表与 HTML 仪表盘
 python3 scripts/analyze_reports.py
 
+# 计算 statement coverage baseline（静态 proxy），并写回 reports
+python3 scripts/compute_statement_coverage_baseline.py --update-reports
+
 # 导出每组件分析 Excel（多工作表）
 python3 scripts/export_reports_xlsx.py
 # → output/analysis/component_analysis.xlsx

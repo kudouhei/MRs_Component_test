@@ -9,6 +9,7 @@ from typing import Any
 
 from .llm_client import DEFAULT_LLM_MODEL
 from .models import SampleReport, utc_now_iso
+from .baseline_coverage import compute_statement_coverage_baseline
 from .phase1_inference import infer_mrs, mrs_to_coverage_skeleton
 from .phase2_alignment import align_tests_to_mrs
 from .phase3_completeness import compute_completeness, diagnose_blind_spots
@@ -58,6 +59,9 @@ def analyze_sample(
         llm_model=model,
     )
     completeness = compute_completeness(mr_coverage)
+    baselines = {
+        "statement_coverage": compute_statement_coverage_baseline(code, tests),
+    }
     blind = diagnose_blind_spots(mr_coverage, meta)
     pressure = issue_pressure_for_sample(meta)
     priorities = build_test_priorities(meta, mr_coverage, issue_pressure=pressure)
@@ -86,6 +90,7 @@ def analyze_sample(
         blind_spots=blind,
         test_priorities=priorities,
         improvement_suggestions=suggestions,
+        baselines=baselines,
         issue_pressure=pressure,
         alignment_notes={"insufficient_attention": evidence},
         provenance=provenance,
@@ -300,6 +305,7 @@ def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any
         total_covered_mrs += int(c.get("covered_mrs") or 0)
         total_weak_oracle += int(c.get("touched_not_covered") or 0)
         total_untouched += int(c.get("miss_at_uncov") or 0)
+    baseline_summary = _baseline_summary(rows)
 
     blind_global: dict[str, int] = {}
     weak_global: dict[str, int] = {}
@@ -358,8 +364,56 @@ def _aggregate(rows: list[dict[str, Any]], cfg: dict[str, Any]) -> dict[str, Any
                 key=lambda x: -x["count"],
             )[:20],
         },
+        "baselines": baseline_summary,
         "top_test_priorities": _aggregate_priorities(rows),
     }
+
+
+def _baseline_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    pairs = []
+    for r in rows:
+        stmt = ((r.get("baselines") or {}).get("statement_coverage") or {})
+        if "statement_coverage_rate" not in stmt:
+            continue
+        mr_cov = float((r.get("completeness") or {}).get("coverage_rate") or 0)
+        pairs.append(
+            {
+                "sample_id": (r.get("meta") or {}).get("sample_id"),
+                "library": (r.get("meta") or {}).get("library"),
+                "category": (r.get("meta") or {}).get("category"),
+                "statement_coverage_rate": float(stmt.get("statement_coverage_rate") or 0),
+                "mr_coverage_rate": mr_cov,
+                "strict_gap_rate": float((r.get("completeness") or {}).get("strict_gap_rate") or 0),
+            }
+        )
+    stmt_vals = [p["statement_coverage_rate"] for p in pairs]
+    mr_vals = [p["mr_coverage_rate"] for p in pairs]
+    gap_vals = [p["strict_gap_rate"] for p in pairs]
+    high_stmt_low_mr = [
+        p for p in sorted(pairs, key=lambda x: (-x["statement_coverage_rate"], x["mr_coverage_rate"]))
+        if p["statement_coverage_rate"] >= 0.6 and p["mr_coverage_rate"] < 0.3
+    ][:20]
+    return {
+        "statement_coverage": {
+            "kind": "statement_coverage_static_proxy",
+            "n": len(pairs),
+            "distribution": _distribution(stmt_vals),
+            "pearson_vs_mr_coverage": _pearson(stmt_vals, mr_vals),
+            "pearson_vs_strict_gap": _pearson(stmt_vals, gap_vals),
+            "high_statement_low_mr_components": high_stmt_low_mr,
+        }
+    }
+
+
+def _pearson(xs: list[float], ys: list[float]) -> float | None:
+    if len(xs) != len(ys) or len(xs) < 3:
+        return None
+    mx = sum(xs) / len(xs)
+    my = sum(ys) / len(ys)
+    num = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
+    dx = sum((x - mx) ** 2 for x in xs) ** 0.5
+    dy = sum((y - my) ** 2 for y in ys) ** 0.5
+    return round(num / (dx * dy), 6) if dx and dy else None
 
 
 def _distribution(vals: list[float]) -> dict[str, float]:
@@ -395,6 +449,7 @@ def _export_csv(rows: list[dict[str, Any]]) -> None:
                 "sample_id", "library", "category", "component_name",
                 "total_mrs", "touch_rate", "coverage_rate", "issue_pressure",
                 "weighted_touch_rate", "weighted_coverage_rate", "strict_gap_rate",
+                "statement_coverage_rate",
                 "mr_inference_mode", "alignment_mode",
             ],
         )
@@ -403,6 +458,7 @@ def _export_csv(rows: list[dict[str, Any]]) -> None:
             c = r.get("completeness") or {}
             p = r.get("provenance") or {}
             m = r["meta"]
+            stmt = ((r.get("baselines") or {}).get("statement_coverage") or {})
             w.writerow({
                 "sample_id": m["sample_id"],
                 "library": m["library"],
@@ -415,6 +471,7 @@ def _export_csv(rows: list[dict[str, Any]]) -> None:
                 "weighted_touch_rate": c.get("weighted_touch_rate"),
                 "weighted_coverage_rate": c.get("weighted_coverage_rate"),
                 "strict_gap_rate": c.get("strict_gap_rate"),
+                "statement_coverage_rate": stmt.get("statement_coverage_rate"),
                 "mr_inference_mode": p.get("mr_inference_mode"),
                 "alignment_mode": p.get("alignment_mode"),
             })

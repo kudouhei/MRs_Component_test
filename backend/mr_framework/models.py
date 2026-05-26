@@ -54,6 +54,7 @@ class SampleReport:
     blind_spots: dict[str, Any]
     test_priorities: list[dict[str, Any]]
     improvement_suggestions: list[dict[str, Any]] = field(default_factory=list)
+    baselines: dict[str, Any] = field(default_factory=dict)
     issue_pressure: int = 0
     alignment_notes: dict[str, Any] = field(default_factory=dict)
     provenance: dict[str, Any] = field(default_factory=dict)
@@ -69,6 +70,7 @@ class SampleReport:
             "blind_spots": self.blind_spots,
             "test_priorities": self.test_priorities,
             "improvement_suggestions": self.improvement_suggestions,
+            "baselines": self.baselines,
             "issue_pressure": self.issue_pressure,
             "alignment_notes": self.alignment_notes,
             "provenance": self.provenance,
