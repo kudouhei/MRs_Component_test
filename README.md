@@ -81,6 +81,8 @@ python3 scripts/run_batch.py --quiet
 - `output/analysis/dashboard.html` — 全库统计图表（见下方 analyze 命令）
 - `output/analysis/*.csv` — 汇总表（按库、类别、覆盖率区间、盲区类型等）
 - `output/analysis/component_analysis.xlsx` — 每组件分析 Excel（组件汇总 / MR明细 / 盲区 / 补测优先级）
+- `output/analysis/issue_alignment_charts.html` — issue 对齐显著性图表（分桶 + topic enrichment）
+- `output/analysis/issue_alignment_stats.xlsx` — issue 对齐统计工作簿（overview / bins / 检验 / 显著性）
 
 ```bash
 # 从 output/reports 重新生成统计表与 HTML 仪表盘
@@ -92,4 +94,9 @@ python3 scripts/compute_statement_coverage_baseline.py --update-reports
 # 导出每组件分析 Excel（多工作表）
 python3 scripts/export_reports_xlsx.py
 # → output/analysis/component_analysis.xlsx
+
+# 导出 issue 对齐统计图表与 xlsx
+python3 scripts/export_issue_alignment_artifacts.py
+# → output/analysis/issue_alignment_charts.html
+# → output/analysis/issue_alignment_stats.xlsx
 ```
