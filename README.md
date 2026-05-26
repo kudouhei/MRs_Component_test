@@ -50,12 +50,6 @@ python3 scripts/run_batch.py --limit 3
 # Full corpus (190) — requires API quota
 python3 scripts/run_batch.py
 
-# Split 190 into 3 runs (~63 + 63 + 64). Per-sample reports accumulate under output/reports/
-python3 scripts/run_batch.py --describe-shards --num-shards 3   # preview ranges
-python3 scripts/run_batch.py --shard-index 1 --num-shards 3 --skip-aggregate
-python3 scripts/run_batch.py --shard-index 2 --num-shards 3 --skip-aggregate
-python3 scripts/run_batch.py --shard-index 3 --num-shards 3 --merge-reports   # last run + full aggregate
-
 # Or merge aggregate after all shards finish:
 python3 scripts/merge_batch_reports.py
 
