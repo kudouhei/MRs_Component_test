@@ -78,3 +78,15 @@ python3 scripts/run_batch.py --quiet
 - `output/aggregate/test_priorities.csv` — top component × MR type supplementation priorities
 - `output/run_config.json` — frozen provenance
 - `output/batch_progress.txt` / `batch_progress.json` — live batch progress (updated per sample)
+- `output/analysis/dashboard.html` — 全库统计图表（见下方 analyze 命令）
+- `output/analysis/*.csv` — 汇总表（按库、类别、覆盖率区间、盲区类型等）
+- `output/analysis/component_analysis.xlsx` — 每组件分析 Excel（组件汇总 / MR明细 / 盲区 / 补测优先级）
+
+```bash
+# 从 output/reports 重新生成统计表与 HTML 仪表盘
+python3 scripts/analyze_reports.py
+
+# 导出每组件分析 Excel（多工作表）
+python3 scripts/export_reports_xlsx.py
+# → output/analysis/component_analysis.xlsx
+```
