@@ -1,0 +1,33 @@
+---
+category: Components
+group: Navigation
+title: Breadcrumb
+description: Display the current location within a hierarchy. And allow going back to states higher up in the hierarchy.
+cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*I5a2Tpqs3y0AAAAAAAAAAAAADrJ8AQ/original
+coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Tr90QKrE_LcAAAAAAAAAAAAADrJ8AQ/original
+demo:
+  cols: 2
+---
+
+## When To Use
+
+- When the system has more than two layers in a hierarchy.
+- When you need to inform the user of where they are.
+- When the user may need to navigate back to a higher level.
+
+
+## API
+
+Common props ref：[Common props](/docs/react/common-props)
+
+### Breadcrumb
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classNames | Customize class for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), string> \| (info: { props })=> Record<[SemanticDOM](#semantic-dom), string> | - |  |
+| dropdownIcon | Custom dropdown icon | ReactNode | `<DownOutlined />` | 6.2.0 |
+| itemRender | Custom item renderer | (route, params, routes, paths) => ReactNode | - |  |
+| params | Routing parameters | object | - |  |
+| items | The routing stack information of router | [ItemType\[\]](#itemtype) | - | 5.3.0 |
+| separator | Custom separator | ReactNode | `/` |  |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), CSSProperties> \| (info: { props })=> Record<[SemanticDOM](#semantic-dom), CSSProperties> | - |  |

@@ -1,0 +1,37 @@
+---
+category: Components
+group: Data Display
+title: List
+description: Basic list display, which can carry text, lists, pictures, paragraphs.
+cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*EYuhSpw1iSwAAAAAAAAAAAAADrJ8AQ/original
+coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*tBzwQ7raKX8AAAAAAAAAAAAADrJ8AQ/original
+tag: DEPRECATED
+---
+
+## When To Use
+
+A list can be used to display content related to a single subject. The content can consist of multiple elements of varying type and size.
+
+
+## API
+
+Common props ref：[Common props](/docs/react/common-props)
+
+### List
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| bordered | Toggles rendering of the border around the list | boolean | false |  |
+| dataSource | DataSource array for list | any\[] | - |  |
+| footer | List footer renderer | ReactNode | - |  |
+| grid | The grid type of list. You can set grid to something like {gutter: 16, column: 4} | [object](#list-grid-props) | - |  |
+| header | List header renderer | ReactNode | - |  |
+| itemLayout | The layout of list | `horizontal` \| `vertical` | `horizontal` |  |
+| loading | Shows a loading indicator while the contents of the list are being fetched | boolean \| [SpinProps](/components/spin/#api) ([more](https://github.com/ant-design/ant-design/issues/8659)) | false |  |
+| loadMore | Shows a load more content | ReactNode | - |  |
+| locale | The i18n text including empty text | object | {emptyText: `No Data`} |  |
+| pagination | Pagination [config](/components/pagination/), hide it by setting it to false | boolean \| object | false |  |
+| renderItem | Customize list item when using `dataSource` | (item: T, index: number) => ReactNode | - |  |
+| rowKey | Item's unique value, could be an Item's key which holds a unique value of type `React.Key` or function that receives Item and returns a `React.Key` | `keyof` T \| (item: T) => `React.Key` | `"key"` |  |
+| size | Size of list | `default` \| `large` \| `small` | `default` |  |
+| split | Toggles rendering of the split under the list item | boolean | true |  |

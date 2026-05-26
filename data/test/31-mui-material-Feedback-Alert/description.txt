@@ -1,0 +1,134 @@
+Component: Alert 
+Library: mui-material
+
+Props Descriptions:
+
+action
+The action to display. It renders after the message, at the end of the alert.
+
+Type:node
+
+children
+The content of the component.
+
+Type:node
+
+classes
+Override or extend the styles applied to the component.
+
+See CSS classes API below for more details.
+
+Type:object
+
+closeText
+Override the default label for the close popup icon button.
+For localization purposes, you can use the provided translations.
+
+Type:string
+
+Default:'Close'
+
+color
+The color of the component. Unless provided, the value is taken from the severity prop. It supports both default and custom theme colors, which can be added as shown in the palette customization guide.
+
+Type:'error'
+| 'info'
+| 'success'
+| 'warning'
+| string
+
+components
+Deprecated
+The components used for each slot inside.
+
+Type:{ CloseButton?: elementType, CloseIcon?: elementType }
+
+Default:{}
+
+Deprecated－use the slots prop instead. This prop will be removed in a future major release. See Migrating from deprecated APIs for more details.
+componentsProps
+Deprecated
+The extra props for the slot components. You can override the existing props or add new ones.
+
+Type:{ closeButton?: object, closeIcon?: object }
+
+Default:{}
+
+Deprecated－use the slotProps prop instead. This prop will be removed in a future major release. See Migrating from deprecated APIs for more details.
+icon
+Override the icon displayed before the children. Unless provided, the icon is mapped to the value of the severity prop. Set to false to remove the icon.
+
+Type:node
+
+iconMapping
+The component maps the severity prop to a range of different icons, for instance success to <SuccessOutlined>. If you wish to change this mapping, you can provide your own. Alternatively, you can use the icon prop to override the icon displayed.
+
+Type:{ error?: node, info?: node, success?: node, warning?: node }
+
+onClose
+Callback fired when the component requests to be closed. When provided and no action prop is set, a close icon button is displayed that triggers the callback when clicked.
+
+Type:func
+
+Signature:
+function(event: React.SyntheticEvent) => void
+event The event source of the callback.
+role
+The ARIA role attribute of the element.
+
+Type:string
+
+Default:'alert'
+
+severity
+The severity of the alert. This defines the color and icon used.
+
+Type:'error'
+| 'info'
+| 'success'
+| 'warning'
+| string
+
+Default:'success'
+
+slotProps
+The props used for each slot inside.
+
+Type:{ action?: func
+| object, closeButton?: func
+| object, closeIcon?: func
+| object, icon?: func
+| object, message?: func
+| object, root?: func
+| object }
+
+Default:{}
+
+slots
+The components used for each slot inside.
+
+Type:{ action?: elementType, closeButton?: elementType, closeIcon?: elementType, icon?: elementType, message?: elementType, root?: elementType }
+
+Default:{}
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles.
+
+See the `sx` page for more details.
+
+Type:Array<func
+| object
+| bool>
+| func
+| object
+
+variant
+The variant to use.
+
+Type:'filled'
+| 'outlined'
+| 'standard'
+| string
+
+Default:'standard'
+

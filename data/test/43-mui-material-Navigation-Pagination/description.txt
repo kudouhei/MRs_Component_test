@@ -1,0 +1,157 @@
+Pagination API
+API reference docs for the React Pagination component.
+
+Props Descriptions:
+
+boundaryCount
+Number of always visible pages at the beginning and end.
+
+Type:integer
+
+Default:1
+
+classes
+Override or extend the styles applied to the component.
+
+See CSS classes API below for more details.
+
+Type:object
+
+color
+The active color. It supports both default and custom theme colors, which can be added as shown in the palette customization guide.
+
+Type:'primary'
+| 'secondary'
+| 'standard'
+| string
+
+Default:'standard'
+
+count
+The total number of pages.
+
+Type:integer
+
+Default:1
+
+defaultPage
+The page selected by default when the component is uncontrolled.
+
+Type:integer
+
+Default:1
+
+disabled
+If true, the component is disabled.
+
+Type:bool
+
+Default:false
+
+getItemAriaLabel
+Accepts a function which returns a string value that provides a user-friendly name for the current page. This is important for screen reader users.
+For localization purposes, you can use the provided translations.
+
+Type:func
+
+Signature:
+function(type: string, page: number | null, selected: boolean) => string
+type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous' | 'start-ellipsis' | 'end-ellipsis'). Defaults to 'page'.
+page The page number to format.
+selected If true, the current page is selected.
+hideNextButton
+If true, hide the next-page button.
+
+Type:bool
+
+Default:false
+
+hidePrevButton
+If true, hide the previous-page button.
+
+Type:bool
+
+Default:false
+
+onChange
+Callback fired when the page is changed.
+
+Type:func
+
+Signature:
+function(event: React.ChangeEvent, page: number) => void
+event The event source of the callback.
+page The page selected.
+page
+The current page. Unlike TablePagination, which starts numbering from 0, this pagination starts from 1.
+
+Type:integer
+
+renderItem
+Render the item.
+
+Type:func
+
+Default:(item) => <PaginationItem {...item} />
+
+Signature:
+function(params: PaginationRenderItemParams) => ReactNode
+params The props to spread on a PaginationItem.
+shape
+The shape of the pagination items.
+
+Type:'circular'
+| 'rounded'
+
+Default:'circular'
+
+showFirstButton
+If true, show the first-page button.
+
+Type:bool
+
+Default:false
+
+showLastButton
+If true, show the last-page button.
+
+Type:bool
+
+Default:false
+
+siblingCount
+Number of always visible pages before and after the current page.
+
+Type:integer
+
+Default:1
+
+size
+The size of the component.
+
+Type:'small'
+| 'medium'
+| 'large'
+| string
+
+Default:'medium'
+
+sx
+The system prop that allows defining system overrides as well as additional CSS styles.
+
+See the `sx` page for more details.
+
+Type:Array<func
+| object
+| bool>
+| func
+| object
+
+variant
+The variant to use.
+
+Type:'outlined'
+| 'text'
+| string
+
+Default:'text'

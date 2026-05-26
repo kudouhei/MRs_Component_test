@@ -1,0 +1,79 @@
+---
+category: Components
+group: Data Entry
+title: Input
+description: Through mouse or keyboard input content, it is the most basic form field wrapper.
+cover: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Y3R0RowXHlAAAAAAAAAAAAAADrJ8AQ/original
+coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sBqqTatJ-AkAAAAAAAAAAAAADrJ8AQ/original
+demo:
+  cols: 2
+---
+
+## When To Use
+
+- A user input in a form field is needed.
+- A search input is required.
+
+## API
+
+### Input
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| ~~addonAfter~~ | The label text displayed after (on the right side of) the input field, please use Space.Compact instead | ReactNode | - |  |
+| ~~addonBefore~~ | The label text displayed before (on the left side of) the input field, please use Space.Compact instead | ReactNode | - |  |
+| allowClear | If allow to remove input content with clear icon | boolean \| { clearIcon: ReactNode } | false |  |
+| ~~bordered~~ | Whether has border style, please use `variant` instead | boolean | true | 4.5.0 |
+| classNames | Customize class for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-input), string> \| (info: { props })=> Record<[SemanticDOM](#semantic-input), string> | - |  |
+| count | Character count config | [CountConfig](#countconfig) | - | 5.10.0 |
+| defaultValue | The initial input content | string | - |  |
+| disabled | Whether the input is disabled | boolean | false |  |
+| id | The ID for input | string | - |  |
+| maxLength | The maximum number of characters in Input | number | - |  |
+| prefix | The prefix icon for the Input | ReactNode | - |  |
+| showCount | Whether to show character count | boolean \| { formatter: (info: { value: string, count: number, maxLength?: number }) => ReactNode } | false | 4.18.0 info.value: 4.23.0 |
+| status | Set validation status | 'error' \| 'warning' | - | 4.19.0 |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-input), CSSProperties> \| (info: { props })=> Record<[SemanticDOM](#semantic-input), CSSProperties> | - |  |
+| size | The size of the input box. Note: in the context of a form, the `medium` size is used | `large` \| `medium` \| `small` | - |  |
+| suffix | The suffix icon for the Input | ReactNode | - |  |
+| type | The type of input, see: [MDN](https://developer.mozilla.org/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)( use `Input.TextArea` instead of `type="textarea"`) | string | `text` |  |
+| value | The input content value | string | - |  |
+| variant | Variants of Input | `outlined` \| `borderless` \| `filled` \| `underlined` | `outlined` | 5.13.0 \| `underlined`: 5.24.0 |
+| onChange | Callback when user input | function(e) | - |  |
+| onPressEnter | The callback function that is triggered when Enter key is pressed | function(e) | - |  |
+| onClear | Callback when click the clear button | () => void | - | 5.20.0 |
+
+
+### Input.TextArea
+
+Same as Input, and more:
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| autoSize | Height auto size feature, can be set to true \| false or an object { minRows: 2, maxRows: 6 } | boolean \| object | false |  |
+| classNames | Customize class for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-textarea), string> \| (info: { props }) => Record<[SemanticDOM](#semantic-textarea), string> | - |  |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-textarea), CSSProperties> \| (info: { props }) => Record<[SemanticDOM](#semantic-textarea), CSSProperties> | - |  |
+
+The rest of the props of `Input.TextArea` are the same as the original [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea).
+
+### Input.Search
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classNames | Customize class for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-search), string> \| (info: { props }) => Record<[SemanticDOM](#semantic-search), string> | - |  |
+| enterButton | false displays the default button color, true uses the primary color, or you can provide a custom button. Conflicts with addonAfter. | ReactNode | false |  |
+| loading | Search box with loading | boolean | false |  |
+| onSearch | The callback function triggered when you click on the search-icon, the clear-icon or press the Enter key | function(value, event, { source: "input" \| "clear" }) | - |  |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-search), CSSProperties> \| (info: { props }) => Record<[SemanticDOM](#semantic-search), CSSProperties> | - |  |
+
+Supports all props of `Input`.
+
+### Input.Password
+
+| Property | Description | Type | Default | Version |
+| --- | --- | --- | --- | --- |
+| classNames | Semantic DOM class | Record<[SemanticDOM](#semantic-password), string> | - |  |
+| iconRender | Custom toggle button | (visible) => ReactNode | (visible) => (visible ? &lt;EyeOutlined /> : &lt;EyeInvisibleOutlined />) | 4.3.0 |
+| styles | Semantic DOM style | Record<[SemanticDOM](#semantic-password), CSSProperties> | - |  |
+| visibilityToggle | Whether show toggle button or control password visible | boolean \| [VisibilityToggle](#visibilitytoggle) | true |  |
+

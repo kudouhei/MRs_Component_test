@@ -1,0 +1,62 @@
+---
+title: Descriptions
+lang: en-US
+---
+
+# Descriptions
+
+Display multiple fields in list form.
+
+## Basic usage
+
+:::demo
+
+descriptions/basic-usage
+
+:::
+
+## Sizes
+
+:::demo
+
+descriptions/sizes
+
+:::
+
+## Vertical List
+
+:::demo
+
+descriptions/vertical-list
+
+:::
+
+## Rowspan ^(2.8.1)
+
+:::demo
+
+descriptions/rowspan
+
+:::
+
+## Customized Style
+
+:::demo
+
+descriptions/customized-style
+
+:::
+
+## Descriptions API
+
+### Descriptions Attributes
+
+| Name                 | Description                                | Type                                           | Default    |
+| -------------------- | ------------------------------------------ | ---------------------------------------------- | ---------- |
+| border               | with or without border                     | ^[boolean]                                     | false      |
+| column               | numbers of `Descriptions Item` in one line | ^[number]                                      | 3          |
+| direction            | direction of list                          | ^[enum]`'vertical' \| 'horizontal'`            | horizontal |
+| size                 | size of list                               | ^[enum]`'' \| 'large' \| 'default' \| 'small'` | —          |
+| title                | title text, display on the top left        | ^[string]                                      | ''         |
+| extra                | extra text, display on the top right       | ^[string]                                      | ''         |
+| label-width ^(2.8.8) | label width of every column                | ^[string] / ^[number]                          | —          |
