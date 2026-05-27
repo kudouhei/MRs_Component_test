@@ -39,6 +39,12 @@ DEFAULT_LLM_MODEL = (
 )
 DEFAULT_LLM_TEMPERATURE = float(os.environ.get("LLM_TEMPERATURE", "0.2"))
 
+# Canonical model names used in experiments / ablation studies.
+ABLATION_MODEL_CHOICES = (
+    "deepseek-chat",
+    "gpt-5-mini",
+)
+
 
 def resolve_api_key() -> str | None:
     return (
@@ -83,3 +89,15 @@ def chat_json(
     )
     content = resp.choices[0].message.content or "{}"
     return json.loads(content)
+
+
+def resolve_model_name(model: str | None = None, ablation_model: str | None = None) -> str:
+    """Resolve effective model name with optional ablation override."""
+    if ablation_model:
+        if ablation_model not in ABLATION_MODEL_CHOICES:
+            raise ValueError(
+                f"Unknown ablation model: {ablation_model}. "
+                f"Choices: {', '.join(ABLATION_MODEL_CHOICES)}"
+            )
+        return ablation_model
+    return model or DEFAULT_LLM_MODEL

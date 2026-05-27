@@ -67,6 +67,9 @@ python3 scripts/run_batch.py --category Inputs --limit 20
 
 # No progress UI
 python3 scripts/run_batch.py --quiet
+
+# Ablation: run full/partial batch with GPT-5-mini
+python3 scripts/run_batch.py --ablation-model gpt-5-mini
 ```
 
 ## Outputs
