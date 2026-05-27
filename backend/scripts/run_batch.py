@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from mr_framework.pipeline import run_batch
+from mr_framework.pipeline import output_root_for_model, run_batch
 from mr_framework.llm_client import ABLATION_MODEL_CHOICES, resolve_model_name
 from mr_framework.samples import describe_shards, list_sample_metas, shard_bounds
 
@@ -56,6 +56,11 @@ def main() -> int:
         action="store_true",
         help="After this run, rebuild aggregate from ALL output/reports/*.json",
     )
+    p.add_argument(
+        "--separate-by-model",
+        action="store_true",
+        help="Write outputs to output/model_runs/<model>/",
+    )
     args = p.parse_args()
 
     if args.describe_shards:
@@ -69,9 +74,13 @@ def main() -> int:
         print("error: --shard-index and --num-shards must be used together", file=sys.stderr)
         return 2
 
+    model_name = resolve_model_name(args.model, args.ablation_model)
+    separate = args.separate_by_model or bool(args.ablation_model)
+
     if not args.quiet:
+        out_root = output_root_for_model(model_name, separate_by_model=separate)
         print(
-            "Progress: stderr (live) + output/batch_progress.txt (tail -f) + batch_progress.json",
+            f"Progress: stderr (live) + {out_root}/batch_progress.txt (tail -f) + batch_progress.json",
             file=sys.stderr,
         )
         if args.shard_index and args.num_shards:
@@ -82,7 +91,6 @@ def main() -> int:
                 file=sys.stderr,
             )
 
-    model_name = resolve_model_name(args.model, args.ablation_model)
     result = run_batch(
         library=args.library,
         category=args.category,
@@ -95,6 +103,7 @@ def main() -> int:
         show_progress=not args.quiet,
         skip_aggregate=args.skip_aggregate,
         merge_reports_after=args.merge_reports,
+        separate_by_model=separate,
     )
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0

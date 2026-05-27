@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from mr_framework.pipeline import analyze_sample, save_report
+from mr_framework.pipeline import analyze_sample, output_root_for_model, save_report
 from mr_framework.samples import iter_samples
 from mr_framework.llm_client import ABLATION_MODEL_CHOICES, DEFAULT_LLM_MODEL, resolve_model_name
 
@@ -19,6 +19,11 @@ def main() -> int:
         choices=ABLATION_MODEL_CHOICES,
         default=None,
         help="Use a fixed model preset for ablation (overrides --model)",
+    )
+    p.add_argument(
+        "--separate-by-model",
+        action="store_true",
+        help="Save report under output/model_runs/<model>/reports/",
     )
     p.add_argument("--no-save", action="store_true")
     args = p.parse_args()
@@ -35,7 +40,13 @@ def main() -> int:
     )
     print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     if not args.no_save:
-        print(f"\nSaved → {save_report(report)}", file=sys.stderr)
+        separate = args.separate_by_model or bool(args.ablation_model)
+        out_root = output_root_for_model(model_name, separate_by_model=separate)
+        reports_dir = out_root / "reports"
+        print(
+            f"\nSaved → {save_report(report, reports_dir=reports_dir, model=model_name)}",
+            file=sys.stderr,
+        )
     return 0
 
 

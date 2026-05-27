@@ -7,7 +7,11 @@ import argparse
 import csv
 import json
 import math
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from mr_framework.pipeline import model_tag, output_root_for_model
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
@@ -174,18 +178,26 @@ def _build_html(payload: dict) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", type=Path, default=ALIGNMENT_JSON)
-    parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
+    parser.add_argument("--input", type=Path, default=None)
+    parser.add_argument("--out-dir", type=Path, default=None)
+    parser.add_argument("--model", default=None)
+    parser.add_argument("--separate-by-model", action="store_true")
     args = parser.parse_args()
 
-    if not args.input.exists():
-        raise SystemExit(f"Missing alignment file: {args.input}")
+    out_root = output_root_for_model(args.model, separate_by_model=args.separate_by_model)
+    input_path = args.input or (out_root / "aggregate" / "alignment_val.json")
+    out_dir = args.out_dir or (out_root / "analysis")
+    out_xlsx = out_dir / "issue_alignment_stats.xlsx"
+    out_html = out_dir / "issue_alignment_charts.html"
+    tag = model_tag(args.model)
 
-    payload = json.loads(args.input.read_text(encoding="utf-8"))
+    if not input_path.exists():
+        raise SystemExit(f"Missing alignment file: {input_path}")
+
+    payload = json.loads(input_path.read_text(encoding="utf-8"))
     exp1 = payload.get("exp1", {})
     exp2 = payload.get("exp2", {})
 
-    out_dir = args.out_dir
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # CSV exports
@@ -312,14 +324,17 @@ def main() -> int:
         ],
     )
 
-    OUT_XLSX.parent.mkdir(parents=True, exist_ok=True)
-    wb.save(OUT_XLSX)
+    out_xlsx.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(out_xlsx)
+    out_xlsx.with_name(f"{out_xlsx.stem}__{tag}{out_xlsx.suffix}").write_bytes(out_xlsx.read_bytes())
 
     # HTML charts
-    OUT_HTML.write_text(_build_html(payload), encoding="utf-8")
+    html = _build_html(payload)
+    out_html.write_text(html, encoding="utf-8")
+    out_html.with_name(f"{out_html.stem}__{tag}{out_html.suffix}").write_text(html, encoding="utf-8")
 
-    print(f"Wrote {OUT_XLSX}")
-    print(f"Wrote {OUT_HTML}")
+    print(f"Wrote {out_xlsx}")
+    print(f"Wrote {out_html}")
     print(f"Wrote {out_dir / 'issue_pressure_bins.csv'}")
     print(f"Wrote {out_dir / 'issue_topic_significance.csv'}")
     return 0

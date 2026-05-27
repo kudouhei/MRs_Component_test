@@ -10,6 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from mr_framework.pipeline import model_tag, output_root_for_model
 from mr_framework.samples import PROJECT_ROOT
 
 REPORTS_DIR = PROJECT_ROOT / "output" / "reports"
@@ -34,11 +35,18 @@ TC_LABELS = {
 }
 
 
-def _load_reports() -> list[dict]:
+def _load_reports(reports_dir: Path, *, model: str | None = None) -> list[dict]:
     rows = []
-    for path in sorted(REPORTS_DIR.glob("*.json")):
+    tag = model_tag(model) if model is not None else None
+    for path in sorted(reports_dir.glob("*.json")):
         try:
-            rows.append(json.loads(path.read_text(encoding="utf-8")))
+            row = json.loads(path.read_text(encoding="utf-8"))
+            if tag:
+                is_tagged = path.stem.endswith(f"__{tag}")
+                prov_model = str((row.get("provenance") or {}).get("llm_model") or "")
+                if not is_tagged and prov_model != (model or ""):
+                    continue
+            rows.append(row)
         except (json.JSONDecodeError, OSError):
             continue
     rows.sort(key=lambda r: int((r.get("meta") or {}).get("numeric_id") or 0))
@@ -195,16 +203,16 @@ def _write_sheet(ws, rows: list[dict], percent_cols: set[str]) -> None:
         pass
 
 
-def export_xlsx(out_path: Path) -> int:
+def export_xlsx(out_path: Path, *, reports_dir: Path, model: str | None = None) -> int:
     try:
         from openpyxl import Workbook
     except ImportError:
         print("Install openpyxl: pip install openpyxl", file=sys.stderr)
         return 1
 
-    reports = _load_reports()
+    reports = _load_reports(reports_dir, model=model)
     if not reports:
-        print("No reports in output/reports/", file=sys.stderr)
+        print(f"No reports in {reports_dir}/", file=sys.stderr)
         return 1
 
     comp_rows = [_component_row(r) for r in reports]
@@ -251,9 +259,21 @@ def export_xlsx(out_path: Path) -> int:
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Export reports to Excel")
-    p.add_argument("-o", "--output", type=Path, default=DEFAULT_OUT)
+    p.add_argument("-o", "--output", type=Path, default=None)
+    p.add_argument("--reports-dir", type=Path, default=None)
+    p.add_argument("--model", default=None)
+    p.add_argument("--separate-by-model", action="store_true")
     args = p.parse_args()
-    return export_xlsx(args.output)
+    out_root = output_root_for_model(args.model, separate_by_model=args.separate_by_model)
+    reports_dir = args.reports_dir or (out_root / "reports")
+    out_path = args.output or (out_root / "analysis" / "component_analysis.xlsx")
+    ret = export_xlsx(out_path, reports_dir=reports_dir, model=args.model)
+    if ret == 0:
+        # Duplicate model-tagged file for explicit file-level distinction.
+        tagged = out_path.with_name(f"{out_path.stem}__{model_tag(args.model)}{out_path.suffix}")
+        tagged.write_bytes(out_path.read_bytes())
+        print(f"Wrote {tagged}")
+    return ret
 
 
 if __name__ == "__main__":

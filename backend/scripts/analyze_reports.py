@@ -13,6 +13,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from mr_framework.pipeline import model_tag, output_root_for_model
 from mr_framework.samples import PROJECT_ROOT
 
 REPORTS_DIR = PROJECT_ROOT / "output" / "reports"
@@ -23,11 +24,17 @@ def _pct(x: float) -> str:
     return f"{100 * x:.1f}%"
 
 
-def _load_rows() -> list[dict]:
+def _load_rows(reports_dir: Path, *, model: str | None = None) -> list[dict]:
     rows = []
-    for path in sorted(REPORTS_DIR.glob("*.json")):
+    tag = model_tag(model) if model is not None else None
+    for path in sorted(reports_dir.glob("*.json")):
         try:
             r = json.loads(path.read_text(encoding="utf-8"))
+            if tag:
+                is_tagged = path.stem.endswith(f"__{tag}")
+                prov_model = str((r.get("provenance") or {}).get("llm_model") or "")
+                if not is_tagged and prov_model != (model or ""):
+                    continue
             rows.append(r)
         except (json.JSONDecodeError, OSError):
             continue
@@ -229,11 +236,16 @@ def _build_html(
 
 def main() -> int:
     p = argparse.ArgumentParser()
-    p.add_argument("--out-dir", type=Path, default=OUT_DIR)
+    p.add_argument("--out-dir", type=Path, default=None)
+    p.add_argument("--reports-dir", type=Path, default=None)
+    p.add_argument("--model", default=None)
+    p.add_argument("--separate-by-model", action="store_true")
     args = p.parse_args()
-    out: Path = args.out_dir
+    out_root = output_root_for_model(args.model, separate_by_model=args.separate_by_model)
+    reports_dir = args.reports_dir or (out_root / "reports")
+    out: Path = args.out_dir or (out_root / "analysis")
 
-    raw = _load_rows()
+    raw = _load_rows(reports_dir, model=args.model)
     if not raw:
         print("No reports found.", file=sys.stderr)
         return 1
@@ -337,6 +349,7 @@ def main() -> int:
         charts=charts,
     )
     (out / "dashboard.html").write_text(html, encoding="utf-8")
+    (out / f"dashboard__{model_tag(args.model)}.html").write_text(html, encoding="utf-8")
 
     md_lines = [
         "# Reports 统计分析",
@@ -370,7 +383,9 @@ def main() -> int:
         "完整图表见 `output/analysis/dashboard.html`",
         "",
     ])
-    (out / "SUMMARY.md").write_text("\n".join(md_lines), encoding="utf-8")
+    summary_text = "\n".join(md_lines)
+    (out / "SUMMARY.md").write_text(summary_text, encoding="utf-8")
+    (out / f"SUMMARY__{model_tag(args.model)}.md").write_text(summary_text, encoding="utf-8")
 
     print(f"Wrote {out}/")
     print(f"  dashboard.html  — 打开浏览器查看图表")

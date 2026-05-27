@@ -70,6 +70,10 @@ python3 scripts/run_batch.py --quiet
 
 # Ablation: run full/partial batch with GPT-5-mini
 python3 scripts/run_batch.py --ablation-model gpt-5-mini
+
+# Save under model-specific folder (recommended for ablation)
+python3 scripts/run_batch.py --ablation-model gpt-5-mini --separate-by-model
+# -> output/model_runs/gpt-5-mini/
 ```
 
 ## Outputs
@@ -86,6 +90,7 @@ python3 scripts/run_batch.py --ablation-model gpt-5-mini
 - `output/analysis/component_analysis.xlsx` — 每组件分析 Excel（组件汇总 / MR明细 / 盲区 / 补测优先级）
 - `output/analysis/issue_alignment_charts.html` — issue 对齐显著性图表（分桶 + topic enrichment）
 - `output/analysis/issue_alignment_stats.xlsx` — issue 对齐统计工作簿（overview / bins / 检验 / 显著性）
+- `*__<model>.json/csv/xlsx/html` — 同目录下带模型后缀的文件，便于区分不同模型结果
 
 ```bash
 # 从 output/reports 重新生成统计表与 HTML 仪表盘
@@ -102,4 +107,10 @@ python3 scripts/export_reports_xlsx.py
 python3 scripts/export_issue_alignment_artifacts.py
 # → output/analysis/issue_alignment_charts.html
 # → output/analysis/issue_alignment_stats.xlsx
+
+# 在模型隔离目录下做汇总与导出
+python3 scripts/merge_batch_reports.py --model gpt-5-mini --separate-by-model
+python3 scripts/analyze_reports.py --model gpt-5-mini --separate-by-model
+python3 scripts/export_reports_xlsx.py --model gpt-5-mini --separate-by-model
+python3 scripts/export_issue_alignment_artifacts.py --model gpt-5-mini --separate-by-model
 ```

@@ -36,6 +36,39 @@ AGGREGATE_DIR = OUTPUT_ROOT / "aggregate"
 RUN_CONFIG = OUTPUT_ROOT / "run_config.json"
 
 
+def _sanitize_model_name(model: str) -> str:
+    return "".join(ch if ch.isalnum() or ch in ("-", "_", ".") else "_" for ch in model.strip()) or "unknown-model"
+
+
+def model_tag(model: str | None) -> str:
+    return _sanitize_model_name(model or DEFAULT_LLM_MODEL)
+
+
+def output_root_for_model(model: str | None, *, separate_by_model: bool) -> Path:
+    if not separate_by_model:
+        return OUTPUT_ROOT
+    return OUTPUT_ROOT / "model_runs" / model_tag(model)
+
+
+def _paths(output_root: Path) -> dict[str, Path]:
+    return {
+        "output_root": output_root,
+        "reports_dir": output_root / "reports",
+        "aggregate_dir": output_root / "aggregate",
+        "run_config": output_root / "run_config.json",
+        "progress_json": output_root / "batch_progress.json",
+        "progress_txt": output_root / "batch_progress.txt",
+    }
+
+
+def _report_filename(sample_id: str, model: str | None) -> str:
+    return f"{sample_id}__{model_tag(model)}.json"
+
+
+def _report_matches_model(path: Path, model: str | None) -> bool:
+    return path.stem.endswith(f"__{model_tag(model)}")
+
+
 def analyze_sample(
     meta: SampleMeta,
     *,
@@ -98,20 +131,36 @@ def analyze_sample(
     )
 
 
-def save_report(report: SampleReport) -> Path:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    path = REPORTS_DIR / f"{report.meta.sample_id}.json"
+def save_report(
+    report: SampleReport,
+    *,
+    reports_dir: Path = REPORTS_DIR,
+    model: str | None = None,
+) -> Path:
+    reports_dir.mkdir(parents=True, exist_ok=True)
+    path = reports_dir / _report_filename(report.meta.sample_id, model)
     path.write_text(json.dumps(report.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8")
     return path
 
 
-def load_saved_report_rows() -> list[dict[str, Any]]:
-    if not REPORTS_DIR.is_dir():
+def load_saved_report_rows(
+    *,
+    reports_dir: Path = REPORTS_DIR,
+    model: str | None = None,
+) -> list[dict[str, Any]]:
+    if not reports_dir.is_dir():
         return []
     rows: list[dict[str, Any]] = []
-    for path in sorted(REPORTS_DIR.glob("*.json")):
+    for path in sorted(reports_dir.glob("*.json")):
         try:
-            rows.append(json.loads(path.read_text(encoding="utf-8")))
+            row = json.loads(path.read_text(encoding="utf-8"))
+            if model is not None:
+                is_tagged = _report_matches_model(path, model)
+                prov_model = str((row.get("provenance") or {}).get("llm_model") or "")
+                # Backward-compatible: accept legacy filenames when provenance model matches.
+                if not is_tagged and prov_model != (model or ""):
+                    continue
+            rows.append(row)
         except (json.JSONDecodeError, OSError):
             continue
     return rows
@@ -121,14 +170,17 @@ def merge_aggregate_from_reports(
     *,
     version_snapshot: str | None = None,
     model: str | None = None,
+    separate_by_model: bool = False,
 ) -> dict[str, Any]:
     """Rebuild aggregate CSV/JSON from all per-sample reports on disk."""
-    rows = load_saved_report_rows()
+    out_root = output_root_for_model(model, separate_by_model=separate_by_model)
+    paths = _paths(out_root)
+    rows = load_saved_report_rows(reports_dir=paths["reports_dir"], model=model)
     v = version_snapshot or utc_now_iso()
     cfg: dict[str, Any] = {}
-    if RUN_CONFIG.exists():
+    if paths["run_config"].exists():
         try:
-            cfg = json.loads(RUN_CONFIG.read_text(encoding="utf-8"))
+            cfg = json.loads(paths["run_config"].read_text(encoding="utf-8"))
         except (json.JSONDecodeError, OSError):
             cfg = {}
     if not cfg:
@@ -143,18 +195,26 @@ def merge_aggregate_from_reports(
 
     alignment = build_alignment_report(rows, version_snapshot=v)
     agg = _aggregate(rows, cfg)
-    _export_csv(rows)
-    _export_priorities_csv(rows)
-    AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
-    (AGGREGATE_DIR / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
-    (AGGREGATE_DIR / "alignment_val.json").write_text(
+    tag = model_tag(model)
+    _export_csv(rows, aggregate_dir=paths["aggregate_dir"], model=model)
+    _export_priorities_csv(rows, aggregate_dir=paths["aggregate_dir"], model=model)
+    paths["aggregate_dir"].mkdir(parents=True, exist_ok=True)
+    (paths["aggregate_dir"] / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
+    (paths["aggregate_dir"] / f"batch_summary__{tag}.json").write_text(
+        json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    (paths["aggregate_dir"] / "alignment_val.json").write_text(
+        json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    (paths["aggregate_dir"] / f"alignment_val__{tag}.json").write_text(
         json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
     )
     return {
         "framework_version": FRAMEWORK_VERSION,
         "n_samples": len(rows),
         "version_snapshot": v,
-        "run_config": str(RUN_CONFIG),
+        "run_config": str(paths["run_config"]),
+        "output_root": str(paths["output_root"]),
         "aggregate": agg,
         "alignment": alignment.to_dict(),
         "merged_from_reports": True,
@@ -175,18 +235,23 @@ def run_batch(
     show_progress: bool = True,
     skip_aggregate: bool = False,
     merge_reports_after: bool = False,
+    separate_by_model: bool = False,
 ) -> dict[str, Any]:
     v = version_snapshot or utc_now_iso()
+    out_root = output_root_for_model(model, separate_by_model=separate_by_model)
+    paths = _paths(out_root)
     cfg = build_run_provenance(
         version_snapshot=v,
         mr_inference_mode="llm",
         alignment_mode="hybrid",
         llm_model=model or DEFAULT_LLM_MODEL,
     )
+    cfg["output_root"] = str(paths["output_root"])
+    cfg["separate_by_model"] = separate_by_model
     if shard_index is not None and num_shards is not None:
         cfg["shard_index"] = shard_index
         cfg["num_shards"] = num_shards
-    write_run_config(RUN_CONFIG, cfg)
+    write_run_config(paths["run_config"], cfg)
 
     corpus = list_sample_metas(library=library, category=category, sample_id=sample_id)
     global_total = len(corpus)
@@ -208,6 +273,8 @@ def run_batch(
     progress = BatchProgressReporter(
         total=len(metas),
         enabled=show_progress,
+        json_path=paths["progress_json"],
+        txt_path=paths["progress_txt"],
         global_total=global_total if shard_label else len(metas),
         global_offset=global_offset,
         shard_label=shard_label,
@@ -236,7 +303,7 @@ def run_batch(
             failed_samples.append({"sample_id": meta.sample_id, "error": str(exc)[:500]})
             continue
         rows.append(report.to_dict())
-        saved.append(str(save_report(report)))
+        saved.append(str(save_report(report, reports_dir=paths["reports_dir"], model=model)))
         c = report.completeness
         progress.end_sample(
             index,
@@ -244,7 +311,7 @@ def run_batch(
             coverage_rate=float(c.get("coverage_rate") or 0),
         )
 
-    progress.finish(extra_message=f"Saved {len(saved)} reports → {REPORTS_DIR}")
+    progress.finish(extra_message=f"Saved {len(saved)} reports → {paths['reports_dir']}")
 
     result: dict[str, Any] = {
         "framework_version": FRAMEWORK_VERSION,
@@ -252,7 +319,8 @@ def run_batch(
         "n_failed": len(failed_samples),
         "failed_samples": failed_samples,
         "version_snapshot": v,
-        "run_config": str(RUN_CONFIG),
+        "run_config": str(paths["run_config"]),
+        "output_root": str(paths["output_root"]),
         "reports_saved": len(saved),
         "shard_index": shard_index,
         "num_shards": num_shards,
@@ -263,18 +331,29 @@ def run_batch(
     if not skip_aggregate:
         alignment = build_alignment_report(rows, version_snapshot=v)
         agg = _aggregate(rows, cfg)
-        _export_csv(rows)
-        _export_priorities_csv(rows)
-        AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
-        (AGGREGATE_DIR / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
-        (AGGREGATE_DIR / "alignment_val.json").write_text(
+        tag = model_tag(model)
+        _export_csv(rows, aggregate_dir=paths["aggregate_dir"], model=model)
+        _export_priorities_csv(rows, aggregate_dir=paths["aggregate_dir"], model=model)
+        paths["aggregate_dir"].mkdir(parents=True, exist_ok=True)
+        (paths["aggregate_dir"] / "batch_summary.json").write_text(json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8")
+        (paths["aggregate_dir"] / f"batch_summary__{tag}.json").write_text(
+            json.dumps(agg, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        (paths["aggregate_dir"] / "alignment_val.json").write_text(
+            json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        (paths["aggregate_dir"] / f"alignment_val__{tag}.json").write_text(
             json.dumps(alignment.to_dict(), ensure_ascii=False, indent=2), encoding="utf-8"
         )
         result["aggregate"] = agg
         result["alignment"] = alignment.to_dict()
 
     if merge_reports_after:
-        merged = merge_aggregate_from_reports(version_snapshot=v, model=model)
+        merged = merge_aggregate_from_reports(
+            version_snapshot=v,
+            model=model,
+            separate_by_model=separate_by_model,
+        )
         result["merged_aggregate"] = merged
 
     return result
@@ -439,9 +518,14 @@ def _percentile(xs: list[float], pct: float) -> float:
     return xs[lo] * (1 - frac) + xs[hi] * frac
 
 
-def _export_csv(rows: list[dict[str, Any]]) -> None:
-    AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
-    path = AGGREGATE_DIR / "per_sample_metrics.csv"
+def _export_csv(
+    rows: list[dict[str, Any]],
+    *,
+    aggregate_dir: Path = AGGREGATE_DIR,
+    model: str | None = None,
+) -> None:
+    aggregate_dir.mkdir(parents=True, exist_ok=True)
+    path = aggregate_dir / "per_sample_metrics.csv"
     with path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(
             f,
@@ -475,6 +559,9 @@ def _export_csv(rows: list[dict[str, Any]]) -> None:
                 "mr_inference_mode": p.get("mr_inference_mode"),
                 "alignment_mode": p.get("alignment_mode"),
             })
+    (aggregate_dir / f"per_sample_metrics__{model_tag(model)}.csv").write_text(
+        path.read_text(encoding="utf-8"), encoding="utf-8"
+    )
 
 
 def _aggregate_priorities(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -486,9 +573,14 @@ def _aggregate_priorities(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return items[:50]
 
 
-def _export_priorities_csv(rows: list[dict[str, Any]]) -> None:
-    AGGREGATE_DIR.mkdir(parents=True, exist_ok=True)
-    path = AGGREGATE_DIR / "test_priorities.csv"
+def _export_priorities_csv(
+    rows: list[dict[str, Any]],
+    *,
+    aggregate_dir: Path = AGGREGATE_DIR,
+    model: str | None = None,
+) -> None:
+    aggregate_dir.mkdir(parents=True, exist_ok=True)
+    path = aggregate_dir / "test_priorities.csv"
     fieldnames = [
         "sample_id",
         "library",
@@ -506,3 +598,6 @@ def _export_priorities_csv(rows: list[dict[str, Any]]) -> None:
         w.writeheader()
         for item in _aggregate_priorities(rows):
             w.writerow({k: item.get(k) for k in fieldnames})
+    (aggregate_dir / f"test_priorities__{model_tag(model)}.csv").write_text(
+        path.read_text(encoding="utf-8"), encoding="utf-8"
+    )
