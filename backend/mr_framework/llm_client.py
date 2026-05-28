@@ -86,13 +86,55 @@ def chat_json(
     max_tokens: int = 8192,
 ) -> dict[str, Any]:
     client = create_client()
-    resp = client.chat.completions.create(
-        model=model or DEFAULT_LLM_MODEL,
-        messages=messages,
-        temperature=temperature,
-        response_format={"type": "json_object"},
-        max_tokens=max_tokens,
-    )
+    model_name = model or DEFAULT_LLM_MODEL
+    base_payload = {
+        "model": model_name,
+        "messages": messages,
+        "response_format": {"type": "json_object"},
+    }
+    # Some models (e.g. gpt-5-mini) only support default temperature.
+    temperature_payloads = [{}]
+    if not model_name.startswith("gpt-5"):
+        temperature_payloads = [{"temperature": temperature}]
+    elif temperature == 1:
+        temperature_payloads = [{"temperature": temperature}]
+    else:
+        temperature_payloads = [{}, {"temperature": temperature}]
+
+    # gpt-5-* uses max_completion_tokens, while many OpenAI-compatible APIs still use max_tokens.
+    token_params = [("max_tokens", max_tokens)]
+    if model_name.startswith("gpt-5"):
+        token_params = [("max_completion_tokens", max_tokens), ("max_tokens", max_tokens)]
+
+    last_err: Exception | None = None
+    resp = None
+    for temp_payload in temperature_payloads:
+        for token_key, token_value in token_params:
+            try:
+                resp = client.chat.completions.create(
+                    **base_payload,
+                    **temp_payload,
+                    **{token_key: token_value},
+                )
+                break
+            except Exception as exc:  # noqa: BLE001
+                msg = str(exc).lower()
+                unsupported_token = "unsupported parameter" in msg and token_key.lower() in msg
+                unsupported_temperature = (
+                    "unsupported value" in msg and "temperature" in msg and "temperature" in temp_payload
+                )
+                if unsupported_token or unsupported_temperature:
+                    last_err = exc
+                    continue
+                raise
+        if resp is not None:
+            break
+
+    if resp is None:
+        if last_err is not None:
+            raise last_err
+        raise RuntimeError("LLM request failed before receiving a response.")
+
     content = resp.choices[0].message.content or "{}"
     return json.loads(content)
 
