@@ -59,7 +59,13 @@ def resolve_base_url() -> str | None:
 
 
 def create_client():
-    from openai import OpenAI
+    try:
+        from openai import OpenAI
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "Python package 'openai' is not installed in the current environment. "
+            "From repository root run: `cd backend && pip install -r requirements.txt`"
+        ) from exc
 
     api_key = resolve_api_key()
     if not api_key:
