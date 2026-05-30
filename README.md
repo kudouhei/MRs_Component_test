@@ -35,7 +35,7 @@ interaction/accessibility, visual layout, composition/context, and data flow.
 ```bash
 cd backend
 pip install -r requirements.txt
-cp ../.env.example ../.env   # set DEEPSEEK_API_KEY or OPENAI_API_KEY
+cp ../.env.example ../.env   # set DEEPSEEK_API_KEY, OPENAI_API_KEY, or GEMINI_API_KEY
 ```
 
 ## Run
@@ -70,6 +70,10 @@ python3 scripts/run_batch.py --quiet
 
 # Ablation: run full/partial batch with GPT-5-mini
 python3 scripts/run_batch.py --ablation-model gpt-5-mini
+
+# Ablation: run with Gemini 2.5 Flash (requires GEMINI_API_KEY in .env)
+python3 scripts/run_batch.py --ablation-model gemini-2.5-flash --separate-by-model
+# -> output/model_runs/gemini-2.5-flash/
 
 # Save under model-specific folder (recommended for ablation)
 python3 scripts/run_batch.py --ablation-model gpt-5-mini --separate-by-model

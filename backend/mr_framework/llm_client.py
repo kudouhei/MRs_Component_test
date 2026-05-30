@@ -1,4 +1,4 @@
-"""OpenAI-compatible LLM client (OpenAI, DeepSeek, etc.)."""
+"""OpenAI-compatible LLM client (OpenAI, DeepSeek, Gemini, etc.)."""
 
 from __future__ import annotations
 
@@ -38,15 +38,35 @@ DEFAULT_LLM_MODEL = (
     or "deepseek-chat"
 )
 DEFAULT_LLM_TEMPERATURE = float(os.environ.get("LLM_TEMPERATURE", "0.2"))
+DEFAULT_LLM_TIMEOUT_SEC = float(os.environ.get("LLM_TIMEOUT_SEC", "120"))
+
+# Gemini OpenAI-compatible endpoint
+_GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 # Canonical model names used in experiments / ablation studies.
 ABLATION_MODEL_CHOICES = (
     "deepseek-chat",
+    "gemini-2.5-flash",
     "gpt-5-mini",
 )
 
 
-def resolve_api_key() -> str | None:
+# ---------------------------------------------------------------------------
+# Per-model routing helpers
+# ---------------------------------------------------------------------------
+
+def _is_gemini(model: str) -> bool:
+    return model.startswith("gemini-")
+
+
+def _is_gpt5(model: str) -> bool:
+    return model.startswith("gpt-5")
+
+
+def resolve_api_key(model: str | None = None) -> str | None:
+    """Return the API key appropriate for the given model."""
+    if model and _is_gemini(model):
+        return os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
     return (
         os.environ.get("OPENAI_API_KEY")
         or os.environ.get("DEEPSEEK_API_KEY")
@@ -54,11 +74,14 @@ def resolve_api_key() -> str | None:
     )
 
 
-def resolve_base_url() -> str | None:
+def resolve_base_url(model: str | None = None) -> str | None:
+    """Return the base URL appropriate for the given model."""
+    if model and _is_gemini(model):
+        return os.environ.get("GEMINI_BASE_URL") or _GEMINI_BASE_URL
     return os.environ.get("OPENAI_BASE_URL") or os.environ.get("DEEPSEEK_BASE_URL")
 
 
-def create_client():
+def create_client(model: str | None = None):
     try:
         from openai import OpenAI
     except ModuleNotFoundError as exc:
@@ -67,15 +90,18 @@ def create_client():
             "From repository root run: `cd backend && pip install -r requirements.txt`"
         ) from exc
 
-    api_key = resolve_api_key()
+    api_key = resolve_api_key(model)
     if not api_key:
-        raise RuntimeError(
-            "No API key: set OPENAI_API_KEY or DEEPSEEK_API_KEY in environment or .env"
+        provider = (
+            "GEMINI_API_KEY" if (model and _is_gemini(model))
+            else "OPENAI_API_KEY or DEEPSEEK_API_KEY"
         )
-    base_url = resolve_base_url()
+        raise RuntimeError(f"No API key found. Set {provider} in environment or .env")
+
+    base_url = resolve_base_url(model)
     if base_url:
-        return OpenAI(api_key=api_key, base_url=base_url)
-    return OpenAI(api_key=api_key)
+        return OpenAI(api_key=api_key, base_url=base_url, timeout=DEFAULT_LLM_TIMEOUT_SEC)
+    return OpenAI(api_key=api_key, timeout=DEFAULT_LLM_TIMEOUT_SEC)
 
 
 def chat_json(
@@ -85,48 +111,67 @@ def chat_json(
     temperature: float = DEFAULT_LLM_TEMPERATURE,
     max_tokens: int = 8192,
 ) -> dict[str, Any]:
-    client = create_client()
     model_name = model or DEFAULT_LLM_MODEL
-    base_payload = {
+    client = create_client(model_name)
+
+    core_payload: dict[str, Any] = {
         "model": model_name,
         "messages": messages,
-        "response_format": {"type": "json_object"},
     }
-    # Some models (e.g. gpt-5-mini) only support default temperature.
-    temperature_payloads = [{}]
-    if not model_name.startswith("gpt-5"):
-        temperature_payloads = [{"temperature": temperature}]
-    elif temperature == 1:
-        temperature_payloads = [{"temperature": temperature}]
-    else:
-        temperature_payloads = [{}, {"temperature": temperature}]
 
-    # gpt-5-* uses max_completion_tokens, while many OpenAI-compatible APIs still use max_tokens.
-    token_params = [("max_tokens", max_tokens)]
-    if model_name.startswith("gpt-5"):
+    # --- response_format: try json_object first, fall back to omitting ---
+    response_format_payloads: list[dict[str, Any]] = [
+        {"response_format": {"type": "json_object"}},
+        {},
+    ]
+
+    # --- temperature ---
+    # gpt-5-*: only default (1) accepted; try without first, then with.
+    # gemini-* and others: include temperature directly.
+    if _is_gpt5(model_name):
+        if temperature == 1:
+            temperature_payloads: list[dict[str, Any]] = [{"temperature": temperature}]
+        else:
+            temperature_payloads = [{}, {"temperature": temperature}]
+    else:
+        temperature_payloads = [{"temperature": temperature}]
+
+    # --- token limit parameter ---
+    # gpt-5-* prefers max_completion_tokens; all others use max_tokens.
+    if _is_gpt5(model_name):
         token_params = [("max_completion_tokens", max_tokens), ("max_tokens", max_tokens)]
+    else:
+        token_params = [("max_tokens", max_tokens)]
 
     last_err: Exception | None = None
     resp = None
-    for temp_payload in temperature_payloads:
-        for token_key, token_value in token_params:
-            try:
-                resp = client.chat.completions.create(
-                    **base_payload,
-                    **temp_payload,
-                    **{token_key: token_value},
-                )
+
+    for response_payload in response_format_payloads:
+        for temp_payload in temperature_payloads:
+            for token_key, token_value in token_params:
+                try:
+                    resp = client.chat.completions.create(
+                        **core_payload,
+                        **response_payload,
+                        **temp_payload,
+                        **{token_key: token_value},
+                    )
+                    break
+                except Exception as exc:  # noqa: BLE001
+                    msg = str(exc).lower()
+                    retryable = (
+                        ("unsupported parameter" in msg and token_key.lower() in msg)
+                        or ("unsupported value" in msg and "temperature" in msg
+                            and "temperature" in temp_payload)
+                        or ("unsupported parameter" in msg and "response_format" in msg
+                            and "response_format" in response_payload)
+                    )
+                    if retryable:
+                        last_err = exc
+                        continue
+                    raise
+            if resp is not None:
                 break
-            except Exception as exc:  # noqa: BLE001
-                msg = str(exc).lower()
-                unsupported_token = "unsupported parameter" in msg and token_key.lower() in msg
-                unsupported_temperature = (
-                    "unsupported value" in msg and "temperature" in msg and "temperature" in temp_payload
-                )
-                if unsupported_token or unsupported_temperature:
-                    last_err = exc
-                    continue
-                raise
         if resp is not None:
             break
 
