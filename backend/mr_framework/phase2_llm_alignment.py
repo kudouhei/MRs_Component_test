@@ -32,7 +32,7 @@ def align_tests_with_llm(
     model: str | None = None,
     temperature: float = DEFAULT_LLM_TEMPERATURE,
 ) -> tuple[list[dict[str, Any]], str | None]:
-    if not resolve_api_key():
+    if not resolve_api_key(model or None):
         return mr_coverage, "no API key for LLM alignment"
     if not (tests or "").strip():
         return mr_coverage, "empty tests"

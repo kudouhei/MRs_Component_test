@@ -64,12 +64,17 @@ def _is_gpt5(model: str) -> bool:
 
 
 def resolve_api_key(model: str | None = None) -> str | None:
-    """Return the API key appropriate for the given model."""
+    """Return the API key appropriate for the given model.
+
+    When model is None (legacy call-sites that don't know the model yet),
+    all known key variables are checked so that a Gemini-only .env still works.
+    """
     if model and _is_gemini(model):
         return os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
     return (
         os.environ.get("OPENAI_API_KEY")
         or os.environ.get("DEEPSEEK_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
         or os.environ.get("LLM_API_KEY")
     )
 

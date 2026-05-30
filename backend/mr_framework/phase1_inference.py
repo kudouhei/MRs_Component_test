@@ -112,8 +112,8 @@ def infer_mrs_llm(
     model: str,
     temperature: float,
 ) -> tuple[list[MetamorphicRelation] | None, str | None]:
-    if not resolve_api_key():
-        return None, "API key not set (OPENAI_API_KEY or DEEPSEEK_API_KEY)"
+    if not resolve_api_key(model):
+        return None, "API key not set (OPENAI_API_KEY, DEEPSEEK_API_KEY, or GEMINI_API_KEY)"
     try:
         raw = chat_json(
             messages=_build_phase1_messages(code=code, description=description, meta=meta),
