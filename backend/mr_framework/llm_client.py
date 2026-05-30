@@ -40,6 +40,9 @@ DEFAULT_LLM_MODEL = (
 DEFAULT_LLM_TEMPERATURE = float(os.environ.get("LLM_TEMPERATURE", "0.2"))
 DEFAULT_LLM_TIMEOUT_SEC = float(os.environ.get("LLM_TIMEOUT_SEC", "120"))
 
+# Gemini typically needs more output tokens for large JSON responses.
+_GEMINI_MAX_TOKENS = 16384
+
 # Gemini OpenAI-compatible endpoint
 _GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
@@ -142,11 +145,13 @@ def chat_json(
         temperature_payloads = [{"temperature": temperature}]
 
     # --- token limit parameter ---
+    # Gemini gets a larger default to avoid JSON truncation.
     # gpt-5-* prefers max_completion_tokens; all others use max_tokens.
+    effective_max_tokens = _GEMINI_MAX_TOKENS if _is_gemini(model_name) else max_tokens
     if _is_gpt5(model_name):
-        token_params = [("max_completion_tokens", max_tokens), ("max_tokens", max_tokens)]
+        token_params = [("max_completion_tokens", effective_max_tokens), ("max_tokens", effective_max_tokens)]
     else:
-        token_params = [("max_tokens", max_tokens)]
+        token_params = [("max_tokens", effective_max_tokens)]
 
     last_err: Exception | None = None
     resp = None
@@ -186,7 +191,47 @@ def chat_json(
         raise RuntimeError("LLM request failed before receiving a response.")
 
     content = resp.choices[0].message.content or "{}"
-    return json.loads(content)
+    try:
+        return json.loads(content)
+    except json.JSONDecodeError:
+        repaired = _repair_truncated_json(content)
+        return json.loads(repaired)
+
+
+def _repair_truncated_json(text: str) -> str:
+    """Best-effort repair of a JSON string that was cut off mid-stream.
+
+    Walks the text character-by-character to track open strings, objects, and
+    arrays, then appends the minimum closing tokens needed to make the result
+    parseable.  Works for the typical LLM truncation pattern where the response
+    ends inside a string value or just before closing brackets.
+    """
+    stack: list[str] = []
+    in_string = False
+    escape_next = False
+
+    for ch in text:
+        if escape_next:
+            escape_next = False
+            continue
+        if ch == "\\" and in_string:
+            escape_next = True
+            continue
+        if ch == '"':
+            in_string = not in_string
+            continue
+        if in_string:
+            continue
+        if ch in "{[":
+            stack.append("}" if ch == "{" else "]")
+        elif ch in "}]" and stack and stack[-1] == ch:
+            stack.pop()
+
+    suffix = ""
+    if in_string:
+        suffix += '"'          # close the dangling string
+    suffix += "".join(reversed(stack))  # close open objects / arrays
+    return text + suffix
 
 
 def resolve_model_name(model: str | None = None, ablation_model: str | None = None) -> str:
