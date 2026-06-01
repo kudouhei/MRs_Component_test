@@ -162,7 +162,7 @@ def _hypergeom_right_tail(n_total: int, n_success: int, n_draw: int, x_obs: int)
 
 
 def _fdr_bh(rows: list[dict[str, Any]], p_key: str = "p_value") -> None:
-    ps = [(i, float(r.get(p_key) or 1.0)) for i, r in enumerate(rows)]
+    ps = [(i, float(1.0 if r.get(p_key) is None else r[p_key])) for i, r in enumerate(rows)]
     ps.sort(key=lambda x: x[1])
     m = len(ps)
     qvals = [1.0] * m
@@ -331,7 +331,8 @@ def run_exp2(rows: list[dict[str, Any]]) -> dict[str, Any]:
         ],
         "topic_blind_significance": significance_rows,
         "significant_topics_fdr_005": [
-            row["mr_type"] for row in significance_rows if float(row.get("q_value") or 1.0) < 0.05
+            row["mr_type"] for row in significance_rows
+            if float(1.0 if row.get("q_value") is None else row["q_value"]) < 0.05
         ],
     }
 
