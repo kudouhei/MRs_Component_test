@@ -11,7 +11,7 @@ from .models import SampleMeta
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_TEST = PROJECT_ROOT / "data" / "test"
 
-LIBRARIES = ("mui-material", "ant-design", "element-plus", "heroui", "mui-base-ui")
+LIBRARIES = ("mui-material", "ant-design", "element-plus", "mui-base-ui")
 CATEGORIES = ("Inputs", "Data display", "Feedback", "Navigation", "Layout")
 
 

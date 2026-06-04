@@ -1,13 +1,13 @@
 {
-  "total_valid_issues": 451,
-  "with_matched_component": 400,
+  "total_valid_issues": 416,
+  "with_matched_component": 368,
   "by_library": {
-    "mui-material": 245,
-    "mui-base-ui": 26,
     "ant-design": 22,
     "element-plus": 123,
-    "heroui": 35
+    "mui-base-ui": 26,
+    "mui-material": 245
   },
   "require_component_filter": false,
-  "max_pages_per_repo": 10
+  "max_pages_per_repo": 10,
+  "note": "Filtered to four study libraries: ant-design, element-plus, mui-material, mui-base-ui"
 }

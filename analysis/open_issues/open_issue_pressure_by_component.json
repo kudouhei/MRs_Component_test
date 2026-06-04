@@ -60,11 +60,6 @@
     "open_bug_count": 7
   },
   {
-    "library": "heroui",
-    "component": "Button",
-    "open_bug_count": 6
-  },
-  {
     "library": "mui-material",
     "component": "Drawer",
     "open_bug_count": 6
@@ -95,11 +90,6 @@
     "open_bug_count": 4
   },
   {
-    "library": "heroui",
-    "component": "Toast",
-    "open_bug_count": 4
-  },
-  {
     "library": "mui-base-ui",
     "component": "Field",
     "open_bug_count": 4
@@ -127,16 +117,6 @@
   {
     "library": "element-plus",
     "component": "Scrollbar",
-    "open_bug_count": 3
-  },
-  {
-    "library": "heroui",
-    "component": "Description",
-    "open_bug_count": 3
-  },
-  {
-    "library": "heroui",
-    "component": "Popover",
     "open_bug_count": 3
   },
   {
@@ -187,31 +167,6 @@
   {
     "library": "element-plus",
     "component": "Drawer",
-    "open_bug_count": 2
-  },
-  {
-    "library": "heroui",
-    "component": "AlertDialog",
-    "open_bug_count": 2
-  },
-  {
-    "library": "heroui",
-    "component": "ButtonGroup",
-    "open_bug_count": 2
-  },
-  {
-    "library": "heroui",
-    "component": "Dropdown",
-    "open_bug_count": 2
-  },
-  {
-    "library": "heroui",
-    "component": "Input",
-    "open_bug_count": 2
-  },
-  {
-    "library": "heroui",
-    "component": "Tooltip",
     "open_bug_count": 2
   },
   {
@@ -297,36 +252,6 @@
   {
     "library": "element-plus",
     "component": "Tooltip",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "Accordion",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "Checkbox",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "CheckboxGroup",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "FieldError",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "Label",
-    "open_bug_count": 1
-  },
-  {
-    "library": "heroui",
-    "component": "Select",
     "open_bug_count": 1
   },
   {
