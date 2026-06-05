@@ -1,0 +1,11 @@
+mr_type,tagged_pairs,overlap_count,enrichment_ratio,odds_ratio,p_value,q_value,fdr_significant
+placement_consistency,59,21,2.011791,3.264292,0.000246,0.00246,yes
+keyboard_interaction,62,42,1.246196,1.927258,0.014388,0.07194,no
+null_handling,12,4,1.710526,2.238134,0.189069,0.63023,no
+responsive_sizing,19,8,1.102084,1.204025,0.446893,1.0,no
+focus_management,19,10,0.98212,0.955679,0.627458,1.0,no
+aria_mapping,22,11,0.882353,0.752969,0.808525,1.0,no
+state_synchronization,28,0,0.0,1.802005,1.0,1.0,no
+interaction_feedback,45,0,,7.593407,1.0,1.0,no
+pagination_consistency,15,0,0.0,2.663082,1.0,1.0,no
+data_validation,21,0,0.0,2.435216,1.0,1.0,no

@@ -13,6 +13,14 @@ from .models import AlignmentReport, SampleMeta, utc_now_iso
 from .samples import PROJECT_ROOT, component_name_variants
 
 OPEN_ISSUES_DIR = PROJECT_ROOT / "analysis" / "open_issues"
+HIGH_PRESSURE_THRESHOLD = 9
+PRESSURE_BIN_DEFS = {
+    "none": "0",
+    "low": "1-2",
+    "medium": "3-8",
+    "high": f">={HIGH_PRESSURE_THRESHOLD}",
+}
+RQ4_ENSEMBLE_MODEL_DIRS = ("deepseek", "gemini-2.5-flash", "gpt-5-mini")
 TOPIC_KW = {
     "keyboard_interaction": ["keyboard", "keydown", "keyup", "arrow", "enter", "escape", "tab"],
     "focus_management": ["focus", "blur", "activeelement", "focus trap"],
@@ -176,18 +184,87 @@ def _fdr_bh(rows: list[dict[str, Any]], p_key: str = "p_value") -> None:
         rows[ranked_idx]["q_value"] = round(float(q), 6)
 
 
-def _high_pressure_gap_test(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def _load_open_issues_corpus() -> list[dict[str, Any]] | None:
+    for name in ("open_issues_four_repos.json", "open_issues_five_repos.json"):
+        path = OPEN_ISSUES_DIR / name
+        if path.exists():
+            return json.loads(path.read_text(encoding="utf-8"))
+    return None
+
+
+def _completeness_rates(row: dict[str, Any]) -> tuple[float, float, float]:
+    comp = row.get("completeness") or {}
+    return (
+        float(comp.get("coverage_rate") or 0),
+        float(comp.get("strict_gap_rate") or 0),
+        float(comp.get("touch_rate") or 0),
+    )
+
+
+def load_model_report_index(model_dir_name: str) -> dict[str, dict[str, Any]]:
+    reports_dir = PROJECT_ROOT / "output" / "model_runs" / model_dir_name / "reports"
+    if not reports_dir.is_dir():
+        return {}
+    out: dict[str, dict[str, Any]] = {}
+    for path in reports_dir.glob("*.json"):
+        try:
+            row = json.loads(path.read_text(encoding="utf-8"))
+            sid = (row.get("meta") or {}).get("sample_id")
+            if sid:
+                out[sid] = row
+        except (json.JSONDecodeError, OSError):
+            continue
+    return out
+
+
+def build_ensemble_exp1_rows(
+    primary_rows: list[dict[str, Any]],
+    *,
+    model_dirs: tuple[str, ...] = RQ4_ENSEMBLE_MODEL_DIRS,
+) -> list[dict[str, Any]]:
+    """Per-component mean of coverage/touch/gap across LLM runs (macro input for RQ4 Exp1)."""
+    indices = {m: load_model_report_index(m) for m in model_dirs}
+    out: list[dict[str, Any]] = []
+    for row in primary_rows:
+        sid = (row.get("meta") or {}).get("sample_id")
+        if not sid:
+            continue
+        covers: list[float] = []
+        gaps: list[float] = []
+        touches: list[float] = []
+        for model in model_dirs:
+            other = indices[model].get(sid)
+            if not other:
+                break
+            c, g, t = _completeness_rates(other)
+            covers.append(c)
+            gaps.append(g)
+            touches.append(t)
+        if len(covers) != len(model_dirs):
+            continue
+        merged = dict(row)
+        merged["completeness"] = {
+            **(row.get("completeness") or {}),
+            "coverage_rate": round(sum(covers) / len(covers), 6),
+            "strict_gap_rate": round(sum(gaps) / len(gaps), 6),
+            "touch_rate": round(sum(touches) / len(touches), 6),
+        }
+        out.append(merged)
+    return out
+
+
+def _high_pressure_gap_test(rows: list[dict[str, Any]], *, threshold: int = HIGH_PRESSURE_THRESHOLD) -> dict[str, Any]:
     ps = [float(r.get("issue_pressure") or 0) for r in rows]
     gaps = [float((r.get("completeness") or {}).get("strict_gap_rate") or 0) for r in rows]
     covs = [float((r.get("completeness") or {}).get("coverage_rate") or 0) for r in rows]
-    labels = [p >= 10 for p in ps]
+    labels = [p >= threshold for p in ps]
     high_gap = [g for g, h in zip(gaps, labels) if h]
     rest_gap = [g for g, h in zip(gaps, labels) if not h]
     high_cov = [c for c, h in zip(covs, labels) if h]
     rest_cov = [c for c, h in zip(covs, labels) if not h]
     ci = _bootstrap_ci_mean_diff(high_gap, rest_gap)
     return {
-        "high_threshold": 10,
+        "high_threshold": threshold,
         "n_high": len(high_gap),
         "n_other": len(rest_gap),
         "mean_strict_gap_high": round(_mean(high_gap), 6),
@@ -202,15 +279,29 @@ def _high_pressure_gap_test(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def run_exp1(rows: list[dict[str, Any]]) -> dict[str, Any]:
+def run_exp1(
+    rows: list[dict[str, Any]],
+    *,
+    coverage_metric: str = "single_model",
+    ensemble_models: list[str] | None = None,
+) -> dict[str, Any]:
     ps = [float(r.get("issue_pressure") or 0) for r in rows]
     trs = [float((r.get("completeness") or {}).get("coverage_rate") or 0) for r in rows]
     gaps = [float((r.get("completeness") or {}).get("strict_gap_rate") or 0) for r in rows]
+    touches = [float((r.get("completeness") or {}).get("touch_rate") or 0) for r in rows]
     return {
         "n": len(rows),
+        "coverage_metric": coverage_metric,
+        "ensemble_models": ensemble_models,
+        "pressure_bin_definitions": dict(PRESSURE_BIN_DEFS),
+        "mean_coverage_rate": round(_mean(trs), 6),
+        "mean_touch_rate": round(_mean(touches), 6),
+        "mean_strict_gap_rate": round(_mean(gaps), 6),
         "pearson_pressure_vs_coverage_rate": _pearson(ps, trs),
+        "pearson_pressure_vs_touch_rate": _pearson(ps, touches),
         "pearson_pressure_vs_strict_gap_rate": _pearson(ps, gaps),
         "spearman_pressure_vs_coverage_rate": _spearman(ps, trs),
+        "spearman_pressure_vs_touch_rate": _spearman(ps, touches),
         "spearman_pressure_vs_strict_gap_rate": _spearman(ps, gaps),
         "pressure_bins": _pressure_bins(rows),
         "high_pressure_vs_others_strict_gap_test": _high_pressure_gap_test(rows),
@@ -230,108 +321,203 @@ def run_exp1(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def run_exp2(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    path = OPEN_ISSUES_DIR / "open_issues_five_repos.json"
-    if not path.exists():
-        return {"error": "missing open_issues corpus"}
-    issues = json.loads(path.read_text(encoding="utf-8"))
-    hits: Counter[str] = Counter()
-    topic_total: Counter[str] = Counter()
-    examples: dict[str, list[dict[str, Any]]] = {}
-    matched_pairs: list[dict[str, Any]] = []
+def _by_relation_type_map(row: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    raw = (row.get("completeness") or {}).get("by_relation_type") or []
+    if isinstance(raw, dict):
+        return raw
+    return {str(k): v for k, v in raw}
 
-    sample_blind_types = {
-        r["meta"]["sample_id"]: {b["relation_type"] for b in (r.get("blind_spots") or {}).get("top_blind_mr_types") or []}
-        for r in rows
-    }
 
+def _issue_topics(iss: dict[str, Any]) -> set[str]:
+    blob = f"{iss.get('title','')} {iss.get('labels','')} {iss.get('body','')}".lower()
+    return {t for t, kws in TOPIC_KW.items() if any(k in blob for k in kws)}
+
+
+def _match_issue_to_sample_id(rows: list[dict[str, Any]], iss: dict[str, Any]) -> str | None:
+    comp, lib = iss.get("matched_component"), iss.get("library")
+    if not comp or not lib:
+        return None
+    comp_l = str(comp).lower()
+    for r in rows:
+        m = r["meta"]
+        if m["library"] != lib:
+            continue
+        name_l = m["component_name"].lower()
+        if comp_l in name_l or name_l in comp_l:
+            return m["sample_id"]
+    return None
+
+
+def build_component_issue_topics(rows: list[dict[str, Any]], issues: list[dict[str, Any]]) -> dict[str, set[str]]:
+    out: dict[str, set[str]] = {r["meta"]["sample_id"]: set() for r in rows}
+    for iss in issues:
+        sid = _match_issue_to_sample_id(rows, iss)
+        if not sid:
+            continue
+        out.setdefault(sid, set()).update(_issue_topics(iss))
+    return out
+
+
+def build_component_relation_types(
+    primary_rows: list[dict[str, Any]],
+    *,
+    model_dirs: tuple[str, ...] = RQ4_ENSEMBLE_MODEL_DIRS,
+) -> dict[str, set[str]]:
+    """Union of inferred relation_type labels per component across LLM runs."""
+    indices = {m: load_model_report_index(m) for m in model_dirs}
+    out: dict[str, set[str]] = {}
+    for row in primary_rows:
+        sid = (row.get("meta") or {}).get("sample_id")
+        if not sid:
+            continue
+        types: set[str] = set()
+        for model in model_dirs:
+            other = indices[model].get(sid)
+            if not other:
+                continue
+            for mr in other.get("mr_coverage") or []:
+                rel = mr.get("relation_type")
+                if rel:
+                    types.add(str(rel))
+        out[sid] = types
+    return out
+
+
+def _binomial_right_tail(n: int, k: int, p: float) -> float:
+    if n <= 0 or k <= 0:
+        return 1.0
+    if p <= 0:
+        return 0.0 if k > 0 else 1.0
+    if p >= 1:
+        return 1.0
+    tail = 0.0
+    for x in range(k, n + 1):
+        tail += math.comb(n, x) * (p**x) * ((1 - p) ** (n - x))
+    return float(min(1.0, tail))
+
+
+def _build_issue_component_pairs(rows: list[dict[str, Any]], issues: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    pairs: list[dict[str, Any]] = []
     for iss in issues:
         comp, lib = iss.get("matched_component"), iss.get("library")
         if not comp:
             continue
-        blob = f"{iss.get('title','')} {iss.get('labels','')} {iss.get('body','')}".lower()
-        topics = {t for t, kws in TOPIC_KW.items() if any(k in blob for k in kws)}
-        for t in topics:
-            topic_total[t] += 1
+        topics = _issue_topics(iss)
+        if not topics:
+            continue
+        comp_l = str(comp).lower()
         for r in rows:
             m = r["meta"]
             if m["library"] != lib:
                 continue
-            if comp.lower() not in m["component_name"].lower() and m["component_name"].lower() not in comp.lower():
+            name_l = m["component_name"].lower()
+            if comp_l not in name_l and name_l not in comp_l:
                 continue
-            sample_id = m["sample_id"]
-            blind = sample_blind_types.get(sample_id, set())
-            matched_pairs.append(
+            pairs.append(
                 {
-                    "sample_id": sample_id,
+                    "sample_id": m["sample_id"],
                     "library": lib,
+                    "component_name": m["component_name"],
                     "issue": iss.get("html_url") or iss.get("url") or iss.get("number"),
                     "title": str(iss.get("title") or "")[:180],
                     "topics": topics,
-                    "blind_types": blind,
                 }
             )
-            for t in topics & blind:
-                hits[t] += 1
-                examples.setdefault(t, [])
-                if len(examples[t]) < 5:
-                    examples[t].append(
-                        {
-                            "sample_id": m["sample_id"],
-                            "issue": iss.get("html_url") or iss.get("url") or iss.get("number"),
-                            "title": str(iss.get("title") or "")[:180],
-                        }
-                    )
+    return pairs
 
-    significance_rows: list[dict[str, Any]] = []
-    n_pairs = len(matched_pairs)
-    for t in TOPIC_KW:
-        if n_pairs == 0:
-            break
-        a = sum(1 for p in matched_pairs if t in p["topics"] and t in p["blind_types"])
-        b = sum(1 for p in matched_pairs if t in p["topics"] and t not in p["blind_types"])
-        c = sum(1 for p in matched_pairs if t not in p["topics"] and t in p["blind_types"])
-        d = n_pairs - a - b - c
-        n_topic = a + b
-        n_blind = a + c
-        if n_topic == 0:
+
+def run_exp2(
+    rows: list[dict[str, Any]],
+    *,
+    mapping_metric: str = "ensemble_union",
+    ensemble_models: list[str] | None = None,
+) -> dict[str, Any]:
+    """Bug themes (keyword-tagged) vs. whether they land on inferred MR relation_types."""
+    issues = _load_open_issues_corpus()
+    if not issues:
+        return {"error": "missing open_issues corpus"}
+
+    comp_types = build_component_relation_types(rows)
+    pairs = _build_issue_component_pairs(rows, issues)
+    n_components = len(rows)
+
+    topic_issue_counts: Counter[str] = Counter()
+    for iss in issues:
+        for t in _issue_topics(iss):
+            topic_issue_counts[t] += 1
+
+    type_prevalence = {
+        t: sum(1 for sid, types in comp_types.items() if t in types) / n_components
+        for t in TOPIC_KW
+    }
+
+    mapping_rows: list[dict[str, Any]] = []
+    miss_examples: dict[str, list[dict[str, Any]]] = {t: [] for t in TOPIC_KW}
+
+    for rel_type in TOPIC_KW:
+        tagged_pairs = [p for p in pairs if rel_type in p["topics"]]
+        if not tagged_pairs:
             continue
-        expected = (n_topic * n_blind / n_pairs) if n_pairs else 0.0
-        p_val = _hypergeom_right_tail(n_pairs, n_blind, n_topic, a)
-        odds_ratio = ((a + 0.5) * (d + 0.5)) / ((b + 0.5) * (c + 0.5))
-        significance_rows.append(
+        lands = 0
+        for p in tagged_pairs:
+            sid = p["sample_id"]
+            if rel_type in (comp_types.get(sid) or set()):
+                lands += 1
+            elif len(miss_examples[rel_type]) < 5:
+                miss_examples[rel_type].append(
+                    {
+                        "sample_id": sid,
+                        "library": p["library"],
+                        "component_name": p["component_name"],
+                        "issue": p["issue"],
+                        "title": p["title"],
+                    }
+                )
+
+        n_tagged = len(tagged_pairs)
+        map_rate = lands / n_tagged
+        baseline = type_prevalence.get(rel_type) or 0.0
+        p_val = _binomial_right_tail(n_tagged, lands, baseline) if baseline > 0 else None
+        mapping_rows.append(
             {
-                "mr_type": t,
-                "n_pairs": n_pairs,
-                "topic_count": n_topic,
-                "blind_count": n_blind,
-                "overlap_count": a,
-                "expected_overlap_under_null": round(expected, 6),
-                "enrichment_ratio": round(a / expected, 6) if expected > 0 else None,
-                "odds_ratio": round(odds_ratio, 6),
-                "p_value": round(p_val, 6),
-                "examples": examples.get(t, []),
+                "relation_type": rel_type,
+                "n_tagged_issue_component_pairs": n_tagged,
+                "n_lands_on_mr_type": lands,
+                "n_not_in_inferred_mrs": n_tagged - lands,
+                "mapping_rate": round(map_rate, 6),
+                "corpus_type_prevalence": round(baseline, 6),
+                "enrichment_vs_prevalence": round(map_rate / baseline, 6) if baseline > 0 else None,
+                "p_value": round(p_val, 6) if p_val is not None else None,
+                "issue_topic_count_in_corpus": topic_issue_counts.get(rel_type, 0),
+                "miss_examples": miss_examples.get(rel_type, []),
             }
         )
-    _fdr_bh(significance_rows, p_key="p_value")
-    significance_rows.sort(key=lambda x: (x.get("q_value", 1.0), x.get("p_value", 1.0), -x.get("overlap_count", 0)))
 
+    _fdr_bh(mapping_rows, p_key="p_value")
+    mapping_rows.sort(
+        key=lambda x: (
+            x.get("q_value", 1.0),
+            x.get("p_value", 1.0) if x.get("p_value") is not None else 1.0,
+            -float(x.get("mapping_rate") or 0),
+        )
+    )
+
+    total_tagged = sum(r["n_tagged_issue_component_pairs"] for r in mapping_rows)
+    total_lands = sum(r["n_lands_on_mr_type"] for r in mapping_rows)
     return {
-        "n_matched_issue_component_pairs": n_pairs,
-        "topic_counts_in_issues": [{"mr_type": k, "count": v} for k, v in topic_total.most_common(20)],
-        "top_topic_blind_overlaps": [
-            {
-                "mr_type": k,
-                "overlap_count": v,
-                "issue_topic_count": topic_total.get(k, 0),
-                "overlap_ratio": round(v / topic_total[k], 6) if topic_total.get(k) else 0.0,
-                "examples": examples.get(k, []),
-            }
-            for k, v in hits.most_common(15)
+        "mapping_metric": mapping_metric,
+        "ensemble_models": ensemble_models,
+        "analysis_unit": "issue_component_pair_with_keyword_topic",
+        "n_components": n_components,
+        "n_matched_pairs_with_topic": len(pairs),
+        "overall_mapping_rate": round(total_lands / total_tagged, 6) if total_tagged else None,
+        "topic_counts_in_issues": [
+            {"relation_type": k, "count": v} for k, v in topic_issue_counts.most_common(20)
         ],
-        "topic_blind_significance": significance_rows,
+        "topic_to_mr_type_mapping": mapping_rows,
         "significant_topics_fdr_005": [
-            row["mr_type"] for row in significance_rows
+            row["relation_type"]
+            for row in mapping_rows
             if float(1.0 if row.get("q_value") is None else row["q_value"]) < 0.05
         ],
     }
@@ -341,8 +527,8 @@ def _pressure_bins(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     bins = [
         ("none", lambda p: p == 0),
         ("low", lambda p: 1 <= p <= 2),
-        ("medium", lambda p: 3 <= p <= 9),
-        ("high", lambda p: p >= 10),
+        ("medium", lambda p: 3 <= p <= 8),
+        ("high", lambda p: p >= HIGH_PRESSURE_THRESHOLD),
     ]
     out = []
     for name, pred in bins:
@@ -351,12 +537,14 @@ def _pressure_bins(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             out.append({"bin": name, "n": 0})
             continue
         cov = [float((r.get("completeness") or {}).get("coverage_rate") or 0) for r in bucket]
+        touch = [float((r.get("completeness") or {}).get("touch_rate") or 0) for r in bucket]
         gap = [float((r.get("completeness") or {}).get("strict_gap_rate") or 0) for r in bucket]
         out.append(
             {
                 "bin": name,
                 "n": len(bucket),
                 "mean_coverage_rate": round(sum(cov) / len(cov), 6),
+                "mean_touch_rate": round(sum(touch) / len(touch), 6),
                 "mean_strict_gap_rate": round(sum(gap) / len(gap), 6),
                 "zero_coverage_count": sum(1 for x in cov if x == 0),
             }
@@ -364,16 +552,37 @@ def _pressure_bins(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
-def build_alignment_report(rows: list[dict[str, Any]], version_snapshot: str | None = None) -> AlignmentReport:
+def build_alignment_report(
+    rows: list[dict[str, Any]],
+    version_snapshot: str | None = None,
+    *,
+    exp1_rows: list[dict[str, Any]] | None = None,
+    exp1_coverage_metric: str = "single_model",
+    exp1_ensemble_models: list[str] | None = None,
+    exp2_mapping_metric: str = "ensemble_union",
+    exp2_ensemble_models: list[str] | None = None,
+) -> AlignmentReport:
     v = version_snapshot or utc_now_iso()
-    e1, e2 = run_exp1(rows), run_exp2(rows)
+    e1_input = exp1_rows if exp1_rows is not None else rows
+    e1 = run_exp1(
+        e1_input,
+        coverage_metric=exp1_coverage_metric,
+        ensemble_models=exp1_ensemble_models,
+    )
+    e2 = run_exp2(
+        rows,
+        mapping_metric=exp2_mapping_metric,
+        ensemble_models=exp2_ensemble_models,
+    )
+    sig = e2.get("significant_topics_fdr_005") or []
     return AlignmentReport(
         version_snapshot=v,
         exp1=e1,
         exp2=e2,
         val_summary=(
             f"Cross-sectional alignment at V={v}; "
-            f"r(pressure,coverage)={e1.get('pearson_pressure_vs_coverage_rate')}; "
-            "co-occurrence only, not causal prediction."
+            f"Exp1={exp1_coverage_metric} r(pressure,cover)={e1.get('pearson_pressure_vs_coverage_rate')}; "
+            f"Exp2={exp2_mapping_metric} map={e2.get('overall_mapping_rate')}; "
+            f"FDR-significant={sig}; not causal prediction."
         ),
     )

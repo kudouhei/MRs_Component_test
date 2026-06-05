@@ -1,0 +1,11 @@
+theme_label,relation_type,n_tagged_pairs,n_lands_on_mr_type,n_not_in_inferred_mrs,mapping_rate_pct,corpus_type_prevalence_pct,enrichment_vs_prevalence,p_value,q_value,fdr_significant,issue_topic_count_in_corpus
+Placement,placement_consistency,59,47,12,79.7,52.8,1.508625,1.7e-05,0.00017,yes,53
+Focus,focus_management,19,19,0,100.0,86.0,1.163043,0.056712,0.245523,no,22
+Responsive layout,responsive_sizing,19,14,5,73.7,54.7,1.347728,0.073657,0.245523,no,20
+Null / empty,null_handling,12,12,0,100.0,84.6,1.18232,0.134022,0.2811,no,11
+ARIA / a11y,aria_mapping,22,22,0,100.0,91.6,1.091837,0.144721,0.2811,no,24
+Validation,data_validation,21,9,12,42.9,30.8,1.38961,0.16866,0.2811,no,21
+Pagination,pagination_consistency,15,3,12,20.0,15.9,1.258824,0.434375,0.620536,no,19
+Click / hover,interaction_feedback,45,7,38,15.6,17.8,0.876023,0.709485,0.886856,no,43
+Keyboard,keyboard_interaction,62,52,10,83.9,86.9,0.964967,0.818601,0.909557,no,66
+State sync,state_synchronization,28,16,12,57.1,79.4,0.719328,0.998106,0.998106,no,30

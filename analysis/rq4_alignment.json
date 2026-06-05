@@ -1,0 +1,629 @@
+{
+  "version_snapshot": "2026-06-05T13:11:45+00:00",
+  "exp1": {
+    "n": 214,
+    "coverage_metric": "ensemble_mean",
+    "ensemble_models": [
+      "deepseek",
+      "gemini-2.5-flash",
+      "gpt-5-mini"
+    ],
+    "pressure_bin_definitions": {
+      "none": "0",
+      "low": "1-2",
+      "medium": "3-8",
+      "high": ">=9"
+    },
+    "mean_coverage_rate": 0.44909,
+    "mean_touch_rate": 0.836593,
+    "mean_strict_gap_rate": 0.55091,
+    "pearson_pressure_vs_coverage_rate": -0.1084,
+    "pearson_pressure_vs_touch_rate": -0.0218,
+    "pearson_pressure_vs_strict_gap_rate": 0.1084,
+    "spearman_pressure_vs_coverage_rate": 0.0132,
+    "spearman_pressure_vs_touch_rate": 0.0404,
+    "spearman_pressure_vs_strict_gap_rate": -0.0132,
+    "pressure_bins": [
+      {
+        "bin": "none",
+        "n": 150,
+        "mean_coverage_rate": 0.447322,
+        "mean_touch_rate": 0.83835,
+        "mean_strict_gap_rate": 0.552678,
+        "zero_coverage_count": 2
+      },
+      {
+        "bin": "low",
+        "n": 36,
+        "mean_coverage_rate": 0.477023,
+        "mean_touch_rate": 0.836881,
+        "mean_strict_gap_rate": 0.522977,
+        "zero_coverage_count": 0
+      },
+      {
+        "bin": "medium",
+        "n": 19,
+        "mean_coverage_rate": 0.468247,
+        "mean_touch_rate": 0.837613,
+        "mean_strict_gap_rate": 0.531753,
+        "zero_coverage_count": 1
+      },
+      {
+        "bin": "high",
+        "n": 9,
+        "mean_coverage_rate": 0.326397,
+        "mean_touch_rate": 0.804003,
+        "mean_strict_gap_rate": 0.673603,
+        "zero_coverage_count": 0
+      }
+    ],
+    "high_pressure_vs_others_strict_gap_test": {
+      "high_threshold": 9,
+      "n_high": 9,
+      "n_other": 205,
+      "mean_strict_gap_high": 0.673603,
+      "mean_strict_gap_other": 0.545523,
+      "strict_gap_diff_high_minus_other": 0.12808,
+      "strict_gap_diff_bootstrap95ci": [
+        -0.035701,
+        0.293758
+      ],
+      "strict_gap_diff_permutation_pvalue": 0.113094,
+      "strict_gap_cliffs_delta": 0.279133,
+      "mean_coverage_high": 0.326397,
+      "mean_coverage_other": 0.454477,
+      "coverage_diff_high_minus_other": -0.12808
+    },
+    "high_pressure_low_coverage": [
+      {
+        "sample_id": "101-ant-design-Navigation-Steps",
+        "library": "ant-design",
+        "category": "Navigation",
+        "component_name": "Steps",
+        "issue_pressure": 8.0,
+        "coverage_rate": 0.116402,
+        "strict_gap_rate": 0.883598
+      },
+      {
+        "sample_id": "112-element-plus-Inputs-Scrollbar",
+        "library": "element-plus",
+        "category": "Inputs",
+        "component_name": "Scrollbar",
+        "issue_pressure": 3.0,
+        "coverage_rate": 0.155556,
+        "strict_gap_rate": 0.844444
+      },
+      {
+        "sample_id": "141-element-plus-Data display-Empty",
+        "library": "element-plus",
+        "category": "Data display",
+        "component_name": "Empty",
+        "issue_pressure": 24.0,
+        "coverage_rate": 0.060847,
+        "strict_gap_rate": 0.939153
+      },
+      {
+        "sample_id": "17-mui-material-Data display-Icons",
+        "library": "mui-material",
+        "category": "Data display",
+        "component_name": "Icons",
+        "issue_pressure": 24.0,
+        "coverage_rate": 0.020833,
+        "strict_gap_rate": 0.979167
+      },
+      {
+        "sample_id": "26-mui-material-Data display-App Bar",
+        "library": "mui-material",
+        "category": "Data display",
+        "component_name": "App Bar",
+        "issue_pressure": 3.0,
+        "coverage_rate": 0.069444,
+        "strict_gap_rate": 0.930556
+      },
+      {
+        "sample_id": "3-mui-material-Inputs-Button Group",
+        "library": "mui-material",
+        "category": "Inputs",
+        "component_name": "Button Group",
+        "issue_pressure": 3.0,
+        "coverage_rate": 0.290741,
+        "strict_gap_rate": 0.709259
+      },
+      {
+        "sample_id": "36-mui-material-Navigation-Link",
+        "library": "mui-material",
+        "category": "Navigation",
+        "component_name": "Link",
+        "issue_pressure": 49.0,
+        "coverage_rate": 0.133987,
+        "strict_gap_rate": 0.866013
+      },
+      {
+        "sample_id": "44-mui-material-Layout-Container",
+        "library": "mui-material",
+        "category": "Layout",
+        "component_name": "Container",
+        "issue_pressure": 11.0,
+        "coverage_rate": 0.086275,
+        "strict_gap_rate": 0.913725
+      },
+      {
+        "sample_id": "45-mui-material-Layout-Grid",
+        "library": "mui-material",
+        "category": "Layout",
+        "component_name": "Grid",
+        "issue_pressure": 3.0,
+        "coverage_rate": 0.054167,
+        "strict_gap_rate": 0.945833
+      },
+      {
+        "sample_id": "46-mui-material-Layout-Stack",
+        "library": "mui-material",
+        "category": "Layout",
+        "component_name": "Stack",
+        "issue_pressure": 4.0,
+        "coverage_rate": 0.0,
+        "strict_gap_rate": 1.0
+      }
+    ]
+  },
+  "exp2": {
+    "mapping_metric": "ensemble_union",
+    "ensemble_models": [
+      "deepseek",
+      "gemini-2.5-flash",
+      "gpt-5-mini"
+    ],
+    "analysis_unit": "issue_component_pair_with_keyword_topic",
+    "n_components": 214,
+    "n_matched_pairs_with_topic": 236,
+    "overall_mapping_rate": 0.665563,
+    "topic_counts_in_issues": [
+      {
+        "relation_type": "keyboard_interaction",
+        "count": 66
+      },
+      {
+        "relation_type": "placement_consistency",
+        "count": 53
+      },
+      {
+        "relation_type": "interaction_feedback",
+        "count": 43
+      },
+      {
+        "relation_type": "state_synchronization",
+        "count": 30
+      },
+      {
+        "relation_type": "aria_mapping",
+        "count": 24
+      },
+      {
+        "relation_type": "focus_management",
+        "count": 22
+      },
+      {
+        "relation_type": "data_validation",
+        "count": 21
+      },
+      {
+        "relation_type": "responsive_sizing",
+        "count": 20
+      },
+      {
+        "relation_type": "pagination_consistency",
+        "count": 19
+      },
+      {
+        "relation_type": "null_handling",
+        "count": 11
+      }
+    ],
+    "topic_to_mr_type_mapping": [
+      {
+        "relation_type": "placement_consistency",
+        "n_tagged_issue_component_pairs": 59,
+        "n_lands_on_mr_type": 47,
+        "n_not_in_inferred_mrs": 12,
+        "mapping_rate": 0.79661,
+        "corpus_type_prevalence": 0.528037,
+        "enrichment_vs_prevalence": 1.508625,
+        "p_value": 1.7e-05,
+        "issue_topic_count_in_corpus": 53,
+        "miss_examples": [
+          {
+            "sample_id": "44-mui-material-Layout-Container",
+            "library": "mui-material",
+            "component_name": "Container",
+            "issue": "https://github.com/mui/material-ui/issues/38004",
+            "title": "Tabs indicator's wrong position when using direction: rtl"
+          },
+          {
+            "sample_id": "11-mui-material-Inputs-Text Field",
+            "library": "mui-material",
+            "component_name": "Text Field",
+            "issue": "https://github.com/mui/material-ui/issues/34113",
+            "title": "[TextControl] First element in container margin interferes with label absolute positioning"
+          },
+          {
+            "sample_id": "44-mui-material-Layout-Container",
+            "library": "mui-material",
+            "component_name": "Container",
+            "issue": "https://github.com/mui/material-ui/issues/33955",
+            "title": "[Menu] Component appear far from their original position when the zoom style is applied"
+          },
+          {
+            "sample_id": "11-mui-material-Inputs-Text Field",
+            "library": "mui-material",
+            "component_name": "Text Field",
+            "issue": "https://github.com/mui/material-ui/issues/32466",
+            "title": "[TextField] Label is incorrectly positioned in SSR"
+          },
+          {
+            "sample_id": "11-mui-material-Inputs-Text Field",
+            "library": "mui-material",
+            "component_name": "Text Field",
+            "issue": "https://github.com/mui/material-ui/issues/31205",
+            "title": "[TextField] Label position and triangle icon button for drop down lists are not tied to root font size"
+          }
+        ],
+        "q_value": 0.00017
+      },
+      {
+        "relation_type": "focus_management",
+        "n_tagged_issue_component_pairs": 19,
+        "n_lands_on_mr_type": 19,
+        "n_not_in_inferred_mrs": 0,
+        "mapping_rate": 1.0,
+        "corpus_type_prevalence": 0.859813,
+        "enrichment_vs_prevalence": 1.163043,
+        "p_value": 0.056712,
+        "issue_topic_count_in_corpus": 22,
+        "miss_examples": [],
+        "q_value": 0.245523
+      },
+      {
+        "relation_type": "responsive_sizing",
+        "n_tagged_issue_component_pairs": 19,
+        "n_lands_on_mr_type": 14,
+        "n_not_in_inferred_mrs": 5,
+        "mapping_rate": 0.736842,
+        "corpus_type_prevalence": 0.546729,
+        "enrichment_vs_prevalence": 1.347728,
+        "p_value": 0.073657,
+        "issue_topic_count_in_corpus": 20,
+        "miss_examples": [
+          {
+            "sample_id": "32-mui-material-Feedback-Tooltip",
+            "library": "mui-material",
+            "component_name": "Tooltip",
+            "issue": "https://github.com/mui/material-ui/issues/23266",
+            "title": "[Tooltip] Component fire on resize event of the iframe"
+          },
+          {
+            "sample_id": "32-mui-material-Feedback-Tooltip",
+            "library": "mui-material",
+            "component_name": "Tooltip",
+            "issue": "https://github.com/mui/material-ui/issues/36020",
+            "title": "[Tooltip display bug] Tooltip will close if the tooltip height dynamically expand and exceeds the viewport"
+          },
+          {
+            "sample_id": "190-mui-base-ui-Inputs-Input",
+            "library": "mui-base-ui",
+            "component_name": "Input",
+            "issue": "https://github.com/mui/base-ui/issues/3227",
+            "title": "`--available-height` unexpectedly changes when opening keyboard on iOS"
+          },
+          {
+            "sample_id": "174-element-plus-Navigation-Link",
+            "library": "element-plus",
+            "component_name": "Link",
+            "issue": "https://github.com/element-plus/element-plus/issues/6591",
+            "title": "[Bug Report] [Component] When the vertical navigation menu is collapsed，Reduce window height，Submenus not appearing in the correct position。"
+          },
+          {
+            "sample_id": "174-element-plus-Navigation-Link",
+            "library": "element-plus",
+            "component_name": "Link",
+            "issue": "https://github.com/element-plus/element-plus/issues/10925",
+            "title": "[Bug Report] [Component] [table] 无数据时，#default=\"scope\"会执行一次；当给列添加width属性后，#default=\"scope\"会执行多次"
+          }
+        ],
+        "q_value": 0.245523
+      },
+      {
+        "relation_type": "null_handling",
+        "n_tagged_issue_component_pairs": 12,
+        "n_lands_on_mr_type": 12,
+        "n_not_in_inferred_mrs": 0,
+        "mapping_rate": 1.0,
+        "corpus_type_prevalence": 0.845794,
+        "enrichment_vs_prevalence": 1.18232,
+        "p_value": 0.134022,
+        "issue_topic_count_in_corpus": 11,
+        "miss_examples": [],
+        "q_value": 0.2811
+      },
+      {
+        "relation_type": "aria_mapping",
+        "n_tagged_issue_component_pairs": 22,
+        "n_lands_on_mr_type": 22,
+        "n_not_in_inferred_mrs": 0,
+        "mapping_rate": 1.0,
+        "corpus_type_prevalence": 0.915888,
+        "enrichment_vs_prevalence": 1.091837,
+        "p_value": 0.144721,
+        "issue_topic_count_in_corpus": 24,
+        "miss_examples": [],
+        "q_value": 0.2811
+      },
+      {
+        "relation_type": "data_validation",
+        "n_tagged_issue_component_pairs": 21,
+        "n_lands_on_mr_type": 9,
+        "n_not_in_inferred_mrs": 12,
+        "mapping_rate": 0.428571,
+        "corpus_type_prevalence": 0.308411,
+        "enrichment_vs_prevalence": 1.38961,
+        "p_value": 0.16866,
+        "issue_topic_count_in_corpus": 21,
+        "miss_examples": [
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/46181",
+            "title": "Hydration error with mui icons in nextjs turbopack mode"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/41452",
+            "title": "[ListItemButton] Typescript error when passing Button or LoadingButton as component and using it with href and target"
+          },
+          {
+            "sample_id": "45-mui-material-Layout-Grid",
+            "library": "mui-material",
+            "component_name": "Grid",
+            "issue": "https://github.com/mui/material-ui/issues/38808",
+            "title": "[theme] TypeError: `theme.spacing` is not a function when using Chakra UI theme with Material UI theme & MUI X DataGrid"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/29821",
+            "title": "[Select] Error prop not changing Select component text color. Using with react-hook-form"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/27512",
+            "title": "Next.js + Material UI v5 styled-component example is still showing className mismatch error"
+          }
+        ],
+        "q_value": 0.2811
+      },
+      {
+        "relation_type": "pagination_consistency",
+        "n_tagged_issue_component_pairs": 15,
+        "n_lands_on_mr_type": 3,
+        "n_not_in_inferred_mrs": 12,
+        "mapping_rate": 0.2,
+        "corpus_type_prevalence": 0.158879,
+        "enrichment_vs_prevalence": 1.258824,
+        "p_value": 0.434375,
+        "issue_topic_count_in_corpus": 19,
+        "miss_examples": [
+          {
+            "sample_id": "1-mui-material-Inputs-Autocomplete",
+            "library": "mui-material",
+            "component_name": "Autocomplete",
+            "issue": "https://github.com/mui/material-ui/issues/46791",
+            "title": "[autocomplete] Popup causes undesirable page scroll on mobile"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/46330",
+            "title": "[docs] Recommended resources page has 404 link"
+          },
+          {
+            "sample_id": "1-mui-material-Inputs-Autocomplete",
+            "library": "mui-material",
+            "component_name": "Autocomplete",
+            "issue": "https://github.com/mui/material-ui/issues/45229",
+            "title": "[autocomplete] Scrolls page instead of listbox when software keyboard is open on Android"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/43299",
+            "title": "FocusTrap should not scroll the page"
+          },
+          {
+            "sample_id": "33-mui-material-Navigation-Bottom Navigation",
+            "library": "mui-material",
+            "component_name": "Bottom Navigation",
+            "issue": "https://github.com/mui/material-ui/issues/40321",
+            "title": "[material-ui][Bottom Navigation] Not showing up on the bottom of the page"
+          }
+        ],
+        "q_value": 0.620536
+      },
+      {
+        "relation_type": "interaction_feedback",
+        "n_tagged_issue_component_pairs": 45,
+        "n_lands_on_mr_type": 7,
+        "n_not_in_inferred_mrs": 38,
+        "mapping_rate": 0.155556,
+        "corpus_type_prevalence": 0.17757,
+        "enrichment_vs_prevalence": 0.876023,
+        "p_value": 0.709485,
+        "issue_topic_count_in_corpus": 43,
+        "miss_examples": [
+          {
+            "sample_id": "1-mui-material-Inputs-Autocomplete",
+            "library": "mui-material",
+            "component_name": "Autocomplete",
+            "issue": "https://github.com/mui/material-ui/issues/47717",
+            "title": "[autocomplete] when VoiceOver is on, dropdown closes as soon as the mouse hovers over an option"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/40429",
+            "title": "[material-ui][Tabs] Scrollable variant slow animation on iOS and don't set click during it"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/40414",
+            "title": "[menu] Text on the menu item moving slightly on hover"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/40096",
+            "title": "[material-ui][Chip] The `skipFocusWhenDisabled` prop skips the focus when set to false and when disabled is true"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/39538",
+            "title": "[material-ui][Select] Page moves the viewing focus when clicking a Selector component while zoomed in"
+          }
+        ],
+        "q_value": 0.886856
+      },
+      {
+        "relation_type": "keyboard_interaction",
+        "n_tagged_issue_component_pairs": 62,
+        "n_lands_on_mr_type": 52,
+        "n_not_in_inferred_mrs": 10,
+        "mapping_rate": 0.83871,
+        "corpus_type_prevalence": 0.869159,
+        "enrichment_vs_prevalence": 0.964967,
+        "p_value": 0.818601,
+        "issue_topic_count_in_corpus": 66,
+        "miss_examples": [
+          {
+            "sample_id": "44-mui-material-Layout-Container",
+            "library": "mui-material",
+            "component_name": "Container",
+            "issue": "https://github.com/mui/material-ui/issues/44211",
+            "title": "Tabs not scrolling to the correct tab after navigation with `scrollable=\"auto\"`"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/39296",
+            "title": "[Tabs][material-ui] Scroll buttons in RTL mode not using slots component"
+          },
+          {
+            "sample_id": "44-mui-material-Layout-Container",
+            "library": "mui-material",
+            "component_name": "Container",
+            "issue": "https://github.com/mui/material-ui/issues/38004",
+            "title": "Tabs indicator's wrong position when using direction: rtl"
+          },
+          {
+            "sample_id": "17-mui-material-Data display-Icons",
+            "library": "mui-material",
+            "component_name": "Icons",
+            "issue": "https://github.com/mui/material-ui/issues/42451",
+            "title": "[select][menu] Bug with keyboard navigation"
+          },
+          {
+            "sample_id": "141-element-plus-Data display-Empty",
+            "library": "element-plus",
+            "component_name": "Empty",
+            "issue": "https://github.com/element-plus/element-plus/issues/8030",
+            "title": "[Bug Report] [Component] [table, table-column] el-table column slot，scope.$index start -1"
+          }
+        ],
+        "q_value": 0.909557
+      },
+      {
+        "relation_type": "state_synchronization",
+        "n_tagged_issue_component_pairs": 28,
+        "n_lands_on_mr_type": 16,
+        "n_not_in_inferred_mrs": 12,
+        "mapping_rate": 0.571429,
+        "corpus_type_prevalence": 0.794393,
+        "enrichment_vs_prevalence": 0.719328,
+        "p_value": 0.998106,
+        "issue_topic_count_in_corpus": 30,
+        "miss_examples": [
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/48267",
+            "title": "--mui-* css vars are undefined when augmented theme contains property with URL value"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/46736",
+            "title": "[select] Cannot choose a value on Androids TalkBack"
+          },
+          {
+            "sample_id": "14-mui-material-Data display-Badge",
+            "library": "mui-material",
+            "component_name": "Badge",
+            "issue": "https://github.com/mui/material-ui/issues/43081",
+            "title": "[material-ui][Badge] When `showZero={false}` and value is `0` content is not updated"
+          },
+          {
+            "sample_id": "36-mui-material-Navigation-Link",
+            "library": "mui-material",
+            "component_name": "Link",
+            "issue": "https://github.com/mui/material-ui/issues/39045",
+            "title": "[joy-ui][Select] onChange auto triggers when the `value` is not found in options"
+          },
+          {
+            "sample_id": "46-mui-material-Layout-Stack",
+            "library": "mui-material",
+            "component_name": "Stack",
+            "issue": "https://github.com/mui/material-ui/issues/38459",
+            "title": "[docs-infra] Default values are not documented in Joy UI and MUI System"
+          }
+        ],
+        "q_value": 0.998106
+      }
+    ],
+    "significant_topics_fdr_005": [
+      "placement_consistency"
+    ]
+  },
+  "val_summary": "Cross-sectional alignment at V=2026-06-05T13:11:45+00:00; Exp1=ensemble_mean r(pressure,cover)=-0.1084; Exp2=ensemble_union map=0.665563; FDR-significant=['placement_consistency']; not causal prediction.",
+  "rq4": {
+    "open_issues": {
+      "total_valid_issues": 416,
+      "with_matched_component": 368,
+      "by_library": {
+        "ant-design": 22,
+        "element-plus": 123,
+        "mui-base-ui": 26,
+        "mui-material": 245
+      },
+      "require_component_filter": false,
+      "max_pages_per_repo": 10,
+      "note": "Filtered to four study libraries: ant-design, element-plus, mui-material, mui-base-ui"
+    },
+    "exp1_note": "Issue pressure vs. ensemble macro Cover/Touch (three LLM per-component means).",
+    "exp2_note": "Keyword-tagged bug themes vs. whether theme lands on inferred MR relation_type (ensemble union)."
+  }
+}

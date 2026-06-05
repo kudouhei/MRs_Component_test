@@ -1,0 +1,11 @@
+relation_type,n_components_with_type,n_with_topic_issue,n_without_topic_issue,mean_type_gap_with_issue,mean_type_gap_with_issue_pct,mean_type_gap_without_issue,mean_type_gap_without_issue_pct,gap_diff_pp,p_value,q_value,fdr_significant,issue_topic_count_in_corpus
+aria_mapping,196,11,185,0.393939,39.4,0.596396,59.6,-20.2,0.174341,1.0,no,24
+keyboard_interaction,186,21,165,0.793651,79.4,0.681818,68.2,11.2,0.295835,1.0,no,66
+null_handling,181,9,172,0.444444,44.4,0.588178,58.8,-14.4,0.40673,1.0,no,11
+state_synchronization,170,10,160,0.3,30.0,0.394792,39.5,-9.5,0.622569,1.0,no,30
+data_validation,66,4,62,0.25,25.0,0.384409,38.4,-13.4,0.643268,1.0,no,21
+placement_consistency,113,11,102,0.742424,74.2,0.694444,69.4,4.8,0.735963,1.0,no,53
+responsive_sizing,117,7,110,0.595238,59.5,0.65,65.0,-5.5,0.818259,1.0,no,20
+focus_management,184,11,173,0.681818,68.2,0.691715,69.2,-1.0,0.935953,1.0,no,22
+pagination_consistency,34,3,31,0.666667,66.7,0.693548,69.4,-2.7,1.0,1.0,no,19
+interaction_feedback,38,4,34,0.25,25.0,0.382353,38.2,-13.2,1.0,1.0,no,43

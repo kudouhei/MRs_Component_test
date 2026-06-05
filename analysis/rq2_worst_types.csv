@@ -1,0 +1,9 @@
+top_level,relation_type,cover,weak,untouched,ds_n,gemini_n,gpt_n
+Visual/layout,overflow_handling,17.4,37.6,45.0,89,56,93
+Visual/layout,animation_consistency,18.8,56.3,24.9,58,30,32
+Input/prop,monotonicity,24.5,53.5,22.0,92,33,17
+Visual/layout,visual_alignment,27.9,40.8,31.4,36,64,21
+Composition/context,context_propagation,30.2,41.5,28.3,137,73,66
+Visual/layout,responsive_sizing,34.8,43.4,21.8,107,59,65
+Interaction/accessibility,keyboard_interaction,36.1,39.1,24.7,183,122,131
+Interaction/accessibility,focus_management,40.1,40.0,20.0,168,79,132
