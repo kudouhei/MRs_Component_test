@@ -16,21 +16,21 @@ RED_LO   = '#f2c8b8'
 plt.rcParams.update({
     'font.family':        'sans-serif',
     'font.sans-serif':    ['Arial', 'DejaVu Sans'],
-    'font.size':          9,
-    'axes.titlesize':     9.5,
-    'axes.labelsize':     9,
-    'xtick.labelsize':    8.5,
-    'ytick.labelsize':    8.5,
-    'legend.fontsize':    6.5,
-    'axes.linewidth':     0.6,
+    'font.size':          8,
+    'axes.titlesize':     6.5,
+    'axes.labelsize':     6.5,
+    'xtick.labelsize':    6,
+    'ytick.labelsize':    5.5,
+    'legend.fontsize':    6,
+    'axes.linewidth':     0.5,
     'axes.spines.top':    False,
     'axes.spines.right':  False,
-    'xtick.major.width':  0.6,
-    'ytick.major.width':  0.6,
+    'xtick.major.width':  0.5,
+    'ytick.major.width':  0.5,
     'xtick.direction':    'out',
     'ytick.direction':    'out',
-    'grid.linewidth':     0.4,
-    'grid.alpha':         0.45,
+    'grid.linewidth':     0.35,
+    'grid.alpha':         0.35,
 })
 
 # ── data ──────────────────────────────────────────────────────────────────────
@@ -55,7 +55,7 @@ cat_data = {
 }
 
 # ── layout ────────────────────────────────────────────────────────────────────
-fig, axes = plt.subplots(1, 2, figsize=(7.16, 3.0))
+fig, axes = plt.subplots(1, 2, figsize=(6.5, 2.6))
 fig.subplots_adjust(wspace=0.4, left=0.07, right=0.96, top=0.92, bottom=0.30)
 
 BAR_W   = 0.12
@@ -75,47 +75,24 @@ def draw_panel(ax, x_labels, data, subtitle):
                      zorder=3)
         bars[key] = bar
 
-    # 在每个 x 位置标注 Touch 组和 Cover 组的最大/最小 bar
+    # 为每个 bar 添加数值标签（旋转90度）
     for j in range(n):
-        # Touch 组
-        touch_keys = ['T_gem', 'T_deep', 'T_gpt']
-        touch_vals = {k: data[k][j] for k in touch_keys}
-        max_key = max(touch_vals, key=touch_vals.get)
-        min_key = min(touch_vals, key=touch_vals.get)
-        # 最大值（粗体）
-        rect_max = bars[max_key][j]
-        ax.text(rect_max.get_x() + rect_max.get_width()/2., rect_max.get_height() + 1.2,
-                f'{touch_vals[max_key]:.1f}', ha='center', va='bottom',
-                fontsize=5, color='black', weight='bold')
-        # 最小值（如果与最大值不同）
-        if max_key != min_key:
-            rect_min = bars[min_key][j]
-            ax.text(rect_min.get_x() + rect_min.get_width()/2., rect_min.get_height() + 1.2,
-                    f'{touch_vals[min_key]:.1f}', ha='center', va='bottom',
-                    fontsize=5, color='black', weight='normal')
-        # Cover 组
-        cover_keys = ['C_gem', 'C_deep', 'C_gpt']
-        cover_vals = {k: data[k][j] for k in cover_keys}
-        max_key_c = max(cover_vals, key=cover_vals.get)
-        min_key_c = min(cover_vals, key=cover_vals.get)
-        rect_max_c = bars[max_key_c][j]
-        ax.text(rect_max_c.get_x() + rect_max_c.get_width()/2., rect_max_c.get_height() + 1.2,
-                f'{cover_vals[max_key_c]:.1f}', ha='center', va='bottom',
-                fontsize=5, color='black', weight='bold')
-        if max_key_c != min_key_c:
-            rect_min_c = bars[min_key_c][j]
-            ax.text(rect_min_c.get_x() + rect_min_c.get_width()/2., rect_min_c.get_height() + 1.2,
-                    f'{cover_vals[min_key_c]:.1f}', ha='center', va='bottom',
-                    fontsize=5, color='black', weight='normal')
+        for key in KEYS:
+            val = data[key][j]
+            rect = bars[key][j]
+            # 垂直偏移：条形顶部上方 1.5 个百分点
+            ax.text(rect.get_x() + rect.get_width()/2., rect.get_height() + 6,
+                    f'{val:.1f}', ha='center', va='center',
+                    fontsize=5, color='black', weight='normal', rotation=90)
 
     ax.set_xticks(x)
     ax.set_xticklabels(x_labels, fontsize=6.5)
-    ax.set_ylim(0, 104)   # 为标签留空间
+    ax.set_ylim(0, 104)   # 为标签留出空间
     ax.set_yticks([0, 20, 40, 60, 80, 100])
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f'{int(v)}%'))
     ax.yaxis.grid(True, zorder=0)
     ax.set_axisbelow(True)
-    ax.set_title(subtitle, fontsize=9.5, fontweight='bold', pad=6, loc='left')
+    ax.set_title(subtitle, fontsize=7, fontweight='bold', pad=6, loc='left')
 
 draw_panel(axes[0], lib_labels, lib_data, '(a) By library')
 draw_panel(axes[1], cat_labels, cat_data, '(b) By component category')
@@ -133,18 +110,18 @@ cover_handles = [
 ]
 
 leg_touch = fig.legend(handles=touch_handles, loc='center',
-                       bbox_to_anchor=(0.5, 0.63), ncol=1, frameon=False,
-                       title='Touch', title_fontsize=8, prop={'size': 6})
+                       bbox_to_anchor=(0.5, 0.8), ncol=1, frameon=False,
+                       title='Touch', title_fontsize=6, prop={'size': 5.5})
 leg_cover = fig.legend(handles=cover_handles, loc='center',
-                       bbox_to_anchor=(0.5, 0.37), ncol=1, frameon=False,
-                       title='Cover', title_fontsize=8, prop={'size': 6})
+                       bbox_to_anchor=(0.5, 0.6), ncol=1, frameon=False,
+                       title='Cover', title_fontsize=6, prop={'size': 5.5})
 fig.add_artist(leg_touch)
 
 # ── export ────────────────────────────────────────────────────────────────────
 for ext in ('pdf', 'png'):
-    fig.savefig(f'fig_mr_completeness_minmax_bar.{ext}',
+    fig.savefig(f'fig_mr_completeness_all_bars_rotated.{ext}',
                 dpi=300, bbox_inches='tight',
                 format=ext, transparent=(ext == 'pdf'))
-    print(f'Saved fig_mr_completeness_minmax_bar.{ext}')
+    print(f'Saved fig_mr_completeness_all_bars_rotated.{ext}')
 
 plt.close(fig)
