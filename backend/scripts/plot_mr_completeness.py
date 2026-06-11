@@ -55,7 +55,7 @@ cat_data = {
 }
 
 # ── layout ────────────────────────────────────────────────────────────────────
-fig, axes = plt.subplots(1, 2, figsize=(6.5, 2.6))
+fig, axes = plt.subplots(1, 2, figsize=(8, 2.6))
 fig.subplots_adjust(wspace=0.4, left=0.07, right=0.96, top=0.92, bottom=0.30)
 
 BAR_W   = 0.12
@@ -120,7 +120,7 @@ fig.add_artist(leg_touch)
 # ── export ────────────────────────────────────────────────────────────────────
 for ext in ('pdf', 'png'):
     fig.savefig(f'fig_mr_completeness_all_bars_rotated.{ext}',
-                dpi=300, bbox_inches='tight',
+                dpi=600, bbox_inches='tight',
                 format=ext, transparent=(ext == 'pdf'))
     print(f'Saved fig_mr_completeness_all_bars_rotated.{ext}')
 
